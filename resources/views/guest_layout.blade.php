@@ -33,14 +33,12 @@
     <nav class="flex justify-between items-center bg-highlight_blue h-16 w-full">
         {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
                 class="logo" /></a> --}}
-
-            <div>
-                <a href="/"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
-                    class="logo" /></a>
-            </div>
-            
-            <div class=" relative left-0 items-center">
-                <ul class="flex space-x-6 text-md">
+            <div class="flex relative align-start items-center">
+                <div>
+                    <a href="/"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
+                        class="logo" /></a>
+                </div>
+                <ul class="flex space-x-6 text-md ml-3">
                     <li> 
                         <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-map-pin fa-envelope"></i> Location</a>
                     </li>

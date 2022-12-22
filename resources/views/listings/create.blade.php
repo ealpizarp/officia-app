@@ -4,9 +4,9 @@
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
-                Publish property AD
+                Publish your service
             </h2>
-            <p class="mb-4">Post a gig to find a developer</p>
+            <p class="mb-6">In just a few minutes you'll have your service posted!</p>
         </header>
 
         <form method="POST" action="/listings" enctype="multipart/form-data">
@@ -24,16 +24,15 @@
 
 
             <div class="mb-6">
-                <label for="title" class="inline-block text-lg mb-2">Ad Title</label>
+                <label for="title" class="inline-block text-lg mb-2">Service Title</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="title"
-                    value="{{ old('title') }}" placeholder="Example: Beautiful house for rent />
+                    value="{{ old('title') }}" placeholder="Example: Residential electrical services" />
 
                 @error('title')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
 
             </div>
-
 
             <div class="mb-6">
                 <label for="price" class="inline-block text-lg mb-2">Price</label>
@@ -70,10 +69,10 @@
 
             <div class="mb-6">
                 <label for="tags" class="inline-block text-lg mb-2">
-                    Tags (Comma Separated)
+                    Categories (Comma Separated)
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="tags"
-                    placeholder="Example: 2 bedrooms, Air conditioning, Garage, etc.." value="{{ old('tags') }}" />
+                    placeholder="Example: electical, repair, plumbing" value="{{ old('tags') }}" />
 
 
                 @error('tags')
@@ -84,7 +83,7 @@
 
             <div class="mb-6">
                 <label for="image" class="inline-block text-lg mb-2">
-                    Property image
+                    Cover image
                 </label>
                 <input type="file" class="border border-gray-200 rounded p-2 w-full" name="image" />
 
@@ -95,7 +94,7 @@
 
             <div class="mb-6">
                 <label for="description" class="inline-block text-lg mb-2">
-                    Propery Description
+                    Service Description
                 </label>
                 <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10" {{ old('seller') }}
                     placeholder="Include tasks, requirements, salary, etc"></textarea>
@@ -110,7 +109,7 @@
 
             <div class="mb-6">
                 <button class="bg-cyan-700 text-white rounded py-2 px-4 hover:bg-cyan-600 transition duration-300">
-                    Publish Ad
+                    Publish service
                 </button>
 
                 <a href="/dashboard" class="text-black ml-4"> Back </a>

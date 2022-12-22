@@ -33,8 +33,16 @@
         {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
                 class="logo" /></a> --}}
             
-            <div class="flex relative left-3 items-center">
-                <ul class="flex space-x-6 text-md">
+
+
+            
+            <div class="flex relative align-start left-3 items-center">
+                <div>
+                    <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
+                        class="logo" /></a>
+                </div>
+                <ul class="flex space-x-6 text-md ml-3">
+
                     <li> 
                         <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-map-pin fa-envelope"></i> Locations</a>
                     </li>
@@ -93,12 +101,12 @@
     </main>
 
 
-    <footer
+    {{-- <footer
         class="fixed bottom-0 left-0 w-full flex items-center justify-start font-bold bg-cyan-700 text-white h-20 mt-24 opacity-90 md:justify-center">
         <p class="ml-2">Copyright &copy; 2022, All Rights reserved</p>
 
         <a href="/listings/create" class="absolute rounded-md top-1/3 right-10 bg-black text-white py-2 px-5">Post property</a>
-    </footer>
+    </footer> --}}
 
 </body>
 
