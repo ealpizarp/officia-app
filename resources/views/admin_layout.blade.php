@@ -25,7 +25,7 @@
         };
     </script>
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900" rel="stylesheet">
-    <title>Real State App</title>
+    <title>Officia Dashboard</title>
 </head>
 
 <body class="mb-48">
