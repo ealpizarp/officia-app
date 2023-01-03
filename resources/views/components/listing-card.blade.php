@@ -2,7 +2,7 @@
 
 <x-card>
     <div class="flex">
-        <img class="hidden w-48 mr-6 rounded-lg md:block"
+        <img class="hidden w-48 mr-6 rounded-lg lg:block"
             src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
             alt="" />
         <div>
@@ -16,5 +16,8 @@
                 <i class="fa-solid fa-location-dot"></i> {{ $listing->location }}
             </div>
         </div>
+        <img class="hidden w-48 ml-6 rounded-lg md:block lg:hidden"
+        src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
+        alt="" />
     </div>
 </x-card>
