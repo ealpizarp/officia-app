@@ -22,8 +22,8 @@ class CreateUser extends Migration
             $table->integer('phone_number');
             $table->string('email')->unique();
             $table->string('password');
-            $table->binary('type')->default(0);//0->Normal user. 1->Admin.
-            $table->binary('available')->default(1);
+            $table->boolean('type')->default(0);//0->Normal user. 1->Admin.
+            $table->boolean('available')->default(1);
 
             $table->string('profile_photo')->nullable();
             $table->string('verification_photo')->nullable();

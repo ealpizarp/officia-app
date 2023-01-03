@@ -18,7 +18,7 @@ class CreateService extends Migration
 
             $table->string('name');
             $table->string('description');
-            $table->binary('free_diagnosis');
+            $table->boolean('free_diagnosis');
             $table->string('reasons_to_choose');
             $table->string('locations_directions');
             
