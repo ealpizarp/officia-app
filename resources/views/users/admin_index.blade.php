@@ -3,21 +3,21 @@
 @section('content')
 
 
-<div class="2xl:grid-cols-3 md:grid md:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+<div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-4">
 
-    @unless(count($listings) == 0)
-        @foreach ($listings as $listing)
-            <x-listing-card :listing="$listing"/>
+    @unless(count($users) == 0)
+        @foreach ($users as $user)
+            <x-user-card :user="$user"/>
         @endforeach
     @else
-        <p>No listings found</p>
+        <p>No users found</p>
     @endunless
 </div>
 
 <div class="mt-6 p-4">
-    {{$listings->links()}}
+    {{$users->links()}}
 </div>
 
 
-@endauth
 @endsection
+

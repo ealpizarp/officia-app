@@ -79,6 +79,10 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
+Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin'])->name('show_users_admin');;
+
+Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
+
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 

@@ -14,9 +14,23 @@
                 <li> 
                     <a href="/" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-map-pin fa-envelope"></i> Location</a>
                 </li>
+                @auth
+                @if (\Auth::user()->hasRole('admin'))
                 <li> 
-                    <a href="/" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
+                    <a href="/showusers/admin" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
                 </li>
+                @elseif (\Auth::user()->hasRole('user'))
+                <li> 
+                    <a href="/showusers/user" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
+                </li>
+                @endif
+                
+                @else
+                <li> 
+                    <a href="/showusers/guest" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
+                </li>
+                @endauth
+    
                 <li> 
                     <a href="/categories" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-border-all"></i> Categories</a>
                 </li>
