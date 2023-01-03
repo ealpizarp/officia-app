@@ -18,6 +18,7 @@
     {{$users->links()}}
 </div>
 
-
 @endsection
+
+
 

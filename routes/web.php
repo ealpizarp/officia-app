@@ -23,6 +23,9 @@ use App\Http\Controllers\ContactUsFormController;
 // All Listings
 
 Route::get('/', [ListingController::class, 'index'])->name('/');
+
+Route::get('/user', [ListingController::class, 'user'])->name('/user');
+
 //Route::post('/', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
 
 Route::get('/contact', [ContactUsFormController::class, 'createForm']);

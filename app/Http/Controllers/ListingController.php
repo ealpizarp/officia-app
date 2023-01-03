@@ -21,6 +21,16 @@ class ListingController extends Controller
         ]);
     }
 
+    public function user()
+    {
+        return view('listings.user_index', [
+            'listings' => Listing::Latest()->filter(
+                request(['tag', 'search'])
+            )
+                ->paginate(15)
+        ]);
+    }
+
     
 
     public function admin()

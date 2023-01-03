@@ -7,7 +7,8 @@
             alt="" /> --}}
 
         <x-user-info :user="$user"> </x-user-info>
-
+        @auth
+        @if (\Auth::user()->hasRole('admin'))
         <div class="grid grid-columns-1">
             <a href="/users/admin/edit/{{ $user->id }}">
                 <i class="fa-solid fa-pencil"></i> Edit
@@ -19,6 +20,8 @@
                     Delete</button>
             </form>
         </div>
+        @endif
+        @endauth
         {{-- <img class="hidden w-48 ml-6 rounded-lg lg:block"
         src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
         alt="" /> --}}
