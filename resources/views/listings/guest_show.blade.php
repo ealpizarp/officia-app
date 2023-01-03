@@ -33,7 +33,6 @@
                 </div>
             </div>
         </x-card>
-        @auth
         
         <div class="container">
             <div class="row justify-content-center mt-10">
@@ -68,5 +67,5 @@
             </div>
         </div>
 
-    @endauth
+
 @endsection

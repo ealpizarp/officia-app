@@ -1,13 +1,17 @@
 @props(['listing'])
 
 <x-card>
-    <div class="flex">
+    <div class="flex justify-between">
         {{-- <img class="hidden w-48 mr-6 rounded-lg xl:block"
             src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
             alt="" /> --}}
         <div>
             <h3 class="text-lg text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold">
+                @auth
+                <a href="/listings/admin/{{ $listing->id }}">{{ $listing->title }}</a>
+                @else
                 <a href="/listings/{{ $listing->id }}">{{ $listing->title }}</a>
+                @endauth
             </h3>
             <div class="text-sm text-zinc-500 mt-4">Seller: {{ $listing->seller }}</div>
             <div class="text-sm text-zinc-500 mb-4">Price: ${{ $listing->price }}</div>

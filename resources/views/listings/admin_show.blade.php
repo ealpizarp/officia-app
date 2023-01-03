@@ -1,9 +1,8 @@
 @extends('admin_layout')
 
 @section('content')
-    @include('partials._search')
 
-    <a href="/dashboard" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
+    <a href="/dashboard" class="inline-block text-black ml-4 mb-2 mt-2"><i class="fa-solid fa-arrow-left"></i> Back
     </a>
     <div class="mx-4">
         <x-card class='p-14'>
@@ -48,7 +47,6 @@
             </form>
 
         </x-card>
-        @auth
 
         <div class="container">
             <div class="row justify-content-center mt-10">
@@ -83,5 +81,4 @@
             </div>
         </div>
 
-    @endauth
 @endsection

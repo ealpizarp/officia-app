@@ -29,75 +29,11 @@
 </head>
 
 <body class="mb-48">
-    <nav class="flex justify-between items-center bg-highlight_blue h-16 w-full">
-        {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
-                class="logo" /></a> --}}
-            
 
-
-            
-            <div class="flex relative align-start left-3 items-center">
-                <div>
-                    <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
-                        class="logo" /></a>
-                </div>
-                <ul class="flex space-x-6 text-md ml-3">
-
-                    <li> 
-                        <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-map-pin fa-envelope"></i> Locations</a>
-                    </li>
-                    <li> 
-                        <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-id-badge"></i> Buisness Owners</a>
-                    </li>
-                    <li> 
-                        <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-border-all"></i> Categories</a>
-                    </li>
-                </ul>
-            </div>
-            @auth
-
-            <div class="flex relative space-x-6 right-20">
-                <ul class="flex space-x-6 text-md">
-                    <li>
-                        <span class="font-bold uppercase text-zinc-600 hover:text-cyan-600 transition duration-300">
-                            Welcome {{auth()->user()->name}}
-                        </span>
-                    </li>
-                    <li>
-                        <a href="/listings/create" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
-                    </li>
-                    <li>
-                        <form action="/logout" class="inline text-zinc-600 hover:text-cyan-600 transition duration-300" method="POST">
-                        @csrf
-                        <button class="hover:text-cyan-600 transition duration-300" type="submit">
-                            <i class="fa-solid fa-door-closed "></i> Logout
-                        </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            @else
-
-            <div class="flex relative space-x-6 right-20">
-                <ul class="flex space-x-6 text-md">
-                    <li>
-                        <a href="/register" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-user-plus"></i> Register</a>
-                    </li>
-                    <li>
-                        <a href="/login" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-arrow-right-to-bracket"></i>
-                            Login</a>
-                    </li>
-                </ul>
-            </div>
-
-
-            @endauth
-    </nav>
-
+    @include('partials._navbar')
 
     <main>
         @yield('content')
-        
     </main>
 
 

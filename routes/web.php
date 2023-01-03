@@ -82,7 +82,7 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 
-Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.add');
+Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin'])->name('comment.add');
 
 
 
