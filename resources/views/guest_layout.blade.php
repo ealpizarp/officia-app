@@ -44,13 +44,13 @@
                 </div>
                 <ul class="flex space-x-6 text-md ml-3">
                     <li> 
-                        <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-map-pin fa-envelope"></i> Location</a>
+                        <a href="/" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-map-pin fa-envelope"></i> Location</a>
                     </li>
                     <li> 
-                        <a href="/" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-id-badge"></i> Buisness Owners</a>
+                        <a href="/" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-id-badge"></i> Buisness Owners</a>
                     </li>
                     <li> 
-                        <a href="/categories" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-border-all"></i> Categories</a>
+                        <a href="/categories" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-border-all"></i> Categories</a>
                     </li>
                 </ul>
             </div>
@@ -75,13 +75,13 @@
             </div>
             @else
 
-            <div class="flex relative space-x-6 right-20">
+            <div class="hidden md:flex relative space-x-6 right-10">
                 <ul class="flex space-x-6 text-md">
                     <li>
-                        <a href="/register" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-user-plus"></i> Register</a>
+                        <a href="/register" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-user-plus"></i> Register</a>
                     </li>
                     <li>
-                        <a href="/login" class="text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-arrow-right-to-bracket"></i>
+                        <a href="/login" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-arrow-right-to-bracket"></i>
                             Login</a>
                     </li>
                 </ul>

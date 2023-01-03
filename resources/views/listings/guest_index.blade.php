@@ -5,7 +5,7 @@
 @include('partials._hero')
 
 
-    <div class="lg:grid-cols-3 md:grid md:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
+    <div class="2xl:grid-cols-3 md:grid md:grid-cols-2 gap-4 space-y-4 md:space-y-0 mx-4">
 
         @unless(count($listings) == 0)
             @foreach ($listings as $listing)
