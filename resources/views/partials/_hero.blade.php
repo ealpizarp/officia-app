@@ -8,9 +8,9 @@
             </div>
 
             <div class="relative z-10">
-                <h1 class="relative text-6xl font-bold uppercase text-white">
+                {{-- <h1 class="relative text-6xl font-bold uppercase text-white">
                     O<span class="text-gray-700">FFICIA</span>
-                </h1>
+                </h1> --}}
                 <p class="text-2xl font-bold text-white font-bold my-4">
                     What service are you looking for today?
                 </p>
