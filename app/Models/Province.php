@@ -10,7 +10,7 @@ class Province extends Model
     use HasFactory;
     protected $primaryKey="id";
     protected $table = "province";
-    protected $fillable = "name";
+    protected $fillable = ["name"];
 
     public function address(){
         return $this->hasMany(Address::class, 'province_id', 'id');

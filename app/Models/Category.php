@@ -10,5 +10,5 @@ class Category extends Model
     use HasFactory;
     protected $primatyKey="id";
     protected $table = "category";
-    protected $fillable = "name";
+    protected $fillable = ["name"];
 }
