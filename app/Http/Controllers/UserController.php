@@ -45,6 +45,12 @@ class UserController extends Controller
         return view('users.admin_index', ['users' => $users]);
     }
 
+    public function guest_index(){
+        return view('users.guest_index', [
+            'users' => User::Latest()->paginate(10)
+        ]);
+    }
+
     public function store(Request $request) {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],

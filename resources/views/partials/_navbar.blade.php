@@ -7,12 +7,25 @@
         </button>
         <div class="hidden relative align-start items-center md:flex">
             <div>
+
+                @auth
+                @if (\Auth::user()->hasRole('admin'))
+                <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
+                    class="logo" /></a>
+                @elseif (\Auth::user()->hasRole('user'))
+                <a href="/user"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
+                    class="logo" /></a>
+                @endif
+                
+                @else
                 <a href="/"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
                     class="logo" /></a>
+                @endauth
+                
             </div>
             <ul class="flex space-x-6 text-md ml-3">
                 <li> 
-                    <a href="/" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-map-pin fa-envelope"></i> Location</a>
+                    <a href="/locations" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-map-pin fa-envelope"></i> Location</a>
                 </li>
                 @auth
                 @if (\Auth::user()->hasRole('admin'))
@@ -45,9 +58,20 @@
                         Welcome {{auth()->user()->name}}
                     </span>
                 </li>
+
+                @auth
+                @if (\Auth::user()->hasRole('admin'))
                 <li>
-                    <a href="/listings/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
+                    <a href="/listings/admin/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
                 </li>
+                @elseif (\Auth::user()->hasRole('user'))
+                <li>
+                    <a href="/listings/user/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
+                </li>
+                @endif
+
+                @endauth
+
                 <li>
                     <form action="/logout" class="inline text-zinc-600 hover:text-cyan-600 transition duration-300" method="POST">
                     @csrf

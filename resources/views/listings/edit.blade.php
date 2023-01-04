@@ -1,6 +1,9 @@
 @extends('admin_layout')
 
 @section('content')
+
+    <x-back-button></x-back-button>
+
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
@@ -116,7 +119,7 @@
                     Update Ad
                 </button>
 
-                <a href="/dashboard" class="text-black ml-4"> Back </a>
+
             </div>
         </form>
     </x-card>

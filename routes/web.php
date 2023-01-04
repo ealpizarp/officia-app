@@ -38,7 +38,9 @@ Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth
 
 //Show create form
 
-Route::get('/listings/create', [ListingController::class, 'create'])->middleware(['auth', 'admin'])->name('create_listing');;
+Route::get('/listings/admin/create', [ListingController::class, 'create'])->middleware(['auth', 'admin'])->name('create_listing');;
+
+Route::get('/listings/user/create', [ListingController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
 
 // Single Listing
 
@@ -47,9 +49,13 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 Route::get('/listings/admin/{listing}', [ListingController::class, 'show_admin']);
 
+Route::get('/listings/user/{listing}', [ListingController::class, 'show_user']);
+
 //Store Listing data
 
 Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'admin'])->name('store_listing');;
+
+Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'user'])->name('store_listing');;
 
 //Show Edit Form
 
@@ -86,6 +92,8 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin'])->name('show_users_admin');;
 
 Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
+
+Route::get('/showusers/guest', [UserController::class, 'guest_index'])->name('show_users_guest');;
 
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
