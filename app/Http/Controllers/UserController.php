@@ -10,6 +10,22 @@ class UserController extends Controller
 {
     // Show Register/Create Form
 
+    /*
+    protected $fillable = [
+        'legal_id',
+        'name',
+        'last_names',
+        'phone_number',
+        'email',
+        'password',
+        'type',
+        'available',
+        'profile_photo',
+        'verification_photo',
+        'address_id',
+    ];
+    */
+
     public function create() {
         return view('users.register');
     }
@@ -23,9 +39,10 @@ class UserController extends Controller
     }
 
     public function user_index(){
-        return view('users.admin_index', [
-            'users' => User::Latest()->paginate(10)
-        ]);
+
+        $users = User::with('address')->get();
+
+        return view('users.admin_index', ['users' => $users]);
     }
 
     public function store(Request $request) {
