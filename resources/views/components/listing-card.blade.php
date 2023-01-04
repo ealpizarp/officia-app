@@ -1,10 +1,10 @@
 @props(['listing'])
 
 <x-card>
-    <div class="flex">
-        <img class="hidden w-48 mr-6 rounded-lg lg:block"
+    <div class="flex justify-between">
+        {{-- <img class="hidden w-48 mr-6 rounded-lg lg:block"
             src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
-            alt="" />
+            alt="" /> --}}
         <div>
             <h3 class="text-xl text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold">
                 @auth
@@ -25,7 +25,7 @@
                 <i class="fa-solid fa-location-dot"></i> {{ $listing->location }}
             </div>
         </div>
-        <img class="hidden w-48 ml-6 rounded-lg md:block lg:hidden"
+        <img class="hidden w-48 ml-6 rounded-lg lg:block"
         src={{ $listing->image ? asset('storage/' . $listing->image) : asset('./images/no-image.png') }}
         alt="" />
     </div>
