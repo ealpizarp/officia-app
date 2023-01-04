@@ -28,6 +28,66 @@
     </div>
 
     <div class="mb-6">
+        <label for="last_names" class="inline-block text-lg mb-2">
+            Last name
+        </label>
+        <input
+            type="text"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="last_names"
+            value="{{old('last_names')}}"
+        />
+        @error('last_names')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
+        <label for="phone_number" class="inline-block text-lg mb-2">
+            Phone number
+        </label>
+        <input
+            type="number"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="phone_number"
+            value="{{old('phone_number')}}"
+        />
+        @error('phone_number')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
+        <label for="province_id" class="inline-block text-lg mb-2">
+            Province
+        </label>
+        <input
+            type="number"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="province_id"
+            value="{{old('province_id')}}"
+        />
+        @error('province_id')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
+        <label for="district_id" class="inline-block text-lg mb-2">
+            District
+        </label>
+        <input
+            type="number"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="district_id"
+            value="{{old('district_id')}}"
+        />
+        @error('district_id')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
         <label for="email" class="inline-block text-lg mb-2"
             >Email</label
         >

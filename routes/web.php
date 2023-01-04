@@ -40,7 +40,7 @@ Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth
 
 Route::get('/listings/admin/create', [ListingController::class, 'create'])->middleware(['auth', 'admin'])->name('create_listing');;
 
-Route::get('/listings/user/create', [ListingController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
+Route::get('/listings/user/create', [ServiceController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
 
 // Single Listing
 

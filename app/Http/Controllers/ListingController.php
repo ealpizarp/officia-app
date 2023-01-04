@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Models\Address;
+use App\Models\Service;
 use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
@@ -14,10 +16,7 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.guest_index', [
-            'listings' => Listing::Latest()->filter(
-                request(['tag', 'search'])
-            )
-                ->paginate(15)
+            'listings' => Service::with(['address','user','subcategory'])->get()
         ]);
     }
 
