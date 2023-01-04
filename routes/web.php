@@ -54,6 +54,8 @@ Route::get('/listings/user/{listing}', [ListingController::class, 'show_user']);
 
 Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'admin'])->name('store_listing');;
 
+Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'user'])->name('store_listing');;
+
 //Show Edit Form
 
 Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin'])->name('edit_listing');;
