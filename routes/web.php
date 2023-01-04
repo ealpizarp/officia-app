@@ -8,6 +8,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ContactUsFormController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,11 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 Route::get('/email',[MailController::class, 'sendMail']);
 
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.add');
+
+
+//Service
+Route::get('/services', [ServiceController::class, 'index']);
+
 
 
 
