@@ -39,12 +39,16 @@ Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth
 
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware(['auth', 'admin'])->name('create_listing');;
 
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
+
 // Single Listing
 
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 
 Route::get('/listings/admin/{listing}', [ListingController::class, 'show_admin']);
+
+Route::get('/listings/user/{listing}', [ListingController::class, 'show_user']);
 
 //Store Listing data
 

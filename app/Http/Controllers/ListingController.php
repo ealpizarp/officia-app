@@ -61,6 +61,14 @@ class ListingController extends Controller
         ]);
     }
 
+    public function show_user(Listing $listing)
+    {
+
+        return view('listings.user_show', [
+            'listing' => $listing
+        ]);
+    }
+
     public function create()
     {
         return view('listings.create');

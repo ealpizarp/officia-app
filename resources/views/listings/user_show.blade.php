@@ -1,19 +1,19 @@
-@extends('guest_layout')
+@extends('user_layout')
 
 @section('content')
 
-    <a href="/" class="inline-block text-black ml-4 mb-2 mt-2"><i class="fa-solid fa-arrow-left"></i> Back
+    <a href="/user" class="inline-block text-black ml-4 mb-2 mt-2"><i class="fa-solid fa-arrow-left"></i> Back
     </a>
 
     <x-listing-info :listing=$listing> </x-listing-info>
 
-        
+
         <div class="container">
             <div class="row justify-content-center mt-10">
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="font-bold leading-tight text-gray-700 text-2xl mt-0 mb-4">Users comments</h4>
+                            <h4 class="font-medium leading-tight text-2xl mt-0 mb-4 text-gray-800">User comments</h4>
                             @foreach ($listing->comments as $comment)
                                 <div class="display-comment">
                                     <strong class='mt-2 mb-1 text-teal-600'>{{ $comment->user->name }}</strong>
