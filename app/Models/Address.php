@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Address extends Model
 {
     use HasFactory;
+    protected $primaryKey="id";
     protected $table = "address";
-    protected $fillable = ["name",'province_id',];
+    protected $fillable = ["name",'province_id'];
 
     public function province()
     {
@@ -21,5 +22,3 @@ class Address extends Model
         return $this->hasMany(Service::class, 'address_id', 'id');
     }
 }
-
-

@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Subcategory extends Model
 {
     use HasFactory;
-    protected $primatyKey="id";
-    protected $foreingKey='category_id';
+    protected $primaryKey="id";
+    protected $foreignKey='category_id';
     protected $table = "subcategory";
     protected $fillable = ["name",'category_id'];
 

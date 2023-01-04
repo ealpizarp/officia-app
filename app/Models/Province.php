@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Province extends Model
 {
     use HasFactory;
-    protected $primatyKey="id";
+    protected $primaryKey="id";
     protected $table = "province";
     protected $fillable = "name";
 

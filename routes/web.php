@@ -9,6 +9,7 @@ use App\Http\Controllers\ListingController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ use App\Http\Controllers\ServiceController;
 // All Listings
 
 Route::get('/', [ListingController::class, 'index'])->name('/');
+
+Route::get('/address', [AddressController::class, 'index'])->name('showaddress');
 
 Route::get('/user', [ListingController::class, 'user'])->name('/user');
 

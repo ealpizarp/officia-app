@@ -15,7 +15,7 @@ class AddressController extends Controller
     public function index()
     {
         $addresses = Address::with(['province'])->get();
-        return view('', ['address' => $addresses]);
+        return view('address.index', ['addresses' => $addresses]);
     }
 
     /**
@@ -62,10 +62,10 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        return view("addresses.edit", ["address" => $address]);
-    }
+    // public function edit($id)
+    // {
+    //     return view("addresses.edit", ["address" => $address]);
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -95,6 +95,6 @@ class AddressController extends Controller
     public function destroy(Address $address)
     {
         $address->delete();
-        return redirect()->route()->with([]);
+        return redirect()->route('')->with([]);
     }
 }
