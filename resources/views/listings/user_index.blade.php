@@ -2,7 +2,8 @@
 
 
 @section('content')
-@include('partials._search')
+@include('partials._hero')
+
 
 @include('partials._listings', ['listings', $listings])
 
