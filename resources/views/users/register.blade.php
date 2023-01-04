@@ -61,28 +61,32 @@
         <label for="province_id" class="inline-block text-lg mb-2">
             Province
         </label>
-        <input
-            type="number"
-            class="border border-gray-200 rounded p-2 w-full"
-            name="province_id"
-            value="{{old('province_id')}}"
-        />
+        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id">
+            <option>Select province</option>
+            @foreach ($provinces as $province)
+                <option value="{{ $province->id }}"> 
+                    {{ $province->name }} 
+                </option>
+            @endforeach    
+        </select>
         @error('province_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>
 
     <div class="mb-6">
-        <label for="district_id" class="inline-block text-lg mb-2">
-            District
+        <label for="county_id" class="inline-block text-lg mb-2">
+            County
         </label>
-        <input
-            type="number"
-            class="border border-gray-200 rounded p-2 w-full"
-            name="district_id"
-            value="{{old('district_id')}}"
-        />
-        @error('district_id')
+        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id">
+            <option>Select county</option>
+            @foreach ($counties as $county)
+                <option value="{{ $county->id }}" {{ ( $county->id ) ? 'selected' : '' }}> 
+                    {{ $county->name }} 
+                </option>
+            @endforeach    
+        </select>
+        @error('province_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
         @enderror
     </div>

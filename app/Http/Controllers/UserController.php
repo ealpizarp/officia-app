@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Province;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -27,7 +29,10 @@ class UserController extends Controller
     */
 
     public function create() {
-        return view('users.register');
+        return view('users.register', [
+            'provinces' => Province::all(),
+            'counties' => Address::all(),
+        ]);
     }
 
 
