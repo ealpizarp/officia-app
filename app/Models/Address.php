@@ -21,4 +21,9 @@ class Address extends Model
     {
         return $this->hasMany(Service::class, 'address_id', 'id');
     }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'address_id', 'id');
+    }
 }
