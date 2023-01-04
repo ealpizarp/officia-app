@@ -41,14 +41,17 @@
         <div class="hidden relative right-2 md:flex">
             <ul class="flex space-x-6 text-md">
                 <li>
-                    <span class="font-bold uppercase text-zinc-600 hover:text-cyan-600 transition duration-300">
+                    <span class="font-bold uppercase text-zinc-600 text-sm hover:text-cyan-600 transition duration-300">
                         Welcome {{auth()->user()->name}}
                     </span>
                 </li>
                 <li>
+                    <a href="/listings/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
+                </li>
+                <li>
                     <form action="/logout" class="inline text-zinc-600 hover:text-cyan-600 transition duration-300" method="POST">
                     @csrf
-                    <button class="hover:text-cyan-600 transition duration-300" type="submit">
+                    <button class="hover:text-cyan-600 transition text-sm duration-300" type="submit">
                         <i class="fa-solid fa-door-closed "></i> Logout
                     </button>
                     </form>
