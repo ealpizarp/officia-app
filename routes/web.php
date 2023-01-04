@@ -24,6 +24,9 @@ use App\Http\Controllers\ServiceController;
 // All Listings
 
 Route::get('/', [ListingController::class, 'index'])->name('/');
+
+Route::get('/user', [ListingController::class, 'user'])->name('/user');
+
 //Route::post('/', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
 
 Route::get('/contact', [ContactUsFormController::class, 'createForm']);
@@ -80,10 +83,14 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
+Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin'])->name('show_users_admin');;
+
+Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
+
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 
-Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.add');
+Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin'])->name('comment.add');
 
 
 //Service

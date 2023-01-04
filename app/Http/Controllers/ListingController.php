@@ -17,7 +17,17 @@ class ListingController extends Controller
             'listings' => Listing::Latest()->filter(
                 request(['tag', 'search'])
             )
-                ->paginate(6)
+                ->paginate(15)
+        ]);
+    }
+
+    public function user()
+    {
+        return view('listings.user_index', [
+            'listings' => Listing::Latest()->filter(
+                request(['tag', 'search'])
+            )
+                ->paginate(15)
         ]);
     }
 
@@ -29,7 +39,7 @@ class ListingController extends Controller
             'listings' => Listing::Latest()->filter(
                 request(['tag', 'search'])
             )
-                ->paginate(6)
+                ->paginate(15)
         ]);
     }
 

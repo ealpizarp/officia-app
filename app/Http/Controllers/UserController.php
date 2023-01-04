@@ -14,6 +14,20 @@ class UserController extends Controller
         return view('users.register');
     }
 
+
+    public function admin()
+    {
+        return view('users.admin_index', [
+            'users' => User::Latest()->paginate(10)
+        ]);
+    }
+
+    public function user_index(){
+        return view('users.admin_index', [
+            'users' => User::Latest()->paginate(10)
+        ]);
+    }
+
     public function store(Request $request) {
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
