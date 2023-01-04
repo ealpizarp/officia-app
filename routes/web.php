@@ -92,6 +92,8 @@ Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['a
 
 Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
 
+Route::get('/showusers/guest', [UserController::class, 'guest_index'])->name('show_users_guest');;
+
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 
