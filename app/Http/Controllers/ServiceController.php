@@ -18,8 +18,6 @@ class ServiceController extends Controller
         //
         $services = Service::with(['address','user','subcategory'])->get();
 
-        //echo '<pre>';print_r($address);'</pre>';
-
         return view('listings.services_index',['service' => $services]);
     }
 
@@ -31,7 +29,7 @@ class ServiceController extends Controller
     public function create()
     {
         //
-        return view('services.create');
+        return view('listings.create');
     }
 
     /**
@@ -44,9 +42,20 @@ class ServiceController extends Controller
     {
         //"name",'description','free_diagnosis','reasons_to_choose','locations_directions','address_id','subcategory_id','user_id'
 
-        $service = new Service($request->input());
-        $service->saveOrFail();
-        return redirect()->route("services.index")->with(["mensaje" => "¡Negocio publicado!"]);
+        $formFields = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'free_diagnosis' => 'required',
+            'reasons_to_choose' => 'required',
+            'locations_directions' => 'required',
+            'address_id' => 'required',
+            'subcategory_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        Service::create($formFields);
+
+        return redirect()->route("/dashboard")->with(["mensaje" => "¡Negocio publicado!"]);
     }
 
     /**
@@ -69,7 +78,7 @@ class ServiceController extends Controller
     public function edit(Service $service)
     {
         //
-        return view("services.services_edit", ["service" => $service]);
+        return view("service.edit", ["service" => $service]);
     }
 
     /**
@@ -82,8 +91,20 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         //
-        $service->fill($request->input())->saveOrFail();
-        return redirect()->route("services.index")->with(["mensaje" => "¡Negocio actualizado!"]);
+        $formFields = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'free_diagnosis' => 'required',
+            'reasons_to_choose' => 'required',
+            'locations_directions' => 'required',
+            'address_id' => 'required',
+            'subcategory_id' => 'required',
+            'user_id' => 'required'
+        ]);
+
+        $service->update($formFields);
+
+        return back()->with(["mensaje" => "¡Negocio actualizado!"]);
     }
 
     /**
@@ -96,6 +117,6 @@ class ServiceController extends Controller
     {
         //
         $service->delete();
-        return redirect()->route("services.index")->with(["mensaje" => "¡Negocio eliminado!"]);
+        return redirect()->route('/dashboard')->with(["mensaje" => "¡Negocio eliminado!"]);
     }
 }
