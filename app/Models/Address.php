@@ -16,7 +16,8 @@ class Address extends Model
         return $this->belongsTo(Province::class);
     }
 
-    public function service(){
+    public function service()
+    {
         return $this->hasMany(Service::class, 'address_id', 'id');
     }
 }
