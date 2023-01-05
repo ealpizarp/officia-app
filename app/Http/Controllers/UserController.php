@@ -158,4 +158,12 @@ class UserController extends Controller
         return redirect()->route('/dashboard')->with(["message" => "User deleted succesfully!"]);
     }
 
+    public function show(User $user)
+    {
+
+        return view('listings.guest_show', [
+            'user' => $user
+        ]);
+    }
+
 }
