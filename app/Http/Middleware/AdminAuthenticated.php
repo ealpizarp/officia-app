@@ -23,12 +23,12 @@ class AdminAuthenticated
             $user = Auth::user();
 
             // if user is not admin take him to his dashboard
-            if ( $user->hasRole('user') ) {
+            if ( $user->isUser() ) {
                 abort(403);
             }
 
             // allow admin to proceed with request
-            else if ( $user->hasRole('admin') ) {
+            else if ( $user->isAdmin() ) {
                 return $next($request);
             }
         }

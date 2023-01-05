@@ -8,7 +8,7 @@
 
         <x-user-info :user="$user"> </x-user-info>
         @auth
-        @if (\Auth::user()->hasRole('admin'))
+        @if (\Auth::user()->isAdmin())
         <div class="grid grid-columns-1">
             <a href="/users/admin/edit/{{ $user->id }}">
                 <i class="fa-solid fa-pencil"></i> Edit

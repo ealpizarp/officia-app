@@ -56,9 +56,9 @@ class UserController extends Controller
             'name' => 'required',
             'last_names' => 'required',
             'phone_number' => ['required', 'min:8', 'max:9'],
-            'email' => ['required','email', Rule::unique('users','email')],
+            'email' => ['required','email', Rule::unique('user','email')],
             'password' => 'required | confirmed | min:8',
-            'address_id' => 'required'
+            'address_id' => 'required',
         ]);
 
         //Password Hashing
@@ -108,11 +108,11 @@ class UserController extends Controller
             $user = auth()->user();
             $request->session()->regenerate();
 
-            if ( $user->role === "admin" ) {
+            if ( $user->type === 1 ) {
                 return redirect(route('dashboard'));
             }
-            else if ( $user->role === "user" ) {
-                return redirect('/')->with("message", 'You are logged in!');
+            else if ( $user->type === 0 ) {
+                return redirect('/user')->with("message", 'You are logged in!');
             }  
         }
 
