@@ -102,6 +102,8 @@ Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['aut
 
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'admin'])->name('edit_user');;
 
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin'])->name('delete_user');;
+
 
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);

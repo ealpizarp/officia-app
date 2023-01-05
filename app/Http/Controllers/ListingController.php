@@ -45,7 +45,7 @@ class ListingController extends Controller
 
     //Show single listing
 
-    public function show(Listing $listing)
+    public function show(Service $listing)
     {
 
         return view('listings.guest_show', [
@@ -53,7 +53,7 @@ class ListingController extends Controller
         ]);
     }
 
-    public function show_admin(Listing $listing)
+    public function show_admin(Service $listing)
     {
 
         return view('listings.admin_show', [
