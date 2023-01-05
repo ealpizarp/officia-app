@@ -158,4 +158,13 @@ class UserController extends Controller
         return redirect()->route('/dashboard')->with(["message" => "User deleted succesfully!"]);
     }
 
+    public function show(User $user)
+    {
+        $userComplete = User::with(['address','service','reviews'])->where('id','=',$user->id)->get();
+
+        return view('listings.guest_show', [
+            'user' => $userComplete
+        ]);
+    }
+
 }
