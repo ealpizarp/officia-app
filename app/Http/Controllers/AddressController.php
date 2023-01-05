@@ -18,6 +18,16 @@ class AddressController extends Controller
         return view('address.index', ['addresses' => $addresses]);
     }
 
+    public function addressByProvince(Request $request) 
+    {
+        $addresses = Address::where('province_id', '=', $request->id)->get();
+        return response()->json([
+            'status' => 1,
+            'addresses' => $addresses
+            ]
+        );
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -103,6 +103,8 @@ Route::get('/email',[MailController::class, 'sendMail']);
 
 Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin'])->name('comment.add');
 
+Route::get('/address/{id}', [AddressController::class, 'addressByProvince']);
+
 
 //Service
 Route::get('/services', [ServiceController::class, 'index']);

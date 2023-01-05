@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <x-card class="p-10 max-w-lg mx-auto mt-24">
 <header class="text-center">
     <h2 class="text-2xl font-bold uppercase mb-1">
@@ -9,6 +10,7 @@
     </h2>
     <p class="mb-4">Create an account to publish your service</p>
 </header>
+<meta name="_token" content="{{csrf_token()}}"></meta>
 
 <form method="POST" action="/users">
     @csrf
@@ -58,10 +60,25 @@
     </div>
 
     <div class="mb-6">
+        <label for="identification" class="inline-block text-lg mb-2">
+            Identification number
+        </label>
+        <input
+            type="number"
+            class="border border-gray-200 rounded p-2 w-full"
+            name="identification"
+            value="{{old('identification')}}"
+        />
+        @error('identification')
+        <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
         <label for="province_id" class="inline-block text-lg mb-2">
             Province
         </label>
-        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id">
+        <select id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
             <option>Select province</option>
             @foreach ($provinces as $province)
                 <option value="{{ $province->id }}"> 
@@ -75,16 +92,13 @@
     </div>
 
     <div class="mb-6">
+
+        
         <label for="county_id" class="inline-block text-lg mb-2">
             County
         </label>
-        <select class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id">
+        <select id="county" name="county" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="province_id">
             <option>Select county</option>
-            @foreach ($counties as $county)
-                <option value="{{ $county->id }}" {{ ( $county->id ) ? 'selected' : '' }}> 
-                    {{ $county->name }} 
-                </option>
-            @endforeach    
         </select>
         @error('province_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -109,6 +123,17 @@
     </div>
 
     <div class="mb-6">
+        <label for="profile_image" class="inline-block text-lg mb-2">
+            Profile photo
+        </label>
+        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="profile_image" type="file" />
+
+        @error('profile_image')
+            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+        @enderror
+    </div>
+
+    <div class="mb-6">
         <label
             for="password"
             class="inline-block text-lg mb-2"
@@ -127,6 +152,7 @@
 
 
     </div>
+
 
     <div class="mb-6">
         <label
@@ -167,3 +193,51 @@
 </x-card>
 
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $.ajaxSetup({
+         headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+   });
+
+   $(document).ready(function(){
+        $("#province").change(function(){
+            var province_id = $(this).val();
+
+            if (province_id == "") {
+                var province_id = 0;
+            } 
+
+            $.ajax({
+                url: '{{ url("/address/") }}/'+province_id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {             
+                    console.log(response);       
+                    $('#county').find('option:not(:first)').remove();
+
+                    if (response['addresses'].length > 0) {
+                        $.each(response['addresses'], function(key,value){
+                            $("#county").append("<option value='"+value['id']+"'>"+value['name']+"</option>")
+                        });
+                    } 
+                }
+            });            
+        });
+
+   });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#province").on("change", function() {
+            var province_id = $(this).val();
+        });
+        document.cookie = "province_id=" + province_id
+    });
+</script>
+
