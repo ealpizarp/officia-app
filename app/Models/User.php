@@ -31,6 +31,11 @@ class User extends Authenticatable
         return $this->hasMany(Service::class, 'user_id', 'id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany(Reviews::class, 'user_id', 'id');
+    }
+
     public function address()
     {
         
