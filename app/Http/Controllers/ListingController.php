@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Address;
@@ -8,6 +7,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Category;
+use App\Models\Subcategory;
 use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
@@ -50,24 +50,43 @@ class ListingController extends Controller
     public function show(Service $listing)
     {
 
+        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+
+        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
+        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
+
         return view('listings.guest_show', [
-            'listing' => $listing
+            'listing' => $serviceComplete,
+            'address' => $address,
+            'subcategory' => $subcategory
         ]);
     }
 
     public function show_admin(Service $listing)
     {
+        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+
+        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
+        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
         return view('listings.admin_show', [
-            'listing' => $listing
+            'listing' => $serviceComplete,
+            'address' => $address,
+            'subcategory' => $subcategory
         ]);
     }
 
-    public function show_user(Listing $listing)
+    public function show_user(Service $listing)
     {
+        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+
+        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
+        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
         return view('listings.user_show', [
-            'listing' => $listing
+            'listing' => $serviceComplete,
+            'address' => $address,
+            'subcategory' => $subcategory
         ]);
     }
 
@@ -80,24 +99,43 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
+        // $formFields = $request->validate([
+        //     'title' => 'required',
+        //     'price' => 'required',
+        //     'seller' => 'required',
+        //     'location' => 'required',
+        //     'email' => ['required', 'email'],
+        //     'tags' => 'required',
+        //     'description' => 'required'
+        // ]);
+
+        // if ($request->hasFile('image')) {
+        //     $formFields['image'] = $request->file('image')->store('images', 'public');
+        // }
+
+        // Listing::create($formFields);
+
+
+        // return redirect('/dashboard')->with('message', 'Ad published succesfully!');
+
         $formFields = $request->validate([
-            'title' => 'required',
-            'price' => 'required',
-            'seller' => 'required',
-            'location' => 'required',
-            'email' => ['required', 'email'],
-            'tags' => 'required',
-            'description' => 'required'
+            'name' => 'required',
+            'description' => 'required',
+            'reasons_to_choose' => 'required',
+            'locations_directions' => 'required',
+            'address_id' => 'required',
+            'subcategory_id' => 'required',
+            'user_id' => 'required'
         ]);
 
-        if ($request->hasFile('image')) {
-            $formFields['image'] = $request->file('image')->store('images', 'public');
+        if (!$request->free_diagnosis) {
+            $formFields['free_diagnosis'] = 0;
         }
+        
 
-        Listing::create($formFields);
+        Service::create($formFields);
 
-
-        return redirect('/dashboard')->with('message', 'Ad published succesfully!');
+        return redirect()->route("/user")->with(["mensaje" => "Service published succesfully!"]);
     }
 
     // Update listing data

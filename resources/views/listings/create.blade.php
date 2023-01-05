@@ -18,7 +18,7 @@
             @csrf
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">Service title</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="seller"
+                <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full" 
                     value="{{ old('name') }}" />
 
                 @error('name')
@@ -100,7 +100,7 @@
 
             <div class="mb-6">
                 <label for="locations_directions" class="inline-block text-lg mb-2">Buisness directions</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="location_directions"
+                <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full"
                     value="{{ old('locations_directions') }}" />
 
                 @error('locations_directions')
@@ -112,7 +112,7 @@
 
             <div class="mb-6">
                 <input name="user_id" type="text" id="user" placeholder="{{Auth::user()->name}}" aria-label="disabled input" class=" hidden mb-6 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                value="{{Auth::user()->id}}" disabled>
+                value="{{Auth::user()->id}}">
                 @error('user_id')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror

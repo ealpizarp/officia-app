@@ -45,7 +45,6 @@ class ServiceController extends Controller
         $formFields = $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'free_diagnosis' => 'required',
             'reasons_to_choose' => 'required',
             'locations_directions' => 'required',
             'address_id' => 'required',
@@ -53,11 +52,16 @@ class ServiceController extends Controller
             'user_id' => 'required'
         ]);
 
+        if (!$request->free_diagnosis) {
+            $formFields['free_diagnosis'] = 0;
+        }
+        
+
         Service::create($formFields);
 
-        return redirect()->route("/dashboard")->with(["mensaje" => "Ad published succesfully!"]);
+        return redirect()->route("/user")->with(["mensaje" => "Service published succesfully!"]);
     }
-
+    
     /**
      * Display the specified resource.
      *
