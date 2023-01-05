@@ -6,14 +6,14 @@
 <x-card class="p-10 max-w-lg mx-auto mt-24">
 <header class="text-center">
     <h2 class="text-2xl font-bold uppercase mb-1">
-        Register
+        Edit User
     </h2>
-    <p class="mb-4">Create an account to publish your service</p>
 </header>
 <meta name="_token" content="{{csrf_token()}}"></meta>
 
-<form method="POST" action="/users">
+<form method="POST" action="/users/{{$user->id}}" enctype="multipart/form-data">
     @csrf
+    @method('PUT')
     <div class="mb-6">
         <label for="name" class="inline-block text-lg mb-2">
             Name
@@ -22,7 +22,7 @@
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="name"
-            value="{{old('name')}}"
+            value="{{$user->name}}"
         />
         @error('name')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -37,7 +37,7 @@
             type="text"
             class="border border-gray-200 rounded p-2 w-full"
             name="last_names"
-            value="{{old('last_names')}}"
+            value="{{$user->last_names}}"
         />
         @error('last_names')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -52,7 +52,7 @@
             type="number"
             class="border border-gray-200 rounded p-2 w-full"
             name="phone_number"
-            value="{{old('phone_number')}}"
+            value="{{$user->phone_number}}"
         />
         @error('phone_number')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -67,7 +67,7 @@
             type="number"
             class="border border-gray-200 rounded p-2 w-full"
             name="legal_id"
-            value="{{old('legal_id')}}"
+            value="{{$user->legal_id}}"
         />
         @error('legal_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -98,7 +98,7 @@
             County
         </label>
         <select id="county" name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option>Select county</option>
+            <option value={{$user->address_id}}>Select county</option>
         </select>
         @error('address_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -113,7 +113,7 @@
             type="email"
             class="border border-gray-200 rounded p-2 w-full"
             name="email"
-            value="{{old('email')}}"
+            value="{{$user->email}}"
         />
         <!-- Error Example -->
         @error('email')
@@ -123,12 +123,12 @@
     </div>
 
     <div class="mb-6">
-        <label for="profile_image" class="inline-block text-lg mb-2">
+        <label for="profile_photo" class="inline-block text-lg mb-2">
             Profile photo
         </label>
-        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="profile_image" type="file" />
+        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="profile_photo" type="file" />
 
-        @error('profile_image')
+        @error('profile_photo')
             <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
         @enderror
     </div>
@@ -177,18 +177,10 @@
             type="submit"
             class="bg-cyan-700 text-white rounded py-2 px-4 hover:bg-cyan-600 transition duration-300"
         >
-            Sign Up
+            Edit
         </button>
     </div>
 
-    <div class="mt-8">
-        <p>
-            Already have an account?
-            <a href="/login" class="text-cyan-600"
-                >Login</a
-            >
-        </p>
-    </div>
 </form>
 </x-card>
 

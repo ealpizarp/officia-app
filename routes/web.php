@@ -98,10 +98,17 @@ Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware
 
 Route::get('/showusers/guest', [UserController::class, 'guest_index'])->name('show_users_guest');;
 
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'admin'])->name('update_user');;
+
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'admin'])->name('edit_user');;
+
+
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 
 Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin'])->name('comment.add');
+
+Route::get('/address/{id}', [AddressController::class, 'addressByProvince']);
 
 
 //Service

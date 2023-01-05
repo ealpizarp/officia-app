@@ -9,10 +9,10 @@
             <div>
 
                 @auth
-                @if (\Auth::user()->hasRole('admin'))
+                @if (\Auth::user()->isAdmin())
                 <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
                     class="logo" /></a>
-                @elseif (\Auth::user()->hasRole('user'))
+                @elseif (\Auth::user()->isUser())
                 <a href="/user"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
                     class="logo" /></a>
                 @endif
@@ -28,11 +28,11 @@
                     <a href="/locations" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-map-pin fa-envelope"></i> Location</a>
                 </li>
                 @auth
-                @if (\Auth::user()->hasRole('admin'))
+                @if (\Auth::user()->isAdmin())
                 <li> 
                     <a href="/showusers/admin" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
                 </li>
-                @elseif (\Auth::user()->hasRole('user'))
+                @elseif (\Auth::user()->isUser())
                 <li> 
                     <a href="/showusers/user" class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
                 </li>
@@ -60,11 +60,11 @@
                 </li>
 
                 @auth
-                @if (\Auth::user()->hasRole('admin'))
+                @if (\Auth::user()->isAdmin())
                 <li>
                     <a href="/listings/admin/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
                 </li>
-                @elseif (\Auth::user()->hasRole('user'))
+                @elseif (\Auth::user()->isUser())
                 <li>
                     <a href="/listings/user/create" class="text-zinc-600 text-sm hover:text-cyan-600 transition duration-300"><i class="fa-solid fa-plus"></i></i> Post a service</a>
                 </li>

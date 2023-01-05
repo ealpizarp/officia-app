@@ -22,24 +22,25 @@ class ListingController extends Controller
 
     public function user()
     {
-        return view('listings.user_index', [
-            'listings' => Listing::Latest()->filter(
-                request(['tag', 'search'])
-            )
-                ->paginate(15)
+        return view('listings.guest_index', [
+            'listings' => Service::with(['address','user','subcategory'])->paginate(15)
         ]);
+
     }
 
     
 
     public function admin()
     {
-        return view('listings.admin_index', [
-            'listings' => Listing::Latest()->filter(
-                request(['tag', 'search'])
-            )
-                ->paginate(15)
+        return view('listings.guest_index', [
+            'listings' => Service::with(['address','user','subcategory'])->paginate(15)
         ]);
+        // return view('listings.admin_index', [
+        //     'listings' => Listing::Latest()->filter(
+        //         request(['tag', 'search'])
+        //     )
+        //         ->paginate(15)
+        // ]);
     }
 
     //Show single listing
