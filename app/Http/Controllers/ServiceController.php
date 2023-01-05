@@ -55,7 +55,7 @@ class ServiceController extends Controller
 
         Service::create($formFields);
 
-        return redirect()->route("/dashboard")->with(["mensaje" => "¡Negocio publicado!"]);
+        return redirect()->route("/dashboard")->with(["mensaje" => "Ad published succesfully!"]);
     }
 
     /**
@@ -104,7 +104,7 @@ class ServiceController extends Controller
 
         $service->update($formFields);
 
-        return back()->with(["mensaje" => "¡Negocio actualizado!"]);
+        return back()->with(["mensaje" => "Ad updated succesfully!!"]);
     }
 
     /**
@@ -117,6 +117,6 @@ class ServiceController extends Controller
     {
         //
         $service->delete();
-        return redirect()->route('/dashboard')->with(["mensaje" => "¡Negocio eliminado!"]);
+        return redirect()->route('/dashboard')->with(["mensaje" => "Ad deleted succesfully!!"]);
     }
 }
