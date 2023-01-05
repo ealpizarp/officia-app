@@ -10,6 +10,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\SubcategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +116,10 @@ Route::get('/address/{id}', [AddressController::class, 'addressByProvince']);
 
 //Service
 Route::get('/services', [ServiceController::class, 'index']);
+
+//Category
+
+Route::get('/subcategories/{id}', [SubcategoryController::class, 'subcategoryByCategory']);
 
 
 
