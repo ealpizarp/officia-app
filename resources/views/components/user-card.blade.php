@@ -10,7 +10,7 @@
         @auth
         @if (\Auth::user()->isAdmin())
         <div class="grid grid-columns-1">
-            <a href="/users/admin/edit/{{ $user->id }}">
+            <a href="/users/{{ $user->id }}/edit">
                 <i class="fa-solid fa-pencil"></i> Edit
             </a>
             <form method="POST" action="/users/{{ $user->id }}">

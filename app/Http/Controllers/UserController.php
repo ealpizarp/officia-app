@@ -20,7 +20,7 @@ class UserController extends Controller
 
 
     public function admin() {
-        $users = User::with(['address'])->get();
+        $users = User::with(['address'])->paginate(15);
         $provinces = Province::all();
 
         return view('users.admin_index', [
@@ -31,17 +31,17 @@ class UserController extends Controller
 
     public function user_index(){
 
-        $users = User::with(['address'])->get();
+        $users = User::with(['address'])->paginate(15);
         $provinces = Province::all();
 
-        return view('users.admin_index', 
+        return view('users.user_index', 
         ['users' => $users,
         'provinces' => $provinces]);
     }
 
     public function guest_index(){
 
-        $users = User::with(['address'])->get();
+        $users = User::with(['address'])->paginate(15);
         $provinces = Province::all();
 
         return view('users.guest_index', 
@@ -79,6 +79,39 @@ class UserController extends Controller
         return redirect('/')->with('message', 'User created and logged in');
     }
 
+    public function update(Request $request, User $user)
+    {
+        $formFields = $request->validate([
+            'legal_id' => 'required',
+            'name' => 'required',
+            'last_names' => 'required',
+            'phone_number' => ['required', 'min:8', 'max:9'],
+            'email' => ['required','email'],
+        ]);
+
+        if ($request->hasFile('profile_photo')) {
+            $formFields['profile_photo'] = $request->file('profile_photo')->store('images', 'public');
+        }
+
+        if($request->password) {
+            $formFields['password'] = $request->password;
+        }
+
+        if($request->address_id) {
+            $formFields['address_id'] = $request->address_id;
+        }
+
+        $user->update($formFields);
+
+
+        return back()->with('message', 'User updated succesfully!');
+    }
+
+
+    public function edit(User $user)
+    {
+        return view('users.edit', ['user' => $user, 'provinces' => Province::all()]);
+    }
     //Logout user
 
     public function logout(Request $request) {
