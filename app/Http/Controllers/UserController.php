@@ -152,4 +152,11 @@ class UserController extends Controller
         return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
 
+    public function destroy(Address $address)
+    {
+        //
+        $address->delete();
+        return redirect()->route('/user')->with(["mensaje" => "Ad deleted succesfully!!"]);
+    }
+
 }
