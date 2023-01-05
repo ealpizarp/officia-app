@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listing;
-use Illuminate\Http\Request;
 use App\Models\Address;
+use App\Models\Listing;
 use App\Models\Service;
+use Illuminate\Http\Request;
+use App\Models\Province;
+use App\Models\Category;
 use Illuminate\Validation\Rule;
 
 class ListingController extends Controller
@@ -71,7 +73,9 @@ class ListingController extends Controller
 
     public function create()
     {
-        return view('listings.create');
+        return view('listings.create', [
+            'provinces' => Province::all(), 'categories' => Category::all()
+        ]);
     }
 
     public function store(Request $request)

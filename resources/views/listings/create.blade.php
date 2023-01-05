@@ -4,6 +4,8 @@
 
     <x-back-button></x-back-button>
 
+    <meta name="_token" content="{{csrf_token()}}"></meta>
+
     <x-card class="p-10 max-w-lg mx-auto mt-24">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">
@@ -15,11 +17,11 @@
         <form method="POST" action="/listings" enctype="multipart/form-data">
             @csrf
             <div class="mb-6">
-                <label for="seller" class="inline-block text-lg mb-2">Seller Name</label>
+                <label for="name" class="inline-block text-lg mb-2">Service title</label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="seller"
-                    value="{{ old('seller') }}" />
+                    value="{{ old('name') }}" />
 
-                @error('seller')
+                @error('name')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -38,23 +40,44 @@
             </div>
 
             <div class="mb-6">
-                <label for="price" class="inline-block text-lg mb-2">Price</label>
-                <input type="number" class="border border-gray-200 rounded p-2 w-full" name="price"
-                    value="{{ old('price') }}" />
+                <label for="description" class="inline-block text-lg mb-2">Description</label>
 
-                @error('price')
+                <textarea id="description" name="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Describe your service here"></textarea>
+
+                @error('description')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
 
             <div class="mb-6">
-                <label for="location" class="inline-block text-lg mb-2">Location</label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="location"
-                    value="{{ old('location') }}" placeholder="Example: Remote, Boston MA, etc" />
-
-                @error('location')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                <label for="province_id" class="inline-block text-lg mb-2">
+                    Province
+                </label>
+                <select id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option>Select province</option>
+                    @foreach ($provinces as $province)
+                        <option value="{{ $province->id }}"> 
+                            {{ $province->name }} 
+                        </option>
+                    @endforeach    
+                </select>
+                @error('province_id')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
+                @enderror
+            </div>
+        
+            <div class="mb-6">
+        
+                
+                <label for="address_id" class="inline-block text-lg mb-2">
+                    County
+                </label>
+                <select id="county" name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <option>Select county</option>
+                </select>
+                @error('address_id')
+                <p class="text-red-500 text-xs mt-1">{{$message}}</p>
                 @enderror
             </div>
 
@@ -85,27 +108,47 @@
             </div>
 
             <div class="mb-6">
-                <label for="image" class="inline-block text-lg mb-2">
-                    Cover image
-                </label>
-                <input type="file" class="border border-gray-200 rounded p-2 w-full" name="image" />
-
-                @error('image')
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input name="warranty" type="checkbox" value="{{old('warranty')}}" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Warranty</span>
+                    @error('warranty')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                    @enderror
+                </label>
             </div>
 
             <div class="mb-6">
-                <label for="description" class="inline-block text-lg mb-2">
-                    Service Description
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input name="free_diagnosis" type="checkbox" value="{{old('free_diagnosis')}}" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                    <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Free diagnosis</span>
+                    @error('free_diagnosis')
+                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                    @enderror
                 </label>
-                <textarea class="border border-gray-200 rounded p-2 w-full" name="description" rows="10" {{ old('seller') }}
-                    placeholder="Include tasks, requirements, salary, etc"></textarea>
+            </div>
 
-                @error('description')
+
+
+
+            <div class="mb-6">
+                <label for="image" class="inline-block text-lg mb-2">
+                    Cover image
+                </label>
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" />
+                    </label>
+                </div> 
+                @error('image')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
-
             </div>
 
 
@@ -120,4 +163,54 @@
             </div>
         </form>
     </x-card>
+
 @endsection
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $.ajaxSetup({
+         headers: {
+            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+         }
+   });
+
+   $(document).ready(function(){
+        $("#province").change(function(){
+            var province_id = $(this).val();
+
+            if (province_id == "") {
+                var province_id = 0;
+            } 
+
+            $.ajax({
+                url: '{{ url("/address/") }}/'+province_id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response) {             
+                    console.log(response);       
+                    $('#county').find('option:not(:first)').remove();
+
+                    if (response['addresses'].length > 0) {
+                        $.each(response['addresses'], function(key,value){
+                            $("#county").append("<option value='"+value['id']+"'>"+value['name']+"</option>")
+                        });
+                    } 
+                }
+            });            
+        });
+
+   });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        $("#province").on("change", function() {
+            var province_id = $(this).val();
+        });
+        document.cookie = "province_id=" + province_id
+    });
+</script>
+
