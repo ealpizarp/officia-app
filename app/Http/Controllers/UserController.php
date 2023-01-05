@@ -12,22 +12,6 @@ class UserController extends Controller
 {
     // Show Register/Create Form
 
-    /*
-    protected $fillable = [
-        'legal_id',
-        'name',
-        'last_names',
-        'phone_number',
-        'email',
-        'password',
-        'type',
-        'available',
-        'profile_photo',
-        'verification_photo',
-        'address_id',
-    ];
-    */
-
     public function create() {
         return view('users.register', [
             'provinces' => Province::all()
@@ -35,36 +19,58 @@ class UserController extends Controller
     }
 
 
-    public function admin()
-    {
+    public function admin() {
+        $users = User::with(['address'])->get();
+        $provinces = Province::all();
+
         return view('users.admin_index', [
-            'users' => User::Latest()->paginate(10)
+            'users' => $users,
+            'provinces' => $provinces
         ]);
     }
 
     public function user_index(){
 
-        $users = User::with('address')->get();
+        $users = User::with(['address'])->get();
+        $provinces = Province::all();
 
-        return view('users.admin_index', ['users' => $users]);
+        return view('users.admin_index', 
+        ['users' => $users,
+        'provinces' => $provinces]);
     }
 
     public function guest_index(){
-        return view('users.guest_index', [
-            'users' => User::Latest()->paginate(10)
-        ]);
+
+        $users = User::with(['address'])->get();
+        $provinces = Province::all();
+
+        return view('users.guest_index', 
+        ['users' => $users,
+        'provinces' => $provinces]);
     }
 
     public function store(Request $request) {
+
         $formFields = $request->validate([
-            'name' => ['required', 'min:3'],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => 'required | confirmed | min:8'
+            'legal_id' => 'required',
+            'name' => 'required',
+            'last_names' => 'required',
+            'phone_number' => ['required', 'min:8', 'max:9'],
+            'email' => ['required','email', Rule::unique('users','email')],
+            'password' => 'required | confirmed | min:8',
+            'address_id' => 'required'
         ]);
 
         //Password Hashing
-
         $formFields['password'] = bcrypt($formFields['password']);
+
+        if ($request->hasFile('profile_photo')) {
+            $formFields['profile_photo'] = $request->file('image')->store('images', 'public');
+        }
+
+        if ($request->hasFile('verification_photo')) {
+            $formFields['verification_photo'] = $request->file('image')->store('images', 'public');
+        }
 
         $user = User::create($formFields);
 
