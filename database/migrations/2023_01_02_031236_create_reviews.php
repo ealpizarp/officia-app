@@ -15,7 +15,7 @@ class CreateReviews extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('body');
+            $table->longText('body')->nullable();
             $table->integer('num_stars');
 
             //foreing keys

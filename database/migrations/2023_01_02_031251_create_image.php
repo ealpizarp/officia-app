@@ -16,7 +16,7 @@ class CreateImage extends Migration
         Schema::create('image', function (Blueprint $table) {
             $table->id();
 
-            $table->string('path_name');
+            $table->longText('path_name');
 
             //foreing keys
             $table->foreignId('service_id')->constrained('service')->onUpdate('cascade')->onDelete('cascade');

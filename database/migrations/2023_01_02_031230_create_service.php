@@ -17,10 +17,10 @@ class CreateService extends Migration
             $table->id();
 
             $table->string('name');
-            $table->string('description');
+            $table->longText('description');
             $table->boolean('free_diagnosis');
-            $table->string('reasons_to_choose');
-            $table->string('locations_directions');
+            $table->longText('reasons_to_choose')->nullable();
+            $table->longText('locations_directions')->nullable();
             
             //foreing keys
             $table->foreignId('address_id')->constrained('address')->onUpdate('cascade')->onDelete('cascade');

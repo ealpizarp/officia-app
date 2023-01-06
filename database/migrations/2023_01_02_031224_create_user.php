@@ -25,8 +25,8 @@ class CreateUser extends Migration
             $table->boolean('type')->default(false);//0->Normal user. 1->Admin.
             $table->boolean('available')->default(true);
 
-            $table->string('profile_photo')->nullable();
-            $table->string('verification_photo')->nullable();
+            $table->longText('profile_photo')->nullable();
+            $table->longText('verification_photo')->nullable();
 
             //foreing keys
             $table->foreignId('address_id')->constrained('address')->onUpdate('cascade')->onDelete('cascade');

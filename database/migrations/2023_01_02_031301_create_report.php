@@ -16,8 +16,8 @@ class CreateReport extends Migration
         Schema::create('report', function (Blueprint $table) {
             $table->id();
 
-            $table->string('category');
-            $table->string('description');
+            $table->longText('category')->nullable();
+            $table->longText('description')->nullable();
 
             //foreing keys
             $table->foreignId('user_id')->constrained('user')->onUpdate('cascade')->onDelete('cascade');
