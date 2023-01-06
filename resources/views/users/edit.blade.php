@@ -97,8 +97,8 @@
         <label for="address_id" class="inline-block text-lg mb-2">
             County
         </label>
-        <select id="county" name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-            <option value={{$user->address_id}}>Select county</option>
+        <select disabled id="county" name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option selected value={{$user->address->id}}>{{$user->address->name}}</option>
         </select>
         @error('address_id')
         <p class="text-red-500 text-xs mt-1">{{$message}}</p>
@@ -201,7 +201,9 @@
 
             if (province_id == "") {
                 var province_id = 0;
-            } 
+            }
+
+            $('#county').removeAttr('disabled');
 
             $.ajax({
                 url: '{{ url("/address/") }}/'+province_id,
