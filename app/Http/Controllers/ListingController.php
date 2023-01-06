@@ -99,24 +99,6 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
-        // $formFields = $request->validate([
-        //     'title' => 'required',
-        //     'price' => 'required',
-        //     'seller' => 'required',
-        //     'location' => 'required',
-        //     'email' => ['required', 'email'],
-        //     'tags' => 'required',
-        //     'description' => 'required'
-        // ]);
-
-        // if ($request->hasFile('image')) {
-        //     $formFields['image'] = $request->file('image')->store('images', 'public');
-        // }
-
-        // Listing::create($formFields);
-
-
-        // return redirect('/dashboard')->with('message', 'Ad published succesfully!');
 
         $formFields = $request->validate([
             'name' => 'required',
@@ -130,6 +112,8 @@ class ListingController extends Controller
 
         if (!$request->free_diagnosis) {
             $formFields['free_diagnosis'] = 0;
+        } else {
+            $formFields['free_diagnosis'] = 1;
         }
 
         Service::create($formFields);

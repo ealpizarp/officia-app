@@ -140,8 +140,8 @@
 
         <div class="mb-6">
             <label class="relative inline-flex items-center cursor-pointer">
-                <input id="free_diagnosis" name="free_diagnosis" type="checkbox" value="{{$listing->free_diagnosis}}" class="sr-only peer" onchange="checkboxState()"
-                @if($listing->free_diagnosis == 1) 
+                <input id="free_diagnosis" name="free_diagnosis" type="checkbox" value="1" class="sr-only peer"
+                @if($listing->free_diagnosis == 1)
                 checked
                 @endif
                 >
