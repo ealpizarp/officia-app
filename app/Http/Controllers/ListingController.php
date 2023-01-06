@@ -18,14 +18,18 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.guest_index', [
-            'listings' => Service::with(['address','user','subcategory'])->get()
+            'listings' => Service::with(['address','user','subcategory'])->filter(
+                request(['search'])
+            )->paginate(15)
         ]);
     }
 
     public function user()
     {
-        return view('listings.guest_index', [
-            'listings' => Service::with(['address','user','subcategory'])->paginate(15)
+        return view('listings.user_index', [
+            'listings' => Service::with(['address','user','subcategory'])->filter(
+                request(['search'])
+            )->paginate(15)
         ]);
 
     }
@@ -34,15 +38,11 @@ class ListingController extends Controller
 
     public function admin()
     {
-        return view('listings.guest_index', [
-            'listings' => Service::with(['address','user','subcategory'])->paginate(15)
+        return view('listings.admin_index', [
+            'listings' => Service::with(['address','user','subcategory'])->filter(
+                request(['search'])
+            )->paginate(15)
         ]);
-        // return view('listings.admin_index', [
-        //     'listings' => Listing::Latest()->filter(
-        //         request(['tag', 'search'])
-        //     )
-        //         ->paginate(15)
-        // ]);
     }
 
     //Show single listing
@@ -130,6 +130,8 @@ class ListingController extends Controller
 
         if (!$request->free_diagnosis) {
             $formFields['free_diagnosis'] = 0;
+        } else {
+            $formFields['free_diagnosis'] = 1;
         }
         
 

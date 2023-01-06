@@ -34,5 +34,16 @@ class Service extends Model
         return $this->hasMany(Reviews::class, 'service_id', 'id');
     }
 
+    public function scopeFilter($query, array $filters) {
+
+        if($filters['search'] ?? false) {
+
+            $query->where('name', 'like', '%' . request('search') . '%')
+
+            ->orWhere('description', 'like', '%' . request('search') . '%');
+        }
+
+    }
+
 }
 
