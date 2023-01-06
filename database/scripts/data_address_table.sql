@@ -1,5 +1,3 @@
-USE `db-officia`;
-
 #San José
 INSERT INTO `address`(`name`, `province_id`, `created_at`, `updated_at` )VALUES( 'San José',1,NOW(),NOW());
 INSERT INTO `address`(`name`, `province_id`, `created_at`, `updated_at` )VALUES( 'Escazú',1,NOW(),NOW());
