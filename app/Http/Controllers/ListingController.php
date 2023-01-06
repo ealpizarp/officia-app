@@ -116,6 +116,12 @@ class ListingController extends Controller
             $formFields['free_diagnosis'] = 1;
         }
 
+        if (!$request->warranty) {
+            $formFields['warranty'] = 0;
+        } else {
+            $formFields['warranty'] = 1;
+        }
+
         Service::create($formFields);
 
         return redirect()->route("/user")->with(["mensaje" => "Service published succesfully!"]);
@@ -133,6 +139,10 @@ class ListingController extends Controller
 
         if (!$request->free_diagnosis) {
             $formFields['free_diagnosis'] = 0;
+        }
+
+        if (!$request->warranty) {
+            $formFields['warranty'] = 0;
         }
 
         $listing->update($formFields);

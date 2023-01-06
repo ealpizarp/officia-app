@@ -99,7 +99,7 @@
             </div>
 
             <div class="mb-6">
-                <label for="locations_directions" class="inline-block text-lg mb-2">Buisness directions</label>
+                <label for="locations_directions" class="inline-block text-lg mb-2">Business directions</label>
                 <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full"
                     value="{{ old('locations_directions') }}" />
 

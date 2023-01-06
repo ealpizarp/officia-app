@@ -6,7 +6,9 @@
 
     <x-listing-info :listing=$listing> </x-listing-info>
 
-    <x-comments :listing=$listing> </x-comments>
+    
+
+    {{-- <x-comments :listing=$listing> </x-comments> --}}
 
 
 @endsection

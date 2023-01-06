@@ -38,9 +38,9 @@
 
             <p class="my-2 text-black"> 
             @if ($listing->free_diagnosis == 1)
-            <i class="text-green-700 fa-solid fa-circle-check"></i>
+            <i class="text-green-600 fa-solid fa-circle-check"></i>
             @else
-            <i class="text-red-700 fa-solid fa-circle-xmark"></i>
+            <i class="text-red-600 fa-solid fa-circle-xmark"></i>
             @endif
             </p>
 
@@ -49,10 +49,10 @@
             </div>
 
             <p class="my-2 text-black"> 
-            @if ($listing->free_diagnosis == 1)
-            <i class="text-green-700 fa-solid fa-circle-check"></i>
+            @if ($listing->warranty == 1)
+            <i class="text-green-600 fa-solid fa-circle-check"></i>
             @else
-            <i class="text-red-700 fa-solid fa-circle-xmark"></i>
+            <i class="text-red-600 fa-solid fa-circle-xmark"></i>
             @endif
             </p>
 
