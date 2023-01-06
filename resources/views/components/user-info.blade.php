@@ -5,12 +5,15 @@
         <a href="/users/admin/{{ $user->id }}">{{ $user->name }}</a>
     </h3>
     <div class="flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300">
-        <i class="fa-solid fa-envelope mr-1"></i> {{ $user->email }}
+        <i class="fa-solid fa-envelope mr-1.5"></i> {{ $user->email }}
     </div>
     <div class="flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300">
-        <i class="fa-solid fa-phone mr-1"></i> {{ $user->phone_number }}
+        <i class="fa-solid fa-phone mr-1.5"></i> {{ $user->phone_number }}
     </div>
     <div class="flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300">
-        <i class="fa-solid fa-clock mr-1"></i> {{ $user->created_at }}
+        <i class="fa-solid fa-location-pin mr-1.5"></i> {{ $user->address->name }}
+    </div>
+    <div class="flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300">
+        <i class="fa-solid fa-clock mr-1.5"></i> {{ $user->created_at }}
     </div>
 </div>
