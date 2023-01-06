@@ -18,6 +18,7 @@ class CreateService extends Migration
 
             $table->string('name');
             $table->longText('description');
+            $table->boolean('warranty');
             $table->boolean('free_diagnosis');
             $table->longText('reasons_to_choose')->nullable();
             $table->longText('locations_directions')->nullable();
