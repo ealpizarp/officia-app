@@ -142,17 +142,9 @@ class ListingController extends Controller
 
     // Update listing data
 
-    public function update(Request $request, Listing $listing)
+    public function update(Request $request, Service $listing)
     {
-        $formFields = $request->validate([
-            'title' => 'required',
-            'price' => 'required',
-            'seller' => 'required',
-            'location' => 'required',
-            'email' => ['required', 'email'],
-            'tags' => 'required',
-            'description' => 'required'
-        ]);
+        $formFields = $request->all();
 
         if ($request->hasFile('image')) {
             $formFields['image'] = $request->file('image')->store('images', 'public');
@@ -161,14 +153,19 @@ class ListingController extends Controller
         $listing->update($formFields);
 
 
-        return back()->with('message', 'Ad updated succesfully!');
+        return back()->with('message', 'Service updated succesfully!');
     }
 
     //Show Edit Form
 
-    public function edit(Listing $listing)
+    public function edit(Service $listing)
     {
-        return view('listings.edit', ['listing' => $listing]);
+
+        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+
+        return view('listings.edit', ['listing' => $serviceComplete, 
+        'provinces' => Province::all(), 
+        'categories' => Category::all()]);
     }
 
     // Delete Listing
