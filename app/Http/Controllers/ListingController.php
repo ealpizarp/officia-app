@@ -130,10 +130,7 @@ class ListingController extends Controller
 
         if (!$request->free_diagnosis) {
             $formFields['free_diagnosis'] = 0;
-        } else {
-            $formFields['free_diagnosis'] = 1;
         }
-        
 
         Service::create($formFields);
 
@@ -148,6 +145,10 @@ class ListingController extends Controller
 
         if ($request->hasFile('image')) {
             $formFields['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        if (!$request->free_diagnosis) {
+            $formFields['free_diagnosis'] = 0;
         }
 
         $listing->update($formFields);
@@ -170,7 +171,7 @@ class ListingController extends Controller
 
     // Delete Listing
 
-    public function destroy(Listing $listing)
+    public function destroy(Service $listing)
     {
         $listing->delete();
         return redirect('/dashboard')->with('message', 'Listing deleted succesfully!');
