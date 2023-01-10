@@ -243,9 +243,8 @@
                                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG (Max 5MB)
                                             </p>
                                         </div>
-                                        <input name="service_images" id="hidden-input" type="file" multiple
+                                        <input name="images[]" id="hidden-input" type="file" multiple
                                             class="hidden" />
-
                                     </button>
                                 </header>
 
@@ -284,12 +283,11 @@
             </div>
 
             <div class="flex justify-center">
-                <button
+                <button id="submit"
                     class="bg-cyan-700 mt-10 text-center text-white w-48 rounded py-2 px-4 hover:bg-cyan-600 transition duration-300">
                     Publish service
                 </button>
             </div>
-
 
         </div>
 
@@ -371,7 +369,24 @@
 
         // check if file is of type image and prepend the initialied
         // template to the target element
+
+        document.getElementById("submit").onclick = () => {
+
+            const dt = new DataTransfer()
+            const files = Object.values(FILES)
+
+            for (let i = 0; i < files.length; i++) {
+                console.log(files[i])
+                dt.items.add(files[i])
+                console.log(dt)
+                // console.log(dt.items) 
+            }
+
+            document.getElementById("hidden-input").files = dt.files
+        };
+
         function addFile(target, file) {
+            // console.log(document.getElementById("hidden-input").files)
             const isImage = file.type.match("image.*"),
                 objectURL = URL.createObjectURL(file);
 
@@ -419,7 +434,6 @@
                         alert('Images must be 5mb or less')
                     } else {
                         addFile(gallery, file);
-
                     }
 
                 }
@@ -433,8 +447,6 @@
             if (event.submitter.matches('#button')) {
                 event.preventDefault();
             }
-
-            console.log('Someone said hi!');
 
         });
 
@@ -501,21 +513,15 @@
             }
         };
 
-        // print all selected files
-        document.getElementById("submit").onclick = () => {
-            alert(`Submitted Files:\n${JSON.stringify(FILES)}`);
-            console.log(FILES);
-        };
-
         // clear entire selection
-        document.getElementById("cancel").onclick = () => {
-            while (gallery.children.length > 0) {
-                gallery.lastChild.remove();
-            }
-            FILES = {};
-            empty.classList.remove("hidden");
-            gallery.append(empty);
-        };
+        // document.getElementById("cancel").onclick = () => {
+        //     while (gallery.children.length > 0) {
+        //         gallery.lastChild.remove();
+        //     }
+        //     FILES = {};
+        //     empty.classList.remove("hidden");
+        //     gallery.append(empty);
+        // };
     </script>
 @endsection
 
