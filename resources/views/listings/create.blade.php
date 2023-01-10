@@ -212,7 +212,7 @@
                                 <h2 class="text-lg text-gray-500">Upload your service images</h2>
                             </div>
                             <!-- overlay -->
-                            <div id="overlay"
+                            {{-- <div id="overlay"
                                 class="w-full h-full absolute top-0 left-0 pointer-events-none z-50 flex flex-col items-center justify-center rounded-md">
                                 <i>
                                     <svg class="fill-current w-12 h-12 mb-3 text-blue-700"
@@ -223,7 +223,7 @@
                                     </svg>
                                 </i>
                                 <p class="text-lg text-blue-700">Drop files to upload</p>
-                            </div>
+                            </div> --}}
 
                             <!-- scroll area -->
                             <section class="h-full overflow-auto p-8 w-full h-full flex flex-col">
@@ -243,7 +243,8 @@
                                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG or JPG (Max 5MB)
                                             </p>
                                         </div>
-                                        <input id="hidden-input" type="file" multiple class="hidden" />
+                                        <input name="service_images" id="hidden-input" type="file" multiple
+                                            class="hidden" />
 
                                     </button>
                                 </header>
@@ -283,9 +284,10 @@
             </div>
 
             <div class="flex justify-center">
-            <button class="bg-cyan-700 mt-10 text-center text-white w-48 rounded py-2 px-4 hover:bg-cyan-600 transition duration-300">
-                Publish service
-            </button>
+                <button
+                    class="bg-cyan-700 mt-10 text-center text-white w-48 rounded py-2 px-4 hover:bg-cyan-600 transition duration-300">
+                    Publish service
+                </button>
             </div>
 
 
@@ -407,22 +409,42 @@
         const hidden = document.getElementById("hidden-input");
         document.getElementById("button").onclick = () => hidden.click();
         hidden.onchange = (e) => {
-            for (const file of e.target.files) {
-                addFile(gallery, file);
+
+            if (verifyMaxFiles(e, FILES)) {
+                alert('Cannot add more than 6 photos per service')
+            } else {
+                for (const file of e.target.files) {
+
+                    if (verifyMaxSize(file)) {
+                        alert('Images must be 5mb or less')
+                    } else {
+                        addFile(gallery, file);
+
+                    }
+
+                }
             }
         };
 
         let form = document.querySelector('#create-service');
-        form.addEventListener('submit', function (event) {
+        form.addEventListener('submit', function(event) {
 
-        // Ignore the #toggle-something button
-        if (event.submitter.matches('#button')) {
-            event.preventDefault();
-        }
+            // Ignore the #toggle-something button
+            if (event.submitter.matches('#button')) {
+                event.preventDefault();
+            }
 
-        console.log('Someone said hi!');
+            console.log('Someone said hi!');
 
         });
+
+        function verifyMaxFiles(event, filesDict) {
+            return (event.target.files.length > 6 || Object.keys(filesDict).length + event.target.files.length > 6)
+        }
+
+        function verifyMaxSize(file) {
+            return (file.size > 5242880)
+        }
 
         // use to check if a file is being dragged
         const hasFiles = ({
@@ -495,35 +517,6 @@
             gallery.append(empty);
         };
     </script>
-
-    <style>
-        .hasImage:hover section {
-            background-color: rgba(5, 5, 5, 0.4);
-        }
-
-        .hasImage:hover button:hover {
-            background: rgba(5, 5, 5, 0.45);
-        }
-
-        #overlay p,
-        i {
-            opacity: 0;
-        }
-
-        #overlay.draggedover {
-            background-color: rgba(255, 255, 255, 0.7);
-        }
-
-        #overlay.draggedover p,
-        #overlay.draggedover i {
-            opacity: 1;
-        }
-
-        .group:hover .group-hover\:text-blue-800 {
-            color: #2b6cb0;
-        }
-
-    </style>
 @endsection
 
 
@@ -592,5 +585,4 @@
         });
 
     });
-
 </script>
