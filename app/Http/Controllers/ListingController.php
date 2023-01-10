@@ -7,8 +7,10 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Category;
+use App\Models\Reviews;
 use App\Models\Subcategory;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class ListingController extends Controller
 {
@@ -55,10 +57,21 @@ class ListingController extends Controller
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
+        $stars_avg = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews)*100 as average')
+                        ->where('service_id', '=',$listing->id)
+                        ->groupBy('num_stars')
+                        ->orderBy('num_stars')
+                        ->get();
+
+        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();
+
         return view('listings.guest_show', [
             'listing' => $serviceComplete,
             'address' => $address,
-            'subcategory' => $subcategory
+            'subcategory' => $subcategory,
+            'stars_average' => $stars_avg,
+            'reviews' => $reviews
         ]);
     }
 
@@ -69,10 +82,21 @@ class ListingController extends Controller
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
+        $stars_avg = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews)*100 as average')
+                        ->where('service_id', '=',$listing->id)
+                        ->groupBy('num_stars')
+                        ->orderBy('num_stars')
+                        ->get();
+
+        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();  
+
         return view('listings.admin_show', [
             'listing' => $serviceComplete,
             'address' => $address,
-            'subcategory' => $subcategory
+            'subcategory' => $subcategory,
+            'stars_average' => $stars_avg,
+            'reviews' => $reviews
         ]);
     }
 
@@ -83,10 +107,22 @@ class ListingController extends Controller
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
+        $stars_avg = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews)*100 as average')
+                        ->where('service_id', '=',$listing->id)
+                        ->groupBy('num_stars')
+                        ->orderBy('num_stars')
+                        ->get();
+
+        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();
+
+
         return view('listings.user_show', [
             'listing' => $serviceComplete,
             'address' => $address,
-            'subcategory' => $subcategory
+            'subcategory' => $subcategory,
+            'stars_average' => $stars_avg,
+            'reviews' => $reviews
         ]);
     }
 
@@ -99,6 +135,7 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
+              
 
         $formFields = $request->validate([
             'name' => 'required',

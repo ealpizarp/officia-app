@@ -59,32 +59,6 @@ class ReviewsController extends Controller
     public function show(Service $listing)
     {
 
-        $reviews = Reviews::with(['service', 'user'])->where('service_id','=',$listing->id)->get();
-        
-        // DB::table('reviews')->select('num_stars')->avg('num_stars')->groupBy('num_stars')->where('service_id', $listing->id)->get();
-        //DB::table('reviews')->count('num_stars')->where('service_id', $listing->id)->first();
-
-        return view('listings.guest_show', [
-            'reviews' => $reviews
-        ]);
-    }
-
-    public function show_admin(Service $listing)
-    {
-        $reviews = Reviews::with(['service', 'user'])->where('service_id','=',$listing->id)->get();
-
-        //$stars = DB::
-
-        return view('listings.admin_show', ['reviews' => $reviews  ]);
-    }
-
-    public function show_user(Service $listing)
-    {
-        $reviews = Reviews::with(['service', 'user'])->where('service_id','=',$listing->id)->get();
-
-        //$stars = DB::
-
-        return view('listings.user_show', ['reviews' => $reviews ]);
     }
 
     /**

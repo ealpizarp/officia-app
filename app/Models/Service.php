@@ -34,6 +34,11 @@ class Service extends Model
         return $this->hasMany(Reviews::class, 'service_id', 'id');
     }
 
+    public function image()
+    {
+        return $this->hasMany(Image::class, 'service_id', 'id');
+    }
+
     public function scopeFilter($query, array $filters) {
 
         if($filters['search'] ?? false) {
