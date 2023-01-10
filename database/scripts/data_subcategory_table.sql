@@ -1,5 +1,3 @@
-USE `db-officia`;
-
 #Interior
 INSERT INTO `subcategory`(`name`, `category_id`, `created_at`, `updated_at`) VALUES ('Limpieza de casas',1,NOW(),NOW());
 INSERT INTO `subcategory`(`name`, `category_id`, `created_at`, `updated_at`) VALUES ('Reparaciones',1,NOW(),NOW());
