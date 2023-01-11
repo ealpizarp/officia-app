@@ -60,10 +60,12 @@
 
                     </div>
 
-                    <input name="user_id" class="hidden" type="text" value="{{ Auth::user()->id }}">
+                    @auth
+                        <input name="user_id" class="hidden" type="text" value="{{ Auth::user()->id }}">
 
-                    <input name="service_id" class="hidden" type="text"
-                        value="{{ request()->route('listing')->id }}">
+                        <input name="service_id" class="hidden" type="text"
+                            value="{{ request()->route('listing')->id }}">
+                    @endauth
 
                     <input id="stars_input" name="num_stars" class="hidden" type="text">
 
@@ -79,25 +81,30 @@
 
                     <div class="flex items-center justify-center w-full py-5 mt-5">
                         <button
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit</button>
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit
+                        </button>
+                    </div>
                 </form>
+
+
+                {{-- <button
+                id="cancel-button"
+                class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                onclick="modalHandler()">Cancel</button> --}}
+
                 <button
-                    class="py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                    onclick="modalHandler()">Cancel</button>
+                    class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
+                    onclick="modalHandler()" aria-label="close modal" role="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
+                        height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
             </div>
-            <button
-                class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
-                onclick="modalHandler()" aria-label="close modal" role="button">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
-                    height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" />
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-            </button>
         </div>
-    </div>
 
     </div>
     <div class="w-full flex justify-center py-12" id="button">

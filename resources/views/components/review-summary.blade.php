@@ -156,7 +156,6 @@
         </div>
 
     </div>
-    @auth
     <div class="w-full px-4">
         <h3 class="font-medium tracking-tight">Review this item</h3>
         <p class="text-gray-700 text-sm py-1">
@@ -164,7 +163,6 @@
         </p>
         <x-reviews-modal></x-reviews-modal>
     </div>
-    @endauth
 </div>
 
 

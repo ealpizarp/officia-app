@@ -8,7 +8,7 @@
 
     <x-business-owner-info :listing=$listing :stars_average=$stars_average> </x-business-owner-info>
 
-    {{-- <x-comments :listing=$listing> </x-comments> --}}
+    <x-comments :reviews=$reviews> </x-comments>
 
 
 @endsection
