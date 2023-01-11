@@ -83,12 +83,28 @@ class ListingController extends Controller
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
 
-        $stars_avg = DB::table('reviews')
-                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews)*100 as average')
+        $stars_avg[1] = 0;
+        $stars_avg[2] = 0;
+        $stars_avg[3] = 0;
+        $stars_avg[4] = 0;
+        $stars_avg[5] = 0;
+
+        $query = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$listing->id])
                         ->where('service_id', '=',$listing->id)
                         ->groupBy('num_stars')
                         ->orderBy('num_stars')
                         ->get();
+
+
+        if (count($query)>0) {
+
+            foreach ($query as $star) {
+                
+                $stars_avg[$star->num_stars]=$star->average;
+    
+            }
+        }
 
         $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();  
 
