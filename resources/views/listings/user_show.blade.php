@@ -6,7 +6,13 @@
 
     <x-listing-info :listing=$listing> </x-listing-info>
 
-    <x-business-owner-info :listing=$listing :stars_average=$stars_average> </x-business-owner-info>
+    <div class="flex flex-row justify-between mt-28 mb-28">
+    
+        <x-business-owner-info :listing=$listing> </x-business-owner-info>
+    
+        <x-review-summary :starsAverage=$stars_average :numReviews=count($reviews)></x-review-summary>
+    
+    </div>
 
     <x-comments :reviews=$reviews> </x-comments>
 

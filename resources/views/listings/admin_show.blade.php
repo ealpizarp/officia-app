@@ -5,9 +5,15 @@
     <x-back-button></x-back-button>
 
     <x-listing-info :listing=$listing :address=$address> </x-listing-info>
-    
 
-    <x-business-owner-info :listing=$listing :starsAverage=$stars_average> </x-business-owner-info>
+
+    <div class="flex flex-col lg:flex-row justify-between mt-28 mb-28">
+    
+    <x-business-owner-info :listing=$listing> </x-business-owner-info>
+{{-- {{    dd(count($reviews))}} --}}
+    <x-review-summary :starsAverage=$stars_average :numReviews=count($reviews)></x-review-summary>
+
+    </div>
 
     <x-comments :reviews=$reviews> </x-comments>
 

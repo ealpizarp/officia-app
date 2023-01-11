@@ -1,10 +1,10 @@
-@props(['starsAverage', 'listing'])
+@props(['starsAverage', 'numReviews'])
 
 {{-- {{dd($starsAverage[1])}} --}}
 
 <div class="mx-auto bg-gray-100 shadow-lg rounded-lg mt-10 px-4 max-w-sm w-full">
     <div class="mb-1 tracking-wide px-4 py-4">
-        <h2 class="text-gray-800 text-center font-semibold mt-1 mb-4">67 Users reviews</h2>
+        <h2 class="text-gray-800 text-center font-semibold mt-1 mb-4">{{$numReviews}} Users reviews</h2>
         <div class="border-b -mx-8 px-8 pb-3">
                 <div class="flex items-center mt-1">
                     <div class=" w-1/5 text-black tracking-tighter">
