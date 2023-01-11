@@ -1,11 +1,11 @@
-@props(['starsAverage'])
+@props(['starsAverage', 'listing'])
 
 
-<div class="mx-auto bg-gray-100 shadow-lg rounded-lg mt-10 px-4 max-w-sm ">
+<div class="mx-auto bg-gray-100 shadow-lg rounded-lg mt-10 px-4 max-w-sm w-full">
     <div class="mb-1 tracking-wide px-4 py-4">
         <h2 class="text-gray-800 text-center font-semibold mt-1 mb-4">67 Users reviews</h2>
         <div class="border-b -mx-8 px-8 pb-3">
-            @if (count($starsAverage) == 0)
+            {{-- @if (count($starsAverage) == 0) --}}
                 <div class="flex items-center mt-1">
                     <div class=" w-1/5 text-black tracking-tighter">
                         <span>5 star</span>
@@ -76,8 +76,8 @@
                         <span class="text-sm">0%</span>
                     </div>
                 </div><!-- 5th -->
-            @else
-                <div class="flex items-center mt-1">
+            {{-- @else --}}
+                {{-- <div class="flex items-center mt-1">
                     <div class=" w-1/5 text-black tracking-tighter">
                         <span>5 star</span>
                     </div>
@@ -151,25 +151,20 @@
                     <div class="w-1/5 text-gray-700 pl-3">
                         <span class="text-sm">{{ number_format((float) $starsAverage[0]->average, 0) }}%</span>
                     </div>
-                </div><!-- 5th -->
-            @endif
+                </div><!-- 5th --> --}}
+            {{-- @endif --}}
         </div>
 
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal ">
-            Launch demo modal
-        </button>
-
-
     </div>
+    @auth
     <div class="w-full px-4">
         <h3 class="font-medium tracking-tight">Review this item</h3>
         <p class="text-gray-700 text-sm py-1">
-            give your opinion about this item.
+            Tell about the experience of this service
         </p>
         <x-reviews-modal></x-reviews-modal>
-        <button class="bg-gray-100 border border-gray-400 px-3 py-1 rounded  text-gray-800 mt-2" data-toggle="modal"
-            data-target="#exampleModal">write a review</button>
     </div>
+    @endauth
 </div>
 
 

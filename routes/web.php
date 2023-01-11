@@ -10,6 +10,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\SubcategoryController;
 
 /*
@@ -58,6 +59,9 @@ Route::get('/listings/user/{listing}', [ListingController::class, 'show_user']);
 //Store Listing data
 
 Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'admin'])->name('store_listing');;
+
+
+Route::post('/reviews', [ReviewsController::class, 'store'])->middleware(['auth', 'admin'])->name('store_review');;
 
 
 //Show Edit Form
