@@ -200,7 +200,7 @@
                 </x-card>
 
                 <!-- component -->
-                <div class="flex w-1/2 bg-white h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
+                <div class="flex xl:w-1/2 bg-white h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
 
                     <main class="container mx-auto max-w-screen-lg h-full">
                         <!-- file upload modal -->

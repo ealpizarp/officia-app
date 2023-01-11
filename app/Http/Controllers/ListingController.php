@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Category;
 use App\Models\Reviews;
+use App\Models\Image;
 use App\Models\Subcategory;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
@@ -159,7 +160,20 @@ class ListingController extends Controller
             $formFields['warranty'] = 1;
         }
 
-        Service::create($formFields);
+        $service = Service::create($formFields);
+
+        if ($request->images) {
+
+            foreach ($request->images as $image) {
+            
+
+                $new_image['path_name']=$image->store('images', 'public');
+                $new_image['service_id']=$service->id;
+    
+                Image::create($new_image);
+    
+            }
+        }
 
         return redirect()->route("/user")->with(["mensaje" => "Service published succesfully!"]);
     }

@@ -7,8 +7,9 @@
     <x-listing-info :listing=$listing :address=$address> </x-listing-info>
 
     {{-- <x-comments :listing=$listing> </x-comments> --}}
+    
 
-    <x-business-owner-info :listing=$listing> </x-business-owner-info>
+    <x-business-owner-info :listing=$listing :starsAverage=$stars_average> </x-business-owner-info>
 
         <x-card class="mt-4 p-2 flex space-x-6">
             <a href="/listings/{{ $listing->id }}/edit">
