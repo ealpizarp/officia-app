@@ -9,7 +9,6 @@
 
     <x-business-owner-info :listing=$listing :starsAverage=$stars_average> </x-business-owner-info>
 
-
     <x-comments :reviews=$reviews> </x-comments>
 
         <x-card class="mt-4 p-2 flex space-x-6">
