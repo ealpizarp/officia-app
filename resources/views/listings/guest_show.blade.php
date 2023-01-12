@@ -6,7 +6,7 @@
 
     <x-listing-info :listing=$listing> </x-listing-info>
 
-    <div class="flex flex-col lg:flex-row justify-between mt-28 mb-28">
+    <div class="flex flex-col lg:flex-row justify-between items-center mt-28 mb-28">
     
         <x-business-owner-info :listing=$listing> </x-business-owner-info>
     

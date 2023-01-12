@@ -7,10 +7,10 @@
     <x-listing-info :listing=$listing :address=$address> </x-listing-info>
 
 
-    <div class="flex flex-col lg:flex-row justify-between mt-28 mb-28">
+    <div class="flex flex-col lg:flex-row justify-evenly items-center mt-28 mb-28">
     
     <x-business-owner-info :listing=$listing> </x-business-owner-info>
-{{-- {{    dd(count($reviews))}} --}}
+
     <x-review-summary :starsAverage=$stars_average :numReviews=count($reviews)></x-review-summary>
 
     </div>
