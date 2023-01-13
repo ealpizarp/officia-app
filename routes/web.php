@@ -122,6 +122,9 @@ Route::get('/services', [ServiceController::class, 'index']);
 
 //Category
 
+
+Route::get('/categories', [SubcategoryController::class, 'index']);
+
 Route::get('/subcategories/{id}', [SubcategoryController::class, 'subcategoryByCategory']);
 
 
