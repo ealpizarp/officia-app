@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Subcategory;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SubcategoryController extends Controller
@@ -14,7 +15,14 @@ class SubcategoryController extends Controller
      */
     public function index()
     {
-        //
+        $subcategories = DB::table('service')
+                            ->join('subcategory', 'subcategory.id', '=', 'service.subcategory_id')
+                            ->select(DB::raw('count(service.name) as amount, subcategory.id, subcategory.name'))
+                            ->groupBy(DB::raw('subcategory.id, subcategory.name'))
+                            ->orderBy('amount', 'desc')
+                            ->paginate(15);
+
+        return view('subcategories.index', ['subcategories' => $subcategories]);
     }
 
     /**

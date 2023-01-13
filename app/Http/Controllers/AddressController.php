@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class AddressController extends Controller
@@ -14,7 +15,14 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $addresses = Address::with(['province'])->get();
+
+        $addresses = DB::table('service')
+                            ->join('address', 'address.id', '=', 'service.address_id')
+                            ->select(DB::raw('count(service.name) as amount, address.id, address.name'))
+                            ->groupBy(DB::raw('address.id, address.name'))
+                            ->orderBy('amount', 'desc')
+                            ->paginate(15);
+
         return view('address.index', ['addresses' => $addresses]);
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reviews;
 use Illuminate\Http\Request;
 use App\Models\Service;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class ReviewsController extends Controller
@@ -42,11 +43,22 @@ class ReviewsController extends Controller
             'body' => 'required',
             'num_stars' => 'required',
             'service_id' => 'required',
-            'user_id' => 'required'
+            'user_id' => 'required'             
         ]);
 
 
-        Reviews::create($formFields);
+        $review = Reviews::where('service_id', '=', $formFields['service_id'])
+                            ->where('user_id', '=', $formFields['user_id'])
+                            ->first();
+        if ($review === null) {
+            Reviews::create($formFields);
+        }else{
+            //dd($review);
+            $review->body=$formFields['body'];
+            $review->num_stars=intval($formFields['num_stars']);
+            //dd($review); 
+            $review->update($formFields);
+        }
 
         return back()->with('message', 'Review added succesfully!');
     }

@@ -41,6 +41,7 @@ class ListingController extends Controller
 
     public function admin()
     {
+
         return view('listings.admin_index', [
             'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
                 request(['search'])
@@ -53,7 +54,7 @@ class ListingController extends Controller
     public function show(Service $listing)
     {
 
-        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
 
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
@@ -94,7 +95,7 @@ class ListingController extends Controller
 
     public function show_admin(Service $listing)
     {
-        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
 
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
@@ -135,7 +136,7 @@ class ListingController extends Controller
 
     public function show_user(Service $listing)
     {
-        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
 
         $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
         $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
@@ -184,8 +185,6 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
-              
-
         $formFields = $request->validate([
             'name' => 'required',
             'description' => 'required',
