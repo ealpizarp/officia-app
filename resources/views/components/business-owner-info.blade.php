@@ -2,7 +2,7 @@
 
 
 <div
-    class="relative mx-10 max-w-md md:max-w-2xl mt-20 min-w-0 break-words bg-gray-100 w-full mb-6 shadow-lg rounded-xl">
+    class="relative mx-10 w-3/4 lg:w-1/2 mt-20 min-w-0 break-words bg-gray-100 w-full mb-6 shadow-lg rounded-xl">
     <div class="px-6">
         <div class="flex flex-wrap justify-start">
             <div class="w-full flex justify-center">
