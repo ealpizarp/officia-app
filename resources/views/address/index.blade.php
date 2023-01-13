@@ -1,8 +1,7 @@
-{{-- 
-@foreach ( $addresses as $address )
-                
-    {{dd($address)}}
+@extends('guest_layout')
 
-@endforeach --}}
+@section('content')
+@include('partials._locations', ['addresses', $addresses])
 
-{{dd($addresses)}}
+
+@endsection

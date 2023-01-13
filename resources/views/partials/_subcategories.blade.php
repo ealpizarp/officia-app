@@ -1,5 +1,5 @@
 
-<div class="mt-5 grid grid-cols-2 lg:grid-cols-3 gap-2 space-y-2 mx-4">
+<div class="mt-5 grid grid-cols-2 lg:grid-cols-3 gap-4 mx-4">
 
     @unless(count($subcategories) == 0)
         @foreach ($subcategories as $subcategory)

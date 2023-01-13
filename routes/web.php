@@ -128,5 +128,7 @@ Route::get('/categories', [SubcategoryController::class, 'index']);
 Route::get('/subcategories/{id}', [SubcategoryController::class, 'subcategoryByCategory']);
 
 
+//Locations
 
+Route::get('/locations', [AddressController::class, 'index']);
 

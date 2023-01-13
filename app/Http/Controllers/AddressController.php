@@ -21,7 +21,7 @@ class AddressController extends Controller
                             ->select(DB::raw('count(service.name) as amount, address.id, address.name'))
                             ->groupBy(DB::raw('address.id, address.name'))
                             ->orderBy('amount', 'desc')
-                            ->paginate(15);
+                            ->paginate(30);
 
         return view('address.index', ['addresses' => $addresses]);
     }
