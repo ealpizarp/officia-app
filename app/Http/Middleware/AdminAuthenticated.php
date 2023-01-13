@@ -15,21 +15,26 @@ class AdminAuthenticated
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
         if( Auth::check() )
         {
             /** @var User $user */
             $user = Auth::user();
 
-            // if user is not admin take him to his dashboard
-            if ( $user->isUser() ) {
-                abort(403);
+            // if user is editor, allow the request to continue
+            if ( $user->isUser() && $role === 'editor') {
+                return $next($request);
             }
 
             // allow admin to proceed with request
             else if ( $user->isAdmin() ) {
                 return $next($request);
+            }
+
+            // if user is not editor, then the request is denied
+            else if ( $user->isUser() ) {
+                abort(403);
             }
         }
 

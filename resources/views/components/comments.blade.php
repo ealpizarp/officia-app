@@ -13,7 +13,7 @@
         
                             <article class="py-5">
                                 <div class="flex items-center mb-4 space-x-4">
-                                    <img class="w-10 h-10 rounded-full" src="https://placeimg.com/192/192/people"
+                                    <img class="w-10 h-10 rounded-full" src="{{ $review->user->profile_photo ? asset('storage/' . $review->user->profile_photo) : asset('./images/profile_template.png')}}"
                                         alt="">
                                     <div class="space-y-1 font-medium dark:text-white">
                                         <p>{{$review->user->name}} {{$review->user->last_names}}<time datetime="2014-08-16 19:00"

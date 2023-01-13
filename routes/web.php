@@ -39,7 +39,7 @@ Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name
 
 // Registered admin view
 
-Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth', 'admin'])->name('dashboard');
+Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('dashboard');
 
 //Show create form
 
@@ -58,23 +58,23 @@ Route::get('/listings/user/{listing}', [ListingController::class, 'show_user']);
 
 //Store Listing data
 
-Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'admin'])->name('store_listing');;
+Route::post('/listings', [ListingController::class, 'store'])->middleware(['auth', 'admin:editor'])->name('store_listing');;
 
 
-Route::post('/reviews', [ReviewsController::class, 'store'])->middleware(['auth', 'admin'])->name('store_review');;
+Route::post('/reviews', [ReviewsController::class, 'store'])->middleware(['auth', 'admin:editor'])->name('store_review');;
 
 
 //Show Edit Form
 
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin'])->name('edit_listing');;
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin:non_editor'])->name('edit_listing');;
 
 // Update listing
 
-Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'admin'])->name('update_listing');;
+Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'admin:non_editor'])->name('update_listing');;
 
 // Delete listing
 
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'admin'])->name('delete_listing');;
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_listing');;
 
 // Show Register/Create Form
 
@@ -102,17 +102,17 @@ Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware
 
 Route::get('/showusers/guest', [UserController::class, 'guest_index'])->name('show_users_guest');;
 
-Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'admin'])->name('update_user');;
+Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth', 'admin:non_editor'])->name('update_user');;
 
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'admin'])->name('edit_user');;
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'admin:non_editor'])->name('edit_user');;
 
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin'])->name('delete_user');;
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_user');;
 
 
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
 
-Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin'])->name('comment.add');
+Route::post('/comment/store', [CommentController::class, 'store'])->middleware(['auth', 'admin:non_editor'])->name('comment.add');
 
 Route::get('/address/{id}', [AddressController::class, 'addressByProvince']);
 
