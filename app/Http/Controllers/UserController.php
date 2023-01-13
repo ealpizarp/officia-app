@@ -50,7 +50,6 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-
         $formFields = $request->validate([
             'legal_id' => 'required',
             'name' => 'required',
@@ -64,8 +63,8 @@ class UserController extends Controller
         //Password Hashing
         $formFields['password'] = bcrypt($formFields['password']);
 
-        if ($request->hasFile('profile_photo')) {
-            $formFields['profile_photo'] = $request->file('image')->store('images', 'public');
+        if ($request->hasFile('profile_image')) {
+            $formFields['profile_photo'] = $request->file('profile_image')->store('images', 'public');
         }
 
         if ($request->hasFile('verification_photo')) {

@@ -1,7 +1,7 @@
 @props(['listing', 'address'])
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
-<div class="ml-10 mt-5">
+<div class="mx-10 mt-5">
 
     <div class="flex flex-col lg:text-left justify-between lg:flex lg:flex-row">
         <div class="hidden lg:flex lg:flex-col w-1/2">
@@ -17,36 +17,29 @@
                 <!-- Carousel wrapper -->
                 <div id="carousel-container" class="relative h-56 overflow-hidden rounded-xl md:h-96 md:rounded-2xl">
                     <!-- Item 1 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <span
-                            class="absolute text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 sm:text-3xl dark:text-gray-800">First
-                            Slide</span>
-                        <img src="https://images.pexels.com/photos/414191/pexels-photo-414191.jpeg"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="...">
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="https://images.pexels.com/photos/414191/pexels-photo-414191.jpeg"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="...">
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{asset('storage/images/UEoZRXiHzxRiIMHuZpL9V6XrXozFz8E6MWSh8C8w.jpg')}}"
-                            class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                            alt="...">
-                    </div>
+                    @if (count($listing->image) > 0)
+                        @foreach ($listing->image as $image)
+                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                                <img src="{{ asset('storage/' . $image->path_name) }}"
+                                    class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                                    alt="...">
+                            </div>
+                        @endforeach
+                    @else
+                        <x-card class="flex justify-center">
+                            <img class="w-80" src="{{ asset('./images/no-image.png') }}" alt="...">
+                        </x-card>
+                    @endif
                 </div>
                 <!-- Slider indicators -->
-                <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
+                {{-- <div class="absolute z-30 flex space-x-3 -translate-x-1/2 bottom-5 left-1/2">
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 1"
                         data-carousel-slide-to="0"></button>
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 2"
                         data-carousel-slide-to="1"></button>
                     <button type="button" class="w-3 h-3 rounded-full" aria-current="false" aria-label="Slide 3"
                         data-carousel-slide-to="2"></button>
-                </div>
+                </div> --}}
                 <!-- Slider controls -->
                 <button type="button"
                     class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
@@ -130,11 +123,8 @@
 </div>
 
 <style>
-
     #default-carousel {
-    
+
         z-index: 3;
     }
-
-
 </style>
