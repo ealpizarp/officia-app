@@ -26,6 +26,8 @@ use App\Http\Controllers\SubcategoryController;
 
 // All Listings
 
+
+
 Route::get('/', [ListingController::class, 'index'])->name('/');
 
 Route::get('/address', [AddressController::class, 'index'])->name('showaddress');
@@ -43,7 +45,7 @@ Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth
 
 //Show create form
 
-Route::get('/listings/admin/create', [ListingController::class, 'create'])->middleware(['auth', 'admin'])->name('create_listing');;
+Route::get('/listings/admin/create', [ListingController::class, 'create'])->middleware(['auth', 'admin:non_editor'])->name('create_listing');;
 
 Route::get('/listings/user/create', [ListingController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
 
@@ -96,7 +98,7 @@ Route::get('/login', [UserController::class, 'login'])->name('login');
 
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin'])->name('show_users_admin');;
+Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('show_users_admin');;
 
 Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
 
@@ -107,6 +109,8 @@ Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['aut
 Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth', 'admin:non_editor'])->name('edit_user');;
 
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_user');;
+
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'admin:non_editor'])->name('show_user');;
 
 
 // Send Email

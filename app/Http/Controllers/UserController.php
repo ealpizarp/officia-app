@@ -160,9 +160,9 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $userComplete = User::with(['address','service','reviews'])->where('id','=',$user->id)->get();
+        $userComplete = User::with(['address','service','reviews'])->where('id','=',$user->id)->first();
 
-        return view('listings.guest_show', [
+        return view('users.profile', [
             'user' => $userComplete
         ]);
     }
