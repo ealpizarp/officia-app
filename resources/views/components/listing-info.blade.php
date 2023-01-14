@@ -17,7 +17,7 @@
                 <!-- Carousel wrapper -->
                 <div id="carousel-container" class="relative h-56 overflow-hidden rounded-xl md:h-96 md:rounded-2xl">
                     <!-- Item 1 -->
-                    @if (count($listing->image) > 0)
+                    @if (count($listing->image) > 1)
                         @foreach ($listing->image as $image)
                             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                                 <img src="{{ asset('storage/' . $image->path_name) }}"
@@ -26,9 +26,7 @@
                             </div>
                         @endforeach
                     @else
-                        <x-card class="flex justify-center">
-                            <img class="w-80" src="{{ asset('./images/no-image.png') }}" alt="...">
-                        </x-card>
+                            <img class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" src="{{ count($listing->image) > 0 ? asset('storage/' . $listing->image[0]->path_name) : asset('./images/no-image.png') }}" alt="...">
                     @endif
                 </div>
                 <!-- Slider indicators -->
