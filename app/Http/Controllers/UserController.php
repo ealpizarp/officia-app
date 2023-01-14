@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Province;
-use App\Models\Address;
+use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -50,7 +50,6 @@ class UserController extends Controller
     }
 
     public function store(Request $request) {
-
         $formFields = $request->validate([
             'legal_id' => 'required',
             'name' => 'required',
@@ -61,11 +60,24 @@ class UserController extends Controller
             'address_id' => 'required',
         ]);
 
+
         //Password Hashing
         $formFields['password'] = bcrypt($formFields['password']);
 
         if ($request->hasFile('profile_photo')) {
-            $formFields['profile_photo'] = $request->file('profile_photo')->store('images', 'public');
+
+            $image = $request->file('profile_photo');
+
+            $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
+        
+            $destinationPath = storage_path('app/public/images');
+            
+            $img = Image::make($image->path());            
+
+            $img->resize(512, 512, function ($constraint) {
+            })->save($destinationPath.'/'.$input['imagename']);
+
+            $formFields['profile_photo'] = 'images/'.$input['imagename'];
         }
 
         if ($request->hasFile('verification_photo')) {
@@ -154,6 +166,8 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
+        $path = storage_path('app/public/') . $user->profile_photo;
+        unlink($path);
         $user->delete();
         return redirect()->route('dashboard')->with(["message" => "User deleted succesfully!"]);
     }

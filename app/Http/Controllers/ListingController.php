@@ -264,7 +264,13 @@ class ListingController extends Controller
     // Delete Listing
 
     public function destroy(Service $listing)
-    {
+    {   
+        $images=Image::where('service_id','=',$listing->id)->get();
+        foreach ($images as $image) {
+            $path = storage_path('app/public/') . $image->path_name;
+            unlink($path);
+        }
+
         $listing->delete();
         return redirect('/dashboard')->with('message', 'Listing deleted succesfully!');
     }
