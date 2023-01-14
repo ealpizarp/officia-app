@@ -44,15 +44,16 @@ class Service extends Model
         
             $query->whereIn('address_id', Address::where('name', 'LIKE', '%' . request('address') . '%')->pluck('id'))->get();
 
-        }
-
         if($filters['search'] ?? false) {
-            
-            $query->Where('description', 'like', '%' . request('search') . '%')
 
-            ->orWhere('name', 'like', '%' . request('search') . '%');
-            
-        } 
+            $query->join('address', 'address.id', '=', 'service.address_id')
+            ->join('subcategory', 'subcategory.id', '=', 'service.subcategory_id')
+            ->selectRaw('service.*')
+            ->where('service.name', 'like', '%' . request('search') . '%')
+            ->orWhere('service.description', 'like', '%' . request('search') . '%')
+            ->orWhere('address.name', 'like', '%' . request('search') . '%')
+            ->orWhere('subcategory.name', 'like', '%' . request('search') . '%');
+        }
 
     }
 

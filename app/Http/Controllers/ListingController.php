@@ -214,7 +214,7 @@ class ListingController extends Controller
             foreach ($request->images as $image) {
             
 
-                $new_image['path_name']=$image->store('images', 'public');
+                $new_image['path_name']=$image->store('images/services', 'public');
                 $new_image['service_id']=$service->id;
     
                 Image::create($new_image);

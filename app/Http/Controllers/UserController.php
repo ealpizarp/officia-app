@@ -70,7 +70,7 @@ class UserController extends Controller
 
             $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
         
-            $destinationPath = storage_path('app/public/images');
+            $destinationPath = storage_path('app/public/images/profiles');
             
             $img = Image::make($image->path());            
 
@@ -99,18 +99,52 @@ class UserController extends Controller
             'last_names' => 'required',
             'phone_number' => ['required', 'min:8', 'max:9'],
             'email' => ['required','email'],
+            'address_id' => 'required',
         ]);
 
-        if ($request->hasFile('profile_photo')) {
-            $formFields['profile_photo'] = $request->file('profile_photo')->store('images', 'public');
+        /*
+        $actual_user = User::where('id','=',$request->id);
+        
+        if($actual_user->profile_photo != 'images/'.$request->profile_photo){
+
+
+            $image = $request->file('profile_photo');
+            $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
+            $destinationPath = storage_path('app/public/images');
+            $img = Image::make($image->path());            
+
+            $img->resize(512, 512, function ($constraint) {})->save($destinationPath.'/'.$input['imagename']);
+            
+            $path = storage_path('app/public/') . $actual_user->profile_photo;
+            unlink($path);
+
+            $formFields['profile_photo'] = 'images/'.$input['imagename'];
+
+        }else{
+            $formFields['profile_photo'] = $actual_user->profile_photo;
+        }
+        */
+
+        if ($request->hasFile('verification_photo')) {
+            $formFields['verification_photo'] = $request->file('image')->store('images', 'public');
         }
 
         if($request->password) {
-            $formFields['password'] = $request->password;
+            $formFields['password'] = bcrypt($formFields['password']);
         }
 
-        if($request->address_id) {
-            $formFields['address_id'] = $request->address_id;
+        $user->update($formFields);
+
+
+        return back()->with('message', 'User updated succesfully!');
+    }
+
+    public function verify_account(Request $request, User $user)
+    {
+        $formFields = $user->attributesToArray();
+
+        if ($request->hasFile('verification_photo')) {
+            $formFields['verification_photo'] = $request->file('verification_photo')->store('images/verifications', 'public');
         }
 
         $user->update($formFields);
