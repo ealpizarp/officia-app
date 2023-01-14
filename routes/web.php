@@ -110,7 +110,7 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['
 
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_user');;
 
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'admin:non_editor'])->name('show_user');;
+Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'admin:editor'])->name('show_user');;
 
 
 // Send Email
