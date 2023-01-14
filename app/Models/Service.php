@@ -40,13 +40,19 @@ class Service extends Model
     }
 
     public function scopeFilter($query, array $filters) {
+        if($filters['address'] ?? false) {
+        
+            $query->whereIn('address_id', Address::where('name', 'LIKE', '%' . request('address') . '%')->pluck('id'))->get();
+
+        }
 
         if($filters['search'] ?? false) {
+            
+            $query->Where('description', 'like', '%' . request('search') . '%')
 
-            $query->where('name', 'like', '%' . request('search') . '%')
-
-            ->orWhere('description', 'like', '%' . request('search') . '%');
-        }
+            ->orWhere('name', 'like', '%' . request('search') . '%');
+            
+        } 
 
     }
 

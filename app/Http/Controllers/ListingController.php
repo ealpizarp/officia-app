@@ -22,7 +22,7 @@ class ListingController extends Controller
     {
         return view('listings.guest_index', [
             'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search'])
+                request(['search', 'address'])
             )->paginate(15)
         ]);
     }
@@ -31,7 +31,7 @@ class ListingController extends Controller
     {
         return view('listings.user_index', [
             'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search'])
+                request(['search', 'address'])
             )->paginate(15)
         ]);
 
@@ -44,7 +44,7 @@ class ListingController extends Controller
 
         return view('listings.admin_index', [
             'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search'])
+                request(['search', 'address'])
             )->paginate(15)
         ]);
     }

@@ -9,7 +9,7 @@
             <div class="flex w-auto">
                 <h3
                     class="flex text-lg text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold">
-                    <a href="">{{ $subcategory->name }}</a>
+                    <a href="/?subcategory={{$subcategory->name}}">{{ $subcategory->name }}</a>
                 </h3>
             </div>
             {{-- <div

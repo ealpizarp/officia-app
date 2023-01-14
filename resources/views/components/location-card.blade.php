@@ -9,13 +9,10 @@
             <div class="flex w-auto">
                 <h3
                     class="flex text-lg text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold">
-                    <a href="">{{ $location->name }}</a>
+                    <a href="/?address={{$location->name}}">{{ $location->name }}</a>
                 </h3>
             </div>
-            {{-- <div
-                class="w-56 overflow-hidden flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300">
-                <i class="fa-solid fa-envelope mr-1.5"></i> {{ $subcategory->category->name }}
-            </div> --}}
+
 
         </div>
         {{-- <img class="hidden w-48 ml-6 rounded-lg lg:block"

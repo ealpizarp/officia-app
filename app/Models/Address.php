@@ -26,4 +26,5 @@ class Address extends Model
     {
         return $this->hasMany(User::class, 'address_id', 'id');
     }
+
 }
