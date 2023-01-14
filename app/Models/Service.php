@@ -44,6 +44,8 @@ class Service extends Model
         
             $query->whereIn('address_id', Address::where('name', 'LIKE', '%' . request('address') . '%')->pluck('id'))->get();
 
+        }
+        
         if($filters['search'] ?? false) {
 
             $query->join('address', 'address.id', '=', 'service.address_id')
