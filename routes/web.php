@@ -112,6 +112,8 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware([
 
 Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'admin:editor'])->name('show_user');;
 
+Route::get('/users/verify/{user}', [UserController::class, 'verify_account'])->middleware(['auth', 'admin:editor'])->name('verify_user');;
+
 
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
