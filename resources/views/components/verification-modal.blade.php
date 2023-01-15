@@ -7,7 +7,7 @@
         id="report-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400 dark:bg-gray-500">
+            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400 dark:bg-gray-800">
                 <form method="POST" action="/users/verify/{{ Auth::user()->id }}" enctype="multipart/form-data"
                     class="w-full h-full">
                     @csrf

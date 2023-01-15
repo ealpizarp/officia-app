@@ -16,6 +16,6 @@
 
 </div>
 
-<div class="mt-6 p-4">
-    {{$listings->links()}}
+<div class="mt-6 p-4 dark:text-gray-200 dark:bg-gray-800">
+    {{$listings->links('pagination::tailwind')}}
 </div>

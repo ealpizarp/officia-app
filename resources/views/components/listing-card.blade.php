@@ -31,7 +31,7 @@
                     @endif
                 </b>
             </div>
-            <div class="text-lg mt-4 text-red-700 dark:text-red-400">
+            <div class="text-lg mt-4 text-red-700 font-bold dark:text-red-500">
                 <i class="fa-solid fa-location-dot"></i> {{ $listing->address->name }}
             </div>
         </div>

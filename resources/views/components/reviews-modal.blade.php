@@ -7,17 +7,17 @@
         id="review-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
+            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400 dark:bg-gray-800">
                 <form method="POST" action="/reviews" enctype="multipart/form-data" class="w-full h-full">
                     @csrf
-                    <h1 class="text-gray-800 text-center text-2xl font-bold tracking-normal leading-tight mb-4">Tell us
+                    <h1 class="text-gray-800 text-center text-2xl font-bold tracking-normal leading-tight mb-4 dark:text-gray-200">Tell us
                         about
                         your
                         experience!</h1>
 
                     <div class="rating py-10 flex items-center justify-center">
 
-                        <svg aria-hidden="true" data-rating="5" class="s1 star w-10 h-10 text-gray-300"
+                        <svg aria-hidden="true" data-rating="5" class="s1 star w-10 h-10 text-gray-300 dark:text-gray-500"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <title>Five stars</title>
                             <path
@@ -25,7 +25,7 @@
                             </path>
                         </svg>
 
-                        <svg aria-hidden="true" data-rating="4" class="s2 star w-10 h-10 text-gray-300 "
+                        <svg aria-hidden="true" data-rating="4" class="s2 star w-10 h-10 text-gray-300 dark:text-gray-500"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <title>Four stars</title>
                             <path
@@ -33,7 +33,7 @@
                             </path>
                         </svg>
 
-                        <svg aria-hidden="true" data-rating="3" class="s3 star w-10 h-10 text-gray-300"
+                        <svg aria-hidden="true" data-rating="3" class="s3 star w-10 h-10 text-gray-300 dark:text-gray-500"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <title>Three stars</title>
                             <path
@@ -41,7 +41,7 @@
                             </path>
                         </svg>
 
-                        <svg aria-hidden="true" data-rating="2" class="s4 star w-10 h-10 text-gray-300"
+                        <svg aria-hidden="true" data-rating="2" class="s4 star w-10 h-10 text-gray-300 dark:text-gray-500"
                             fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <title>Two stars</title>
                             <path

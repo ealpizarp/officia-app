@@ -7,16 +7,16 @@
         id="report-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
+            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400 dark:bg-gray-800">
                 <form method="POST" action="/reports" enctype="multipart/form-data"
                     class="w-full h-full">
                     @csrf
 
-                    <h1 class="text-gray-500 text-center text-2xl font-bold tracking-normal leading-tight mb-6">
+                    <h1 class="text-gray-500 text-center text-2xl font-bold tracking-normal leading-tight mb-6 dark:text-gray-200">
                         Report this service</h1>
 
                     <div class="mb-6">
-                        <label for="category_id" class="inline-block text-lg mb-2">
+                        <label for="category_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                             Category
                         </label>
                         <select name="category" id="category"
@@ -39,7 +39,7 @@
 
 
                     <div class="mb-6">
-                        <label for="description" class="inline-block text-lg mb-2">Description</label>
+                        <label for="description" class="inline-block text-lg mb-2 dark:text-gray-200">Description</label>
 
                         <textarea id="description" name="description" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
