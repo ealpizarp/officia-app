@@ -4,13 +4,14 @@
 <dh-component>
 
     <div class="py-12 bg-gray-700/50 transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0 h-auto w-screen hidden"
-        id="modal">
+        id="report-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
-                <form method="POST" action="/users/verify/{{Auth::user()->id}}" enctype="multipart/form-data" class="w-full h-full">
+                <form method="POST" action="/users/verify/{{ Auth::user()->id }}" enctype="multipart/form-data"
+                    class="w-full h-full">
                     @csrf
-                    @method("PUT")
+                    @method('PUT')
                     <h1 class="text-gray-500 text-center text-2xl font-bold tracking-normal leading-tight mb-4">
                         Get verified now!</h1>
 
@@ -74,10 +75,11 @@
     <div class="w-full flex justify-center py-12" id="button">
         <button
             class="focus:outline-none transition duration-150 ease-in-out py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 bg-lime-500 rounded-lg border border-gray-200 hover:bg-lime-400 hover:text-blue-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            onclick="modalHandler(true)"><span class="pr-2"><i class="fa-solid fa-certificate"></i></span>Get Verified</button>
+            onclick="modalHandler(true)"><span class="pr-2"><i class="fa-solid fa-certificate"></i></span>Get
+            Verified</button>
     </div>
     <script>
-        let modal = document.getElementById("modal");
+        let report_modal = document.getElementById("report-modal");
 
         function modalHandler(val) {
             if (val) {
@@ -109,40 +111,6 @@
                 }
             })();
         }
-
-
-
-        var $stars = $('.rating .star');
-
-        let $input = $('#stars_input')
-
-        $stars.each(function() {
-            var $this = $(this);
-            var rating = $this.data('rating');
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-
-                // Prevent from selecting multiple times, or in our case
-
-                if ($this.hasClass('selected')) {
-                    // alert('you\'ve already selected this, but thanks for trying again!'); --DEBUG--
-                    return false;
-                }
-
-
-                $stars.removeClass('selected');
-                $this.addClass('selected');
-
-                // ADD AN AJAX CALL HERE!
-                // $.ajax(...);
-
-                // This is only a test so you can see it working
-                $('#stars_input').val(rating)
-                // alert('You selected a star rating of: ' + rating); --DEBUG--
-
-            });
-        });
     </script>
 
 

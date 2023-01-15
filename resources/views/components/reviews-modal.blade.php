@@ -4,7 +4,7 @@
 <dh-component>
 
     <div class="py-12 bg-gray-700/50 transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0 h-auto w-screen hidden"
-        id="modal">
+        id="review-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
@@ -113,13 +113,13 @@
             onclick="modalHandler(true)">Write a review</button>
     </div>
     <script>
-        let modal = document.getElementById("modal");
+        let review_modal = document.getElementById("review-modal");
 
         function modalHandler(val) {
             if (val) {
-                fadeIn(modal);
+                fadeIn(review_modal);
             } else {
-                fadeOut(modal);
+                fadeOut(review_modal);
             }
         }
 
@@ -145,7 +145,6 @@
                 }
             })();
         }
-
 
 
         var $stars = $('.rating .star');

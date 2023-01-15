@@ -4,7 +4,7 @@
 <dh-component>
 
     <div class="py-12 bg-gray-700/50 transition duration-150 ease-in-out z-10 fixed top-0 right-0 bottom-0 left-0 h-auto w-screen hidden"
-        id="modal">
+        id="report-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
@@ -85,13 +85,13 @@
             service</button>
     </div>
     <script>
-        let modal = document.getElementById("modal");
+        let report_modal = document.getElementById("report-modal");
 
         function modalHandler(val) {
             if (val) {
-                fadeIn(modal);
+                fadeIn(report_modal);
             } else {
-                fadeOut(modal);
+                fadeOut(report_modal);
             }
         }
 
@@ -119,38 +119,6 @@
         }
 
 
-
-        var $stars = $('.rating .star');
-
-        let $input = $('#stars_input')
-
-        $stars.each(function() {
-            var $this = $(this);
-            var rating = $this.data('rating');
-
-            $this.on('click', function(e) {
-                e.preventDefault();
-
-                // Prevent from selecting multiple times, or in our case
-
-                if ($this.hasClass('selected')) {
-                    // alert('you\'ve already selected this, but thanks for trying again!'); --DEBUG--
-                    return false;
-                }
-
-
-                $stars.removeClass('selected');
-                $this.addClass('selected');
-
-                // ADD AN AJAX CALL HERE!
-                // $.ajax(...);
-
-                // This is only a test so you can see it working
-                $('#stars_input').val(rating)
-                // alert('You selected a star rating of: ' + rating); --DEBUG--
-
-            });
-        });
     </script>
 
 
