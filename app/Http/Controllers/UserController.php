@@ -215,4 +215,16 @@ class UserController extends Controller
         ]);
     }
 
+    
+
+    public function user_ban(Request $request, User $user)
+    {
+        
+        $formFields = $user->attributesToArray();
+        $formFields['available'] = ($request->free_diagnosis) ? 0 : 1;
+        $user->update($formFields);
+
+        return back()->with('message', 'User updated succesfully!');
+    }
+
 }
