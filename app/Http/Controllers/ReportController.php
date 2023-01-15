@@ -111,8 +111,9 @@ class ReportController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Report $report)
     {
-        //
+        $report->delete();
+        return back()->with('message', 'Report deleted succesfully!');
     }
 }
