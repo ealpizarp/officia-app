@@ -18,7 +18,8 @@
                 extend: {
                     colors: {
                         laravel: "#ef3b2d",
-                        highlight_blue: "#E2ECF4"
+                        highlight_blue: "#E2ECF4",
+                        hero: "#026d8566"
                     },
                 },
             },
@@ -29,12 +30,12 @@
     <title>Officia App</title>
 </head>
 
-<body class="mb-48">
+<body class="mb-48 dark:bg-gray-800">
 
     @include('partials._navbar')
 
 
-    <main>
+    <main class="dark:bg-gray-800">
         @yield('content')
     </main>
 

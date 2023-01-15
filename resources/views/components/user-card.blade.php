@@ -11,10 +11,11 @@
 
         @auth
             @if (Auth::user()->isAdmin())
+                <div class="flex justify-center items-center">
                 <form method="POST" action="/users/ban/{{ $user->id }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex flex-row gap-8">
+                    <div class="flex items-center flex-row gap-8">
                         <label class="relative cursor-pointer">
                             <input id="free_diagnosis" name="free_diagnosis" onchange="this.form.submit()" type="checkbox"
                                 value="1" class="sr-only peer" onchange="checkboxState()"
@@ -29,7 +30,7 @@
                         </label>
 
                 </form>
-                <div class="flex flex-col gap-y-1.5">
+                <div class="flex flex-col justify-center gap-y-1.5">
                     <a href="/users/{{ $user->id }}/edit">
                         <i class="fa-solid fa-pencil"></i> Edit
                     </a>
@@ -40,7 +41,8 @@
                             Delete</button>
                     </form>
                 </div>
-        </div>
+                </div>
+            </div>
         @endif
     @endauth
     {{-- <img class="hidden w-48 ml-6 rounded-lg lg:block"

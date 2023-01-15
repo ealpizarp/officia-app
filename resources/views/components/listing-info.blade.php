@@ -5,8 +5,8 @@
 
     <div class="flex flex-col lg:text-left justify-between lg:flex lg:flex-row">
         <div class="hidden lg:flex lg:flex-col w-1/2">
-            <h2 class="text-2xl mb-2 font-bold mb-10">{{ $listing->name }}</h2>
-            <p class="text-xl mb-4 text-gray-500">
+            <h2 class="text-2xl mb-2 font-bold mb-10 dark:text-gray-200">{{ $listing->name }}</h2>
+            <p class="text-xl mb-4 text-gray-500 dark:text-gray-400">
                 {{ $listing->description }}
             </p>
         </div>
@@ -77,14 +77,14 @@
                         <i class="fa-solid fa-location-dot mr-2"></i><b>Location</b>
                     </div>
 
-                    <p class="my-2 text-black"> {{ $listing->address->name }} </p>
+                    <p class="my-2 text-black dark:text-gray-400"> {{ $listing->address->name }} </p>
 
                     <div class="flex items-center text-md text-center text-gray-400">
                         <i class="fa-solid fa-border-all mr-2"></i><b>Category</b>
                     </div>
-                    <p class="my-2 text-black"> {{ $listing->subcategory->name }} </p>
+                    <p class="my-2 text-black dark:text-gray-400"> {{ $listing->subcategory->name }} </p>
 
-                    <div class="flex items-center text-md text-center text-gray-400">
+                    <div class="flex items-center text-md text-center text-gray-400 dark:text-gray-400">
                         <i class="fa-solid fa-magnifying-glass mr-2"></i><b>Free diagnosis</b>
                     </div>
 
@@ -96,7 +96,7 @@
                         @endif
                     </p>
 
-                    <div class="flex items-center text-md text-center text-gray-400">
+                    <div class="flex items-center text-md text-center text-gray-400 dark:text-gray-400">
                         <i class="fa-solid fa-shield mr-2"></i><b>Warranty</b>
                     </div>
 

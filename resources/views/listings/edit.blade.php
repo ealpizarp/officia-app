@@ -8,7 +8,7 @@
 
 <x-card class="p-10 max-w-lg mx-auto mt-24">
     <header class="text-center">
-        <h2 class="text-2xl font-bold uppercase mb-1">
+        <h2 class="text-2xl font-bold uppercase mb-1 dark:text-gray-200">
             Edit your service
         </h2>
     </header>
@@ -17,8 +17,8 @@
         @csrf
         @method("PUT")
         <div class="mb-6">
-            <label for="name" class="inline-block text-lg mb-2">Service title</label>
-            <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full" 
+            <label for="name" class="inline-block text-lg mb-2 dark:text-gray-200">Service title</label>
+            <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
                 value="{{ $listing->name }}" />
 
             @error('name')
@@ -28,7 +28,7 @@
 
 
         <div class="mb-6">
-            <label for="category_id" class="inline-block text-lg mb-2">
+            <label for="category_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                 Category
             </label>
             <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -46,7 +46,7 @@
 
         <div class="mb-6">
             
-            <label for="subcategory_id" class="inline-block text-lg mb-2">
+            <label for="subcategory_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                 Subcategory
             </label>
             <select id="subcategory" name="subcategory_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" disabled>
@@ -58,7 +58,7 @@
         </div>
 
         <div class="mb-6">
-            <label for="description" class="inline-block text-lg mb-2">Description</label>
+            <label for="description" class="inline-block text-lg mb-2 dark:text-gray-200">Description</label>
 
             <textarea id="description" 
             name="description" 
@@ -73,7 +73,7 @@
 
 
         <div class="mb-6">
-            <label for="province_id" class="inline-block text-lg mb-2">
+            <label for="province_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                 Province
             </label>
             <select id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -91,7 +91,7 @@
     
         <div class="mb-6">
             
-            <label for="address_id" class="inline-block text-lg mb-2">
+            <label for="address_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                 County
             </label>
             <select id="county" disabled name="address_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -103,8 +103,8 @@
         </div>
 
         <div class="mb-6">
-            <label for="locations_directions" class="inline-block text-lg mb-2">Buisness directions</label>
-            <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full"
+            <label for="locations_directions" class="inline-block text-lg mb-2 dark:text-gray-200">Buisness directions</label>
+            <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 value="{{$listing->locations_directions}}" />
 
             @error('locations_directions')
@@ -114,7 +114,7 @@
         </div>
 
         <div class="mb-6">
-            <label for="reasons_to_choose" class="inline-block text-lg mb-2">Reasons to choose</label>
+            <label for="reasons_to_choose" class="inline-block text-lg mb-2 dark:text-gray-200">Reasons to choose</label>
 
             <textarea id="reasons_to_choose" 
             name="reasons_to_choose" 

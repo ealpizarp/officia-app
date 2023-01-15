@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8" />
@@ -28,11 +27,16 @@
     <title>Officia Dashboard</title>
 </head>
 
-<body class="mb-48">
+
+<html class="dark dark:bg-gray-800" lang="en">
+
+
+
+<body class="mb-48 dark:bg-gray-800">
 
     @include('partials._navbar')
 
-    <main>
+    <main class="dark:bg-gray-800">
         @yield('content')
     </main>
 

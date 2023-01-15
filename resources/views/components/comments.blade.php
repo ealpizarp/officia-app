@@ -8,16 +8,16 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="font-bold leading-tight text-gray-700 text-2xl mt-0 mb-4">User reviews</h4>
+                        <h4 class="font-bold leading-tight text-gray-700 text-2xl mt-0 mb-4 dark:text-gray-900">User reviews</h4>
                         @foreach ($reviews as $review)
         
                             <article class="py-5">
                                 <div class="flex items-center mb-4 space-x-4">
                                     <img class="w-10 h-10 rounded-full" src="{{ $review->user->profile_photo ? asset('storage/' . $review->user->profile_photo) : asset('./images/profile_template.png')}}"
                                         alt="">
-                                    <div class="space-y-1 font-medium dark:text-white">
+                                    <div class="space-y-1 font-medium dark:text-gray-800">
                                         <p>{{$review->user->name}} {{$review->user->last_names}}<time datetime="2014-08-16 19:00"
-                                                class="block text-sm text-gray-500 dark:text-gray-400">Joined on
+                                                class="block text-sm text-gray-500 dark:text-gray-800">Joined on
                                                 {{ date('F, Y', strtotime($review->user->created_at)) }} </time></p>
                                     </div>
                                 </div>
@@ -59,25 +59,25 @@
                                             </path>
                                         </svg>
                                     </div>
-                                    <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-white">{{$review->num_stars}} stars</h3>
+                                    <h3 class="ml-2 text-sm font-semibold text-gray-900 dark:text-gray-900">{{$review->num_stars}} stars</h3>
                                 </div>
-                                <footer class="mb-5 text-sm text-gray-500 dark:text-gray-400">
+                                <footer class="mb-5 text-sm text-gray-500 dark:text-gray-800">
                                     <p>Reviewed on <time
                                             datetime="{{ $review->created_at }}">{{ date('F, Y h:i A', strtotime($review->created_at)) }}</time>
                                     </p>
                                 </footer>
-                                <p class="mb-2 text-gray-700 dark:text-gray-400">{{ $review->body }}
+                                <p class="mb-2 text-gray-700 dark:text-gray-800">{{ $review->body }}
                                 </p>
                                 {{-- <a href="#"
                                     class="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Read
                                     more</a> --}}
                                 <aside>
-                                    {{-- <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">19 people found this
+                                    {{-- <p class="mt-1 text-xs text-gray-500 dark:text-gray-800">19 people found this
                                         helpful</p> --}}
                                     {{-- <div
                                         class="flex items-center mt-4 space-x-3 divide-x divide-gray-200 dark:divide-gray-600">
                                         <a href="#"
-                                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-2 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Helpful</a>
+                                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-xs px-2 py-1.5 dark:bg-gray-800 dark:text-gray-900 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Helpful</a>
                                         <a href="#"
                                             class="pl-4 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Report
                                             abuse</a>

@@ -7,16 +7,16 @@
         id="report-modal">
 
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
-            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400">
+            <div class="relative mt-5 py-8 px-5 md:px-10 bg-white shadow-md rounded-lg border border-gray-400 dark:bg-gray-500">
                 <form method="POST" action="/users/verify/{{ Auth::user()->id }}" enctype="multipart/form-data"
                     class="w-full h-full">
                     @csrf
                     @method('PUT')
-                    <h1 class="text-gray-500 text-center text-2xl font-bold tracking-normal leading-tight mb-4">
+                    <h1 class="text-gray-500 text-center text-2xl font-bold tracking-normal leading-tight mb-4 dark:text-gray-200">
                         Get verified now!</h1>
 
                     <div class="py-10 flex flex-col items-center justify-center">
-                        <label for="verification_photo" class="font-bold text-gray-600 inline-block text-lg mb-2">
+                        <label for="verification_photo" class="font-bold text-gray-600 inline-block text-lg mb-2 dark:text-gray-200">
                             Upload an image of your ID
                         </label>
                         <div class="flex items-center justify-center mt-5 w-full">
@@ -83,9 +83,9 @@
 
         function modalHandler(val) {
             if (val) {
-                fadeIn(modal);
+                fadeIn(report_modal);
             } else {
-                fadeOut(modal);
+                fadeOut(report_modal);
             }
         }
 

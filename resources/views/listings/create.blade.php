@@ -11,7 +11,7 @@
 
         <div class="flex flex-col">
             <header class="text-center">
-                <h2 class="text-2xl text-center font-bold uppercase mb-1">
+                <h2 class="text-2xl text-center font-bold uppercase mb-1 dark:text-white">
                     Publish your service
                 </h2>
             </header>
@@ -21,13 +21,13 @@
                 <x-card class="p-10 max-w-lg mx-auto mt-24">
 
                     <div class="text-center font-bold uppercase mb-10">
-                        <h2 class="text-lg text-gray-500">Add your service info</h2>
+                        <h2 class="text-lg text-gray-500 dark:text-white">Add your service info</h2>
                     </div>
 
 
                     <div class="mb-6">
-                        <label for="name" class="inline-block text-lg mb-2">Service title</label>
-                        <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full"
+                        <label for="name" class="inline-block text-lg mb-2 dark:text-gray-300">Service title</label>
+                        <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('name') }}" />
 
                         @error('name')
@@ -37,7 +37,7 @@
 
 
                     <div class="mb-6">
-                        <label for="category_id" class="inline-block text-lg mb-2">
+                        <label for="category_id" class="inline-block text-lg mb-2 dark:text-gray-300">
                             Category
                         </label>
                         <select id="category"
@@ -56,7 +56,7 @@
 
                     <div class="mb-6">
 
-                        <label for="subcategory_id" class="inline-block text-lg mb-2">
+                        <label for="subcategory_id" class="inline-block text-lg mb-2 dark:text-gray-300">
                             Subcategory
                         </label>
                         <select id="subcategory" name="subcategory_id"
@@ -69,7 +69,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="description" class="inline-block text-lg mb-2">Description</label>
+                        <label for="description" class="inline-block text-lg mb-2 dark:text-gray-300">Description</label>
 
                         <textarea id="description" name="description" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -82,7 +82,7 @@
 
 
                     <div class="mb-6">
-                        <label for="province_id" class="inline-block text-lg mb-2">
+                        <label for="province_id" class="inline-block text-lg mb-2 dark:text-gray-300">
                             Province
                         </label>
                         <select id="province"
@@ -101,7 +101,7 @@
 
                     <div class="mb-6">
 
-                        <label for="address_id" class="inline-block text-lg mb-2">
+                        <label for="address_id" class="inline-block text-lg mb-2 dark:text-gray-300">
                             County
                         </label>
                         <select id="county" name="address_id"
@@ -114,8 +114,8 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="locations_directions" class="inline-block text-lg mb-2">Business directions</label>
-                        <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full"
+                        <label for="locations_directions" class="inline-block text-lg mb-2 dark:text-gray-300">Business directions</label>
+                        <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('locations_directions') }}" />
 
                         @error('locations_directions')
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="reasons_to_choose" class="inline-block text-lg mb-2">Reasons to choose</label>
+                        <label for="reasons_to_choose" class="inline-block text-lg mb-2 dark:text-gray-300">Reasons to choose</label>
 
                         <textarea id="reasons_to_choose" name="reasons_to_choose" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -200,16 +200,16 @@
                 </x-card>
 
                 <!-- component -->
-                <div class="flex xl:w-1/2 bg-white h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
+                <div class="flex xl:w-1/2 bg-white dark:bg-gray-800 h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
 
                     <main class="container mx-auto max-w-screen-lg h-full">
                         <!-- file upload modal -->
                         <div aria-label="File Upload Modal"
-                            class="relative h-full flex flex-col bg-white shadow-xl rounded-md"
+                            class="relative h-full flex flex-col bg-white dark:bg-gray-500 shadow-xl rounded-md"
                             ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"
                             ondragleave="dragLeaveHandler(event);" ondragenter="dragEnterHandler(event);">
                             <div class="flex items-center mx-auto mt-10">
-                                <h2 class="text-lg text-gray-500">Upload your service images</h2>
+                                <h2 class="text-lg text-gray-500 dark:text-gray-200">Upload your service images</h2>
                             </div>
                             <!-- overlay -->
                             {{-- <div id="overlay"
@@ -248,7 +248,7 @@
                                     </button>
                                 </header>
 
-                                <h1 class="pt-8 pb-3 font-bold sm:text-lg text-gray-500">
+                                <h1 class="pt-8 pb-3 font-bold sm:text-lg text-gray-500 dark:text-gray-200">
                                     To Upload
                                 </h1>
 
@@ -258,7 +258,7 @@
                                         <img class="mx-auto w-32"
                                             src="https://user-images.githubusercontent.com/507615/54591670-ac0a0180-4a65-11e9-846c-e55ffce0fe7b.png"
                                             alt="no data" />
-                                        <span class="text-small text-gray-500">No files selected</span>
+                                        <span class="text-small text-gray-500 dark:text-gray-200">No files selected</span>
                                     </li>
                                 </ul>
                             </section>
