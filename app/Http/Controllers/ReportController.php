@@ -77,7 +77,7 @@ class ReportController extends Controller
     {
         $actua_report = Report::with(['service','user'])->where('id','=',$report->id)->first();
 
-        return view('reports.detail', [
+        return view('reports.show', [
             'report' => $actua_report
         ]);
     }

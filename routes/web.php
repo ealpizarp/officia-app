@@ -141,6 +141,8 @@ Route::get('/locations', [AddressController::class, 'index']);
 
 //Reports
 
-Route::get('/reports', [ReportController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('show_report');
+Route::get('/reports', [ReportController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('index_report');
 
 Route::post('/reports', [ReportController::class, 'store'])->middleware(['auth', 'admin:editor'])->name('store_report');
+
+Route::get('/reports/{report}', [ReportController::class, 'show'])->middleware(['auth', 'admin:editor'])->name('store_report');
