@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function user_index(){
 
-        $users = User::with(['address'])->paginate(15);
+        $users = User::with(['address'])->where('available', '=', 1)->paginate(15);
         $provinces = Province::all();
 
         return view('users.user_index', 
@@ -41,7 +41,7 @@ class UserController extends Controller
 
     public function guest_index(){
 
-        $users = User::with(['address'])->paginate(15);
+        $users = User::with(['address'])->where('available', '=', 1)->paginate(15);
         $provinces = Province::all();
 
         return view('users.guest_index', 

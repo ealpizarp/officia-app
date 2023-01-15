@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Address;
-use App\Models\Listing;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Province;
@@ -10,7 +9,6 @@ use App\Models\Category;
 use App\Models\Reviews;
 use App\Models\Image;
 use App\Models\Subcategory;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
 class ListingController extends Controller
@@ -21,31 +19,31 @@ class ListingController extends Controller
     public function index()
     {
         return view('listings.guest_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search', 'address'])
-            )->paginate(15)
+            'listings' => Service::with(['address','user','subcategory', 'image'])
+            ->whereRelation('user', 'available', '=', 1)
+            ->filter(request(['search', 'address']))
+            ->paginate(15)
         ]);
     }
 
     public function user()
     {
         return view('listings.user_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search', 'address'])
-            )->paginate(15)
+            'listings' => Service::with(['address','user','subcategory', 'image'])
+            ->whereRelation('user', 'available', '=', 1)
+            ->filter(request(['search', 'address']))
+            ->paginate(15)
         ]);
 
     }
-
-    
 
     public function admin()
     {
 
         return view('listings.admin_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])->filter(
-                request(['search', 'address'])
-            )->paginate(15)
+            'listings' => Service::with(['address','user','subcategory', 'image'])
+            ->filter(request(['search', 'address']))
+            ->paginate(15)
         ]);
     }
 
