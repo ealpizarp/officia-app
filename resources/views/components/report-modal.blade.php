@@ -63,7 +63,7 @@
 
                 <button
                     class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600"
-                    onclick="modalHandler()" aria-label="close modal" role="button">
+                    onclick="reportModalHandler()" aria-label="close modal" role="button">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-x" width="20"
                         height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -81,13 +81,13 @@
     <div class="flex mr-5 mt-2.5" id="button">
         <button
             class="focus:outline-none transition duration-150 ease-in-out py-2.5 px-5  text-sm font-medium text-gray-900 bg-gray-200 rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            onclick="modalHandler(true)"><span class="pr-2"><i class="fa-solid fa-hand"></i></span>Report
+            onclick="reportModalHandler(true)"><span class="pr-2"><i class="fa-solid fa-hand"></i></span>Report
             service</button>
     </div>
     <script>
         let report_modal = document.getElementById("report-modal");
 
-        function modalHandler(val) {
+        function reportModalHandler(val) {
             if (val) {
                 fadeIn(report_modal);
             } else {

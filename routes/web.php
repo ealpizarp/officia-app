@@ -115,6 +115,8 @@ Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth'
 
 Route::put('/users/verify/{user}', [UserController::class, 'verify_account'])->middleware(['auth', 'admin:editor'])->name('verify_user');;
 
+Route::put('/users/ban/{user}', [UserController::class, 'user_ban'])->middleware(['auth', 'admin:non_editor'])->name('ban_user');;
+
 
 // Send Email
 Route::get('/email',[MailController::class, 'sendMail']);
