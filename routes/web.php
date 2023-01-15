@@ -10,6 +10,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReviewsController;
 use App\Http\Controllers\SubcategoryController;
 
@@ -138,3 +139,8 @@ Route::get('/subcategories/{id}', [SubcategoryController::class, 'subcategoryByC
 
 Route::get('/locations', [AddressController::class, 'index']);
 
+//Reports
+
+Route::get('/reports', [ReportController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('show_report');
+
+Route::post('/reports', [ReportController::class, 'store'])->middleware(['auth', 'admin:editor'])->name('store_report');

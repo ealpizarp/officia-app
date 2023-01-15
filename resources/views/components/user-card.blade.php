@@ -9,7 +9,7 @@
         <x-user-info :user="$user"> </x-user-info>
         @auth
         @if (\Auth::user()->isAdmin())
-        <div class="grid grid-columns-1">
+        <div class="flex flex-col gap-y-1.5">
             <a href="/users/{{ $user->id }}/edit">
                 <i class="fa-solid fa-pencil"></i> Edit
             </a>

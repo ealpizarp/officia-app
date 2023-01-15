@@ -2,7 +2,7 @@
     {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
             class="logo" /></a> --}}
     <button data-collapse-toggle="navbar-default" type="button"
-        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -11,7 +11,7 @@
                 clip-rule="evenodd"></path>
         </svg>
     </button>
-    <div class="hidden relative align-start items-center md:flex">
+    <div class="hidden relative align-start items-center lg:flex">
         <div>
 
             @auth
@@ -39,6 +39,11 @@
                         <a href="/showusers/admin"
                             class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i
                                 class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
+                    </li>
+                    <li>
+                        <a href="/reports"
+                            class="text-sm text-zinc-600 hover:text-cyan-600 transition duration-300"><i
+                                class="p-1 fa-solid fa-flag"></i> Reports</a>
                     </li>
                 @elseif (\Auth::user()->isUser())
                     <li>

@@ -18,9 +18,9 @@ class ReportController extends Controller
     }
 
     public function admin() {
-        $reports = Report::with(['user,service'])->get();
+        $reports = Report::with(['user','service'])->paginate(15);
 
-        return view('reports.admin_index', [
+        return view('reports.index', [
             'reports' => $reports
         ]);
     }
@@ -42,7 +42,7 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $formFields = $request->validate([
             'category' => 'required',
             'description' => 'required',
