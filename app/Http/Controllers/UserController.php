@@ -77,9 +77,9 @@ class UserController extends Controller
             $img->resize(512, 512, function ($constraint) {
             })->save($destinationPath.'/'.$input['imagename']);
 
-            $formFields['profile_photo'] = 'images/'.$input['imagename'];
+            $formFields['profile_photo'] = 'images/profiles/'.$input['imagename'];
         }
-
+        
         if ($request->hasFile('verification_photo')) {
             $formFields['verification_photo'] = $request->file('image')->store('images', 'public');
         }
