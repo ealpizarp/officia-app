@@ -10,7 +10,7 @@
             <div class="flex w-40">
                 <a href="reports/{{ $report->id }}">
                     <h3
-                        class="flex text-lg text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold dark:text-gray-200 ">
+                        class="flex text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold dark:text-gray-200 ">
                         <a href="/reports/{{ $report->id }}">{{ $report->category }}</a>
                     </h3>
                 </a>
@@ -20,11 +20,13 @@
                 <i class="fa-solid fa-user mr-1.5"></i> {{ $report->user->name }}
             </div>
             <div
-                class="w-50 overflow-hidden flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 dark:text-gray-200">
-                <i class="fa-solid fa-satellite mr-1.5"></i> {{ $report->service->name }}
+                class="w-48 overflow-hidden flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 dark:text-gray-200">
+                <a href="/listings/admin/{{$report->service->id}}">
+                    <i class="fa-solid fa-file mr-1.5"></i> {{ $report->service->name }}
+                </a>
             </div>
             <div
-                class="w-30 overflow-hidden flex gap text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 dark:text-gray-200">
+                class="w-30 overflow-hidden flex gap text-md text-center items-center text-zinc-600 transition duration-300 dark:text-gray-200">
                 <i class="fa-solid fa-clock mr-1.5"></i> {{ date('F, Y h:i A', strtotime($report->created_at)) }}
             </div>
         </div>
