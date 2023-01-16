@@ -23,9 +23,15 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option>Select category</option>
                             <option value="Spam"> Spam </option>
-                            <option value="Sexual content"> Sexual content </option>
                             <option value="Copyright violation"> Copyright violation </option>
                             <option value="Violent content"> Violent content </option>
+                            <option value="Deceit or Fraud"> Deceit or Fraud </option>
+                            <option value="Innapropiate content"> Innapropiate content </option>
+                            <option value="The advertiser impersonates another person"> The advertiser impersonates another person </option>
+                            <option value="Promotes violence"> Promotes violence </option>
+                            <option value="Hateful language or symbols"> Hateful language or symbols </option>
+                            <option value="Sexual activity"> Sexual activity </option>
+                            <option value="Sale of illegal products"> Sale of illegal products </option>
 
                         </select>
                     </div>

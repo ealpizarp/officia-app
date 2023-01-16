@@ -9,7 +9,8 @@
 
     </div>
 
-    <x-listing-info :listing=$listing :address=$address> </x-listing-info>
+
+    <x-listing-info :listing=$listing> </x-listing-info>
 
 
     <div class="flex flex-col lg:flex-row justify-between items-center mt-28 mb-28">

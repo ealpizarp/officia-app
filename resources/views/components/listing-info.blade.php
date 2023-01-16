@@ -1,4 +1,4 @@
-@props(['listing', 'address'])
+@props(['listing'])
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
 <div class="mx-10 mt-5">
@@ -69,7 +69,7 @@
 
             <div class="flex flex-col items-center jutify-center mt-10">
 
-                <h3 class="text-center text-2xl font-bold mb-5 lg:hidden">{{ $listing->name }}</h3>
+                <h3 class="text-center text-2xl font-bold mb-5 dark:text-gray-200 lg:hidden">{{ $listing->name }}</h3>
 
                 <div class="grid grid-cols-2 gap-x-16 justify-items-start">
 
