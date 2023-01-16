@@ -19,34 +19,36 @@ class UserController extends Controller
     }
 
 
-    public function admin() {
-        $users = User::with(['address'])->paginate(15);
-        $provinces = Province::all();
+    public function getUsers($isAdmin)
+    {
+        if($isAdmin)
+        {
+            $users = User::with(['address'])->paginate(15);
 
-        return view('users.admin_index', [
-            'users' => $users,
-            'provinces' => $provinces
-        ]);
+        }else{
+            $users = User::with(['address'])->where('available', '=', 1)
+                                            ->paginate(15);
+        }
+
+        return $users;
+    }
+
+    public function admin() {
+
+        return view('users.admin_index', 
+                    ['users' => $this->getUsers(true),]);
     }
 
     public function user_index(){
 
-        $users = User::with(['address'])->where('available', '=', 1)->paginate(15);
-        $provinces = Province::all();
-
         return view('users.user_index', 
-        ['users' => $users,
-        'provinces' => $provinces]);
+                    ['users' => $this->getUsers(false),]);
     }
 
     public function guest_index(){
 
-        $users = User::with(['address'])->where('available', '=', 1)->paginate(15);
-        $provinces = Province::all();
-
         return view('users.guest_index', 
-        ['users' => $users,
-        'provinces' => $provinces]);
+                    ['users' => $this->getUsers(false),]);
     }
 
     public function store(Request $request) {
@@ -208,7 +210,7 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        $userComplete = User::with(['address','service','reviews'])->where('id','=',$user->id)->first();
+        $userComplete = User::with(['address','service'])->where('id','=',$user->id)->first();
 
         return view('users.show', [
             'user' => $userComplete

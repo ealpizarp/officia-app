@@ -50,6 +50,12 @@ class Service extends Model
             $query->whereIn('address_id', Address::where('name', 'LIKE', '%' . request('address') . '%')->pluck('id'))->get();
 
         }
+
+        if($filters['subcategory'] ?? false) {
+        
+            $query->whereIn('subcategory_id', Subcategory::where('name', 'LIKE', '%' . request('subcategory') . '%')->pluck('id'))->get();
+
+        }
         
         if($filters['search'] ?? false) {
 

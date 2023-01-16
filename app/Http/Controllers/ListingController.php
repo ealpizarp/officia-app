@@ -16,161 +16,143 @@ class ListingController extends Controller
 
     //Show all listings
 
+    public function getServices($isAdmin)
+    {
+        if($isAdmin)
+        {
+            $services = Service::with(['address','user','subcategory', 'image'])
+                                ->filter(request(['search', 'address']))
+                                ->filter(request(['search', 'subcategory']))
+                                ->paginate(15);
+
+        }else{
+            $services = Service::with(['address','user','subcategory', 'image'])
+                                ->whereRelation('user', 'available', '=', 1)
+                                ->filter(request(['search', 'address']))
+                                ->filter(request(['search', 'subcategory']))
+                                ->paginate(15);
+        }
+
+        return $services;
+    }
+
     public function index()
     {
         return view('listings.guest_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])
-            ->whereRelation('user', 'available', '=', 1)
-            ->filter(request(['search', 'address']))
-            ->paginate(15)
-        ]);
+            'listings' => $this->getServices(false)]);
     }
 
     public function user()
     {
         return view('listings.user_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])
-            ->whereRelation('user', 'available', '=', 1)
-            ->filter(request(['search', 'address']))
-            ->paginate(15)
-        ]);
+            'listings' => $this->getServices(false)]);
 
     }
 
     public function admin()
     {
-
         return view('listings.admin_index', [
-            'listings' => Service::with(['address','user','subcategory', 'image'])
-            ->filter(request(['search', 'address']))
-            ->paginate(15)
-        ]);
+            'listings' => $this->getServices(true)]);
     }
 
     //Show single listing
 
-    public function show(Service $listing)
+    public function getServiceComplete($service_id, $isAdmin)
     {
+        
+        if($isAdmin)
+        {
+            $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$service_id)->first();
 
-        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
+        }else{
+            $serviceComplete = Service::with(['address','user','subcategory','image'])
+                                        ->where('id','=',$service_id)
+                                        ->whereRelation('user', 'available', '=', 1)
+                                        ->first();
+        }
 
-        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
-        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
+        return $serviceComplete;
 
+    }
+
+    public function getStarsAverage($service_id, $isAdmin)
+    {
         $stars_avg[1] = 0;
         $stars_avg[2] = 0;
         $stars_avg[3] = 0;
         $stars_avg[4] = 0;
         $stars_avg[5] = 0;
 
-        $query = DB::table('reviews')
-                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$listing->id])
-                        ->where('service_id', '=',$listing->id)
+        if($isAdmin)
+        {
+            $query = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$service_id])
+                        ->where('service_id', '=',$service_id)
                         ->groupBy('num_stars')
                         ->orderBy('num_stars')
                         ->get();
 
-
-        if (count($query)>0) {
-
-            foreach ($query as $star) {
-                
-                $stars_avg[$star->num_stars]=$star->average;
-    
-            }
+        }else{
+            $query = DB::table('reviews')
+                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$service_id])
+                        ->where('service_id', '=',$service_id)
+                        ->groupBy('num_stars')
+                        ->orderBy('num_stars')
+                        ->get();
         }
 
-        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();
+        if (count($query)>0) {
+            foreach ($query as $star) {
+                $stars_avg[$star->num_stars]=$star->average;
+            }
+        }
+        
+        return $stars_avg;
+
+    }
+
+    public function getReviews($service_id, $isAdmin)
+    {
+        if($isAdmin)
+        {
+            $reviews = Reviews::with(['user'])->where('service_id','=',$service_id)
+                                            ->get();
+
+        }else{
+            $reviews = Reviews::with(['user'])->where('service_id','=',$service_id)
+                                            ->whereRelation('user', 'available', '=', 1)
+                                            ->get();
+        }
+
+        return $reviews;
+
+    }
+
+    public function show(Service $listing)
+    {
 
         return view('listings.guest_show', [
-            'listing' => $serviceComplete,
-            'address' => $address,
-            'subcategory' => $subcategory,
-            'stars_average' => $stars_avg,
-            'reviews' => $reviews
+            'listing' => $this->getServiceComplete($listing->id, false),
+            'stars_average' => $this->getStarsAverage($listing->id, false),
+            'reviews' => $this->getReviews($listing->id, false)
         ]);
     }
 
     public function show_admin(Service $listing)
     {
-        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
-
-        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
-        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
-
-        $stars_avg[1] = 0;
-        $stars_avg[2] = 0;
-        $stars_avg[3] = 0;
-        $stars_avg[4] = 0;
-        $stars_avg[5] = 0;
-
-        $query = DB::table('reviews')
-                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$listing->id])
-                        ->where('service_id', '=',$listing->id)
-                        ->groupBy('num_stars')
-                        ->orderBy('num_stars')
-                        ->get();
-
-
-        if (count($query)>0) {
-
-            foreach ($query as $star) {
-                
-                $stars_avg[$star->num_stars]=$star->average;
-    
-            }
-        }
-
-        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();  
-
         return view('listings.admin_show', [
-            'listing' => $serviceComplete,
-            'address' => $address,
-            'subcategory' => $subcategory,
-            'stars_average' => $stars_avg,
-            'reviews' => $reviews
+            'listing' => $this->getServiceComplete($listing->id, true),
+            'stars_average' => $this->getStarsAverage($listing->id, true),
+            'reviews' => $this->getReviews($listing->id, true)
         ]);
     }
 
     public function show_user(Service $listing)
     {
-        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
-
-        $subcategory = Subcategory::with(['category'])->where('id','=',$listing->subcategory_id)->first();
-        $address = Address::with(['province'])->where('id','=',$listing->address_id)->first();
-
-        $stars_avg[1] = 0;
-        $stars_avg[2] = 0;
-        $stars_avg[3] = 0;
-        $stars_avg[4] = 0;
-        $stars_avg[5] = 0;
-
-        $query = DB::table('reviews')
-                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$listing->id])
-                        ->where('service_id', '=',$listing->id)
-                        ->groupBy('num_stars')
-                        ->orderBy('num_stars')
-                        ->get();
-
-
-        if (count($query)>0) {
-
-            foreach ($query as $star) {
-                
-                $stars_avg[$star->num_stars]=$star->average;
-    
-            }
-        }
-
-        $reviews = Reviews::with(['user'])->where('service_id','=',$listing->id)->get();
-
-
         return view('listings.user_show', [
-            'listing' => $serviceComplete,
-            'address' => $address,
-            'subcategory' => $subcategory,
-            'stars_average' => $stars_avg,
-            'reviews' => $reviews
+            'listing' => $this->getServiceComplete($listing->id, false),
+            'stars_average' => $this->getStarsAverage($listing->id, false),
+            'reviews' => $this->getReviews($listing->id, false)
         ]);
     }
 
@@ -210,13 +192,11 @@ class ListingController extends Controller
         if ($request->images) {
 
             foreach ($request->images as $image) {
-            
 
                 $new_image['path_name']=$image->store('images/services', 'public');
                 $new_image['service_id']=$service->id;
     
                 Image::create($new_image);
-    
             }
         }
 
@@ -254,9 +234,7 @@ class ListingController extends Controller
 
         $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
 
-        return view('listings.edit', ['listing' => $serviceComplete, 
-        'provinces' => Province::all(), 
-        'categories' => Category::all()]);
+        return view('listings.edit', ['listing' => $serviceComplete]);
     }
 
     // Delete Listing
