@@ -13,9 +13,10 @@
 
         </div>
         <div class="text-center mt-24">
-            <h3 class="text-2xl text-slate-700 font-bold leading-normal mb-1 dark:text-gray-900">{{ $listing->user->name }}
+            <a href="/users/{{$listing->user->id}}">
+            <h3 class="text-2xl text-gray-700 font-bold leading-normal mb-1 dark:text-gray-800 transition duration-300 hover:text-cyan-600">{{ $listing->user->name }}
                 {{ $listing->user->last_names }}</h3>
-
+            </a>
             <div class="text-md mt-0 mb-2 text-lime-600 font-bold uppercase dark:text-lime-400">
                 @if ($listing->user->verification_photo)
                     <i class="fa-solid fa-certificate  opacity-75 mr-1.5"></i> Verified

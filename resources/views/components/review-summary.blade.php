@@ -7,11 +7,11 @@
         <h2 class="text-gray-800 text-center font-semibold mt-1 mb-4 dark:text-gray-900">{{$numReviews}} Users reviews</h2>
         <div class="border-b dark:border-gray-800 -mx-8 px-8 pb-3">
                 <div class="flex items-center mt-1">
-                    <div class=" w-1/5 text-black text-gray-600 tracking-tighter dark:text-gray-900">
+                    <div class=" w-1/5 text-black text-gray-700 tracking-tighter dark:text-gray-900">
                         <span>5 star</span>
                     </div>
                     <div class="w-3/5">
-                        <div class="bg-gray-300 w-full rounded-lg h-2 dark:bg-gray-700">
+                        <div class="bg-gray-300 w-full text-gray-700 rounded-lg h-2 dark:bg-gray-700">
                             <div
                                 class=" w-[{{ number_format((float) $starsAverage[5], 0) }}%] bg-yellow-500 rounded-lg h-2">
                             </div>
@@ -22,7 +22,7 @@
                     </div>
                 </div><!-- first -->
                 <div class="flex items-center mt-1">
-                    <div class="w-1/5 text-black tracking-tighter dark:text-gray-900">
+                    <div class="w-1/5 text-black tracking-tighter text-gray-700 dark:text-gray-900">
                         <span>4 star</span>
                     </div>
                     <div class="w-3/5">
@@ -37,11 +37,11 @@
                     </div>
                 </div><!-- second -->
                 <div class="flex items-center mt-1">
-                    <div class="w-1/5 text-black tracking-tighter dark:text-gray-900">
+                    <div class="w-1/5 text-black tracking-tighter text-gray-700 dark:text-gray-900">
                         <span>3 star</span>
                     </div>
                     <div class="w-3/5">
-                        <div class="bg-gray-300 w-full rounded-lg h-2 dark:bg-gray-700">
+                        <div class="bg-gray-300 w-full rounded-lg h-2 text-gray-700  dark:bg-gray-700">
                             <div
                                 class=" w-[{{ number_format((float) $starsAverage[3], 0) }}%] bg-yellow-500 rounded-lg h-2">
                             </div>
@@ -52,22 +52,22 @@
                     </div>
                 </div><!-- thierd -->
                 <div class="flex items-center mt-1">
-                    <div class=" w-1/5 text-black tracking-tighter dark:text-gray-900">
+                    <div class=" w-1/5 text-black tracking-tighter text-gray-700 dark:text-gray-900">
                         <span>2 star</span>
                     </div>
                     <div class="w-3/5">
-                        <div class="bg-gray-300 w-full rounded-lg h-2 dark:bg-gray-700">
+                        <div class="bg-gray-300 w-full rounded-lg h-2 text-gray-700 dark:bg-gray-700">
                             <div
                                 class=" w-[{{ number_format((float) $starsAverage[2], 0) }}%] bg-yellow-500 rounded-lg h-2">
                             </div>
                         </div>
                     </div>
-                    <div class="w-1/5 text-black pl-3 dark:text-gray-900">
+                    <div class="w-1/5 text-black pl-3 text-gray-700 dark:text-gray-900">
                         <span class="text-sm">{{ number_format((float) $starsAverage[2], 0) }}%</span>
                     </div>
                 </div><!-- 4th -->
                 <div class="flex items-center mt-1">
-                    <div class="w-1/5 text-black tracking-tighter dark:text-gray-900">
+                    <div class="w-1/5 text-black tracking-tighter text-gray-700 dark:text-gray-900">
                         <span>1 star</span>
                     </div>
                     <div class="w-3/5">

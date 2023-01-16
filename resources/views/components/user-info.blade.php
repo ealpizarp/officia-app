@@ -6,7 +6,7 @@
     <div class="flex w-auto">
         <h3
             class="flex text-md text-center items-center text-zinc-600 hover:text-cyan-600 transition duration-300 font-bold dark:text-gray-200">
-            <a href="/users/admin/{{ $user->id }}">{{ $user->name }} {{ $user->last_names }}</a>
+            <a href="/users/{{ $user->id }}">{{ $user->name }} {{ $user->last_names }}</a>
         </h3>
     </div>
     <div class="w-auto overflow-hidden flex gap text-md text-center items-center text-zinc-600  transition duration-300 dark:text-gray-200">

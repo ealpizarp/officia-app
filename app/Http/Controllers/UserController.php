@@ -210,7 +210,7 @@ class UserController extends Controller
     {
         $userComplete = User::with(['address','service','reviews'])->where('id','=',$user->id)->first();
 
-        return view('users.profile', [
+        return view('users.show', [
             'user' => $userComplete
         ]);
     }

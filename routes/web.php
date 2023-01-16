@@ -148,3 +148,5 @@ Route::get('/reports', [ReportController::class, 'admin'])->middleware(['auth', 
 Route::post('/reports', [ReportController::class, 'store'])->middleware(['auth', 'admin:editor'])->name('store_report');
 
 Route::get('/reports/{report}', [ReportController::class, 'show'])->middleware(['auth', 'admin:editor'])->name('store_report');
+
+Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_report');
