@@ -92,12 +92,16 @@ class ListingController extends Controller
 
         }else{
             $query = DB::table('reviews')
-                        ->selectRaw('num_stars, count(num_stars)/(select count(body) from reviews where service_id = ?)*100 as average', [$service_id])
-                        ->where('service_id', '=',$service_id)
-                        ->groupBy('num_stars')
-                        ->orderBy('num_stars')
+                        ->join('user','user.id','=','reviews.user_id')
+                        ->selectRaw('reviews.num_stars, count(reviews.num_stars)/(select count(reviews.body) from reviews where reviews.service_id = ?)*100 as average', [$service_id])
+                        ->where('reviews.service_id', '=', $service_id)
+                        ->where('user.available', '=', 1)
+                        ->groupBy('reviews.num_stars')
+                        ->orderBy('reviews.num_stars')
                         ->get();
         }
+
+        //dd($query);
 
         if (count($query)>0) {
             foreach ($query as $star) {
