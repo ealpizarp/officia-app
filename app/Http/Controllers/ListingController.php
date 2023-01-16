@@ -21,15 +21,13 @@ class ListingController extends Controller
         if($isAdmin)
         {
             $services = Service::with(['address','user','subcategory', 'image'])
-                                ->filter(request(['search', 'address']))
-                                ->filter(request(['search', 'subcategory']))
+                                ->filter(request(['search', 'address', 'subcategory']))
                                 ->paginate(15);
 
         }else{
             $services = Service::with(['address','user','subcategory', 'image'])
                                 ->whereRelation('user', 'available', '=', 1)
-                                ->filter(request(['search', 'address']))
-                                ->filter(request(['search', 'subcategory']))
+                                ->filter(request(['search', 'address', 'subcategory']))
                                 ->paginate(15);
         }
 
