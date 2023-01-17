@@ -1,9 +1,9 @@
 <nav class="flex justify-between items-center bg-highlight_blue h-16 w-full dark:bg-gray-600">
     {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
             class="logo" /></a> --}}
-    <button data-collapse-toggle="navbar-default" type="button"
+    <button type="button" onclick="toggleNavbar()"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 dark:text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-        aria-controls="navbar-default" aria-expanded="false">
+        aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
@@ -11,6 +11,7 @@
                 clip-rule="evenodd"></path>
         </svg>
     </button>
+
     <div class="hidden relative align-start items-center dark:text-gray-200 lg:flex">
         <div>
 
@@ -28,13 +29,16 @@
             @endauth
 
         </div>
+
+
         <ul class="flex space-x-6 text-md ml-3">
             <li>
-                <a href="/locations" class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
+                <a href="/locations"
+                    class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
                         class="p-1 fa-solid fa-map-pin fa-envelope"></i> Location</a>
             </li>
             @auth
-                @if (\Auth::user()->isAdmin())
+                @if (Auth::user()->isAdmin())
                     <li>
                         <a href="/showusers/admin"
                             class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
@@ -45,7 +49,7 @@
                             class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
                                 class="p-1 fa-solid fa-flag"></i> Reports</a>
                     </li>
-                @elseif (\Auth::user()->isUser())
+                @elseif (Auth::user()->isUser())
                     <li>
                         <a href="/showusers/user"
                             class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
@@ -54,13 +58,15 @@
                 @endif
             @else
                 <li>
-                    <a href="/showusers/guest" class="text-sm text-zinc-600 hover:text-cyan-600  dark:text-gray-200 transition duration-300"><i
+                    <a href="/showusers/guest"
+                        class="text-sm text-zinc-600 hover:text-cyan-600  dark:text-gray-200 transition duration-300"><i
                             class="p-1 fa-solid fa-user"></i> Buisness Owners</a>
                 </li>
             @endauth
 
             <li>
-                <a href="/categories" class="text-sm text-zinc-600 hover:text-cyan-600  dark:text-gray-200 transition duration-300"><i
+                <a href="/categories"
+                    class="text-sm text-zinc-600 hover:text-cyan-600  dark:text-gray-200 transition duration-300"><i
                         class="p-1 fa-solid fa-border-all"></i> Categories</a>
             </li>
         </ul>
@@ -70,8 +76,9 @@
         <div class="hidden relative right-2 md:flex">
             <ul class="flex space-x-6 text-md">
                 <li>
-                    <a href="/users/{{Auth::user()->id}}">
-                        <span class="font-bold uppercase text-zinc-600 text-sm hover:text-cyan-600 dark:text-gray-200 transition duration-300">
+                    <a href="/users/{{ Auth::user()->id }}">
+                        <span
+                            class="font-bold uppercase text-zinc-600 text-sm hover:text-cyan-600 dark:text-gray-200 transition duration-300">
                             Welcome {{ auth()->user()->name }}
                         </span>
                     </a>
@@ -95,10 +102,12 @@
                 @endauth
 
                 <li>
-                    <form action="/logout" class="inline text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"
+                    <form action="/logout"
+                        class="inline text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"
                         method="POST">
                         @csrf
-                        <button class="hover:text-cyan-600 transition text-sm duration-300 dark:text-gray-200" type="submit">
+                        <button class="hover:text-cyan-600 transition text-sm duration-300 dark:text-gray-200"
+                            type="submit">
                             <i class="fa-solid fa-door-closed "></i> Logout
                         </button>
                     </form>
@@ -109,11 +118,13 @@
         <div class="hidden md:flex relative space-x-6 right-10">
             <ul class="flex space-x-6 text-md">
                 <li>
-                    <a href="/register" class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
+                    <a href="/register"
+                        class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
                             class="fa-solid fa-user-plus"></i> Register</a>
                 </li>
                 <li>
-                    <a href="/login" class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
+                    <a href="/login"
+                        class="text-sm text-zinc-600 hover:text-cyan-600 dark:text-gray-200 transition duration-300"><i
                             class="fa-solid fa-arrow-right-to-bracket"></i>
                         Login</a>
                 </li>
@@ -123,3 +134,46 @@
 
     @endauth
 </nav>
+
+
+<div class="hidden w-full md:w-auto lg:hidden" id="navbar-default">
+    <ul
+        class="flex flex-col p-4 mt-0 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <a href="/" class="block py-2 pl-3 pr-4 text-white bg-cyan-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white" aria-current="page">Home</a>
+          </li>
+        <li>
+            <a href="/locations"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Locations</a>
+        </li>
+        <li>
+            <a href="/showusers/guest"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Buisness Owners</a>
+        </li>
+        <li>
+            <a href="/categories"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Categories</a>
+        </li>
+        <li>
+            <a href="/register"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Register</a>
+        </li>
+        <li>
+            <a href="/register"
+                class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Login</a>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    function toggleNavbar() {
+        var x = document.getElementById("navbar-default");
+        if (x.classList.contains("block")) {
+            x.classList.remove("block");
+            x.classList.add("hidden");
+        } else {
+            x.classList.remove("hidden");
+            x.classList.add("block");
+        }
+    }
+</script>

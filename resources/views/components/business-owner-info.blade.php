@@ -7,7 +7,7 @@
             <div class="w-full flex justify-center">
                 <div class="relative">
                     <img src={{ $listing->user->profile_photo ? asset('storage/' . $listing->user->profile_photo) : asset('./images/profile_template.png') }}
-                        class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-[150px]" />
+                        class="shadow-xl rounded-full align-middle border-none absolute -m-16 -ml-[4.5rem] max-w-[150px]" />
                 </div>
             </div>
 
