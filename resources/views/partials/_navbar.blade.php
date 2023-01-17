@@ -1,30 +1,34 @@
-<nav class="flex justify-between items-center bg-highlight_blue h-16 w-full dark:bg-gray-600">
+<nav class="flex flex-row justify-between items-center bg-highlight_blue h-16 w-full dark:bg-gray-600">
     {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
             class="logo" /></a> --}}
+    <a class="flex flex-row items-center font-medium text-2xl font-sans text-gray-700 md:hidden" href="/"><img class="w-16 p-2 md:hidden" src={{ asset('images/officia-logo-no-text.svg') }} alt="Oficia Logo"
+            class="logo" />Officia</a>
     <button type="button" onclick="toggleNavbar()"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 dark:text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         aria-expanded="false">
         <span class="sr-only">Open main menu</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"
                 d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
                 clip-rule="evenodd"></path>
         </svg>
     </button>
 
+
     <div class="hidden relative align-start items-center dark:text-gray-200 lg:flex">
         <div>
 
             @auth
                 @if (\Auth::user()->isAdmin())
-                    <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }}
+                    <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }}
                             alt="Oficia Logo" class="logo" /></a>
                 @elseif (\Auth::user()->isUser())
-                    <a href="/user"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }}
+                    <a href="/user"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }}
                             alt="Oficia Logo" class="logo" /></a>
                 @endif
             @else
-                <a href="/"><img class="w-16 p-3" src={{ asset('images/logo-no-background.svg') }} alt="Oficia Logo"
+                <a href="/"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }} alt="Oficia Logo"
                         class="logo" /></a>
             @endauth
 
