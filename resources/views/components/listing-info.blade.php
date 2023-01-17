@@ -1,7 +1,7 @@
 @props(['listing'])
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.2/flowbite.min.js"></script>
 
-<div class="mx-10 mt-5">
+<div class="mx-5 lg:mx-10 mt-5">
 
     <div class="flex flex-col lg:text-left justify-between lg:flex lg:flex-row">
         <div class="hidden lg:flex lg:flex-col w-1/2">
@@ -13,7 +13,7 @@
 
         <div class="flex flex-col items-center lg:w-1/2">
 
-            <div id="default-carousel" class="relative w-3/4" data-carousel="static">
+            <div id="default-carousel" class="relative w-10/12" data-carousel="static">
                 <!-- Carousel wrapper -->
                 <div id="carousel-container" class="relative h-56 overflow-hidden rounded-xl md:h-96 md:rounded-2xl">
                     <!-- Item 1 -->
@@ -73,18 +73,18 @@
 
                 <div class="grid grid-cols-2 gap-x-16 justify-items-start">
 
-                    <div class="flex items-center text-md text-center text-gray-400 ">
+                    <div class="flex items-center text-sm md:text-base text-center text-gray-400 ">
                         <i class="fa-solid fa-location-dot mr-2"></i><b>Location</b>
                     </div>
 
                     <p class="my-2 text-black dark:text-gray-400"> {{ $listing->address->name }} </p>
 
-                    <div class="flex items-center text-md text-center text-gray-400">
+                    <div class="flex items-center text-sm md:text-base text-center text-gray-400">
                         <i class="fa-solid fa-border-all mr-2"></i><b>Category</b>
                     </div>
                     <p class="my-2 text-black dark:text-gray-400"> {{ $listing->subcategory->name }} </p>
 
-                    <div class="flex items-center text-md text-center text-gray-400 dark:text-gray-400">
+                    <div class="flex items-center text-sm md:text-base text-center text-gray-400 dark:text-gray-400">
                         <i class="fa-solid fa-magnifying-glass mr-2"></i><b>Free diagnosis</b>
                     </div>
 
@@ -96,7 +96,7 @@
                         @endif
                     </p>
 
-                    <div class="flex items-center text-md text-center text-gray-400 dark:text-gray-400">
+                    <div class="flex items-center text-sm md:text-base text-center text-gray-400 dark:text-gray-400">
                         <i class="fa-solid fa-shield mr-2"></i><b>Warranty</b>
                     </div>
 

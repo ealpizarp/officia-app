@@ -28,7 +28,7 @@
 </head>
 
 
-<html class="dark dark:bg-gray-800" lang="en">
+<html class="dark:bg-gray-800" lang="en">
 
 
 

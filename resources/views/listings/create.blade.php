@@ -11,14 +11,14 @@
 
         <div class="flex flex-col">
             <header class="text-center">
-                <h2 class="text-2xl text-center font-bold uppercase mb-1 dark:text-white">
+                <h2 class="hidden md:block text-2xl text-center font-bold uppercase mb-1 dark:text-white">
                     Publish your service
                 </h2>
             </header>
 
             <div class="flex flex-col xl:flex-row ">
 
-                <x-card class="p-10 max-w-lg mx-auto mt-24">
+                <x-card class="p-3 md:p-10 mx-4 md:mx-auto mt-0 md:mt-24">
 
                     <div class="text-center font-bold uppercase mb-10">
                         <h2 class="text-lg text-gray-500 dark:text-white">Add your service info</h2>
@@ -200,7 +200,7 @@
                 </x-card>
 
                 <!-- component -->
-                <div class="flex xl:w-1/2 bg-white dark:bg-gray-800 h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
+                <div class="flex mx-4 md:mx-0 xl:w-1/2 bg-white dark:bg-gray-800 h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
 
                     <main class="container mx-auto max-w-screen-lg h-full">
                         <!-- file upload modal -->

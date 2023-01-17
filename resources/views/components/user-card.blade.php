@@ -15,7 +15,7 @@
                 <form method="POST" action="/users/ban/{{ $user->id }}" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <div class="flex items-center flex-row gap-8">
+                    <div class="flex items-center flex-col gap-2 md:flex-row md:gap-5">
                         <label class="relative cursor-pointer">
                             <input id="free_diagnosis" name="free_diagnosis" onchange="this.form.submit()" type="checkbox"
                                 value="1" class="sr-only peer" onchange="checkboxState()"
@@ -30,7 +30,7 @@
                         </label>
 
                 </form>
-                <div class="flex flex-col justify-center gap-y-1.5">
+                <div class="flex flex-col justify-center ml-1.5 gap-y-1">
                     <a href="/users/{{ $user->id }}/edit">
                         <i class="fa-solid fa-pencil"></i> Edit
                     </a>

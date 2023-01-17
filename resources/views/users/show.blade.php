@@ -47,24 +47,26 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="mt-10 py-10 border-t dark:border-gray-200 text-gray-700 dark:text-gray-200 text-center">
-                            <h2 class="font-bold text-2xl"> Listed services</h2>
-
-                            <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-4 text-justify">
-
-                                @unless(count($user->service) == 0)
-                                    @foreach ($user->service as $listing)
-                                        <x-listing-card :listing="$listing" />
-                                    @endforeach
-                                @else
-                                    <p class="block text-lg text-center font-bold text-gray-700">This user has no listings</p>
-                                @endunless
-                            </div>
-
-
-                        </div>
+        
                     </div>
                 </div>
             </div>
     </section>
+
+    <div class="mt-10 py-10 border-t dark:border-gray-200 text-gray-700 dark:text-gray-200 text-center">
+        <h2 class="font-bold text-2xl"> Listed services</h2>
+
+        <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-4 text-justify">
+
+            @unless(count($user->service) == 0)
+                @foreach ($user->service as $listing)
+                    <x-listing-card :listing="$listing" />
+                @endforeach
+            @else
+                <p class="block text-lg text-center font-bold text-gray-700">This user has no listings</p>
+            @endunless
+        </div>
+
+
+    </div>
 @endsection

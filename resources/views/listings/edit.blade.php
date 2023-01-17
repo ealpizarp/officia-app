@@ -6,9 +6,9 @@
 
 <meta name="_token" content="{{csrf_token()}}"></meta>
 
-<x-card class="p-10 max-w-lg mx-auto mt-24">
+<x-card class="p-3 md:p-10 mx-4 md:mx-auto mt-0 md:mt-24">
     <header class="text-center">
-        <h2 class="text-2xl font-bold uppercase mb-1 dark:text-gray-200">
+        <h2 class="hidden md:block text-2xl font-bold uppercase mb-1 dark:text-gray-200">
             Edit your service
         </h2>
     </header>
