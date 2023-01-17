@@ -23,7 +23,7 @@
             </div>
 
             
-            <div class=" relative w-3/4">
+            <div class=" relative w-10/12 md:w-9/12 lg:w-3/4">
                 @include('partials._search')
             </div>
             

@@ -1,4 +1,5 @@
 @extends('guest_layout')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 @section('content')
     <x-card class="p-10 max-w-lg mx-auto mt-24">
@@ -17,8 +18,9 @@
                 <label for="name" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Name
                 </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="name"
-                    value="{{ old('name') }}" />
+                <input type="text"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="name" value="{{ old('name') }}" />
                 @error('name')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -28,8 +30,9 @@
                 <label for="last_names" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Last name
                 </label>
-                <input type="text" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="last_names"
-                    value="{{ old('last_names') }}" />
+                <input type="text"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="last_names" value="{{ old('last_names') }}" />
                 @error('last_names')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -39,8 +42,9 @@
                 <label for="phone_number" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Phone number
                 </label>
-                <input type="number" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="phone_number"
-                    value="{{ old('phone_number') }}" />
+                <input type="number"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="phone_number" value="{{ old('phone_number') }}" />
                 @error('phone_number')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -50,8 +54,9 @@
                 <label for="legal_id" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Identification number
                 </label>
-                <input type="number" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="legal_id"
-                    value="{{ old('legal_id') }}" />
+                <input type="number"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="legal_id" value="{{ old('legal_id') }}" />
                 @error('legal_id')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -92,8 +97,9 @@
 
             <div class="mb-6">
                 <label for="email" class="inline-block text-lg mb-2 dark:text-gray-200">Email</label>
-                <input type="email" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="email"
-                    value="{{ old('email') }}" />
+                <input type="email"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="email" value="{{ old('email') }}" />
                 <!-- Error Example -->
                 @error('email')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
@@ -101,38 +107,37 @@
 
             </div>
 
+
             <div class="mb-6">
-                <label for="profile_photo" class="inline-block text-lg mb-2 dark:text-gray-200">
-                    Profile photo
-                </label>
-                <div class="flex items-center justify-center w-full">
-                    <label for="dropzone-file"
-                        class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                </path>
-                            </svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to
-                                    upload</span> or drag and drop</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG (MAX. 800x400px)</p>
+                <h1 class="text-lg mb-2 dark:text-gray-200">Profile picture
+                </h1>
+                <div class="avatar-upload">
+                    <div class="avatar-edit">
+                        <input name="profile_photo" class="text-highlight_blue" type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                        <label class="hover:text-gray-500 hover:border-gray-200" for="imageUpload"></label>
+                    </div>
+                    <div class="avatar-preview border-4 border-highlight_blue w-48 h-48 relative rounded-full shadow-xl">
+                        <div id="imagePreview" class="z-10 w-full h-full bg-cover bg-no-repeat bg-center rounded-full "
+                            style="background-image: url({{ asset('./images/profile_template.png') }})">
                         </div>
-                        <input name="profile_photo" id="dropzone-file" type="file" class="hidden" />
-                    </label>
+        
+                    </div>
+        
                 </div>
                 @error('profile_photo')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+                <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+            @enderror
             </div>
+
 
             <div class="mb-6">
                 <label for="password" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Password
                 </label>
 
-                <input type="password" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="password" />
+                <input type="password"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="password" />
                 @error('password')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -145,7 +150,9 @@
                 <label for="password_confirmation" class="inline-block text-lg mb-2 dark:text-gray-200">
                     Confirm Password
                 </label>
-                <input type="password" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="password_confirmation" />
+                <input type="password"
+                    class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    name="password_confirmation" />
                 @error('password_confirmation')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -167,9 +174,27 @@
             </div>
         </form>
     </x-card>
+
+    {{-- <div class="container">
+        <h1 class="text-lg mb-2 dark:text-gray-200">Upload your profile picture
+        </h1>
+        <div class="avatar-upload">
+            <div class="avatar-edit">
+                <input class="text-highlight_blue" type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                <label class="hover:text-gray-500 hover:border-gray-200" for="imageUpload"></label>
+            </div>
+            <div class="avatar-preview border-4 border-highlight_blue w-48 h-48 relative rounded-full shadow-xl">
+                <div id="imagePreview" class="z-10 w-full h-full bg-cover bg-no-repeat bg-center rounded-full "
+                    style="background-image: url({{ asset('./images/profile_template.png') }})">
+                </div>
+
+            </div>
+
+        </div>
+    </div> --}}
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 
 <script>
     $.ajaxSetup({
@@ -204,14 +229,79 @@
             });
         });
 
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+
     });
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("#province").on("change", function() {
-            var province_id = $(this).val();
-        });
-        document.cookie = "province_id=" + province_id
-    });
-</script>
+<style>
+
+    .container {
+        max-width: 960px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+
+    .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        margin: 50px auto;
+    }
+
+    .avatar-upload .avatar-edit {
+        position: absolute;
+        right: 12px;
+        z-index: 1;
+        top: 10px;
+    }
+
+    .avatar-upload .avatar-edit input {
+        display: none;
+    }
+
+    .avatar-upload .avatar-edit input+label {
+        display: inline-block;
+        width: 34px;
+        height: 34px;
+        margin-bottom: 0;
+        border-radius: 100%;
+        background: #FFFFFF;
+        border: 1px solid transparent;
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+        cursor: pointer;
+        font-weight: normal;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .avatar-upload .avatar-edit input+label:hover {
+    }
+
+    .avatar-upload .avatar-edit input+label:after {
+        content: "\f040";
+        font-family: 'FontAwesome';
+        position: absolute;
+        top: 6px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        margin: auto;
+    }
+
+
+
+</style>
