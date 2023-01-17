@@ -187,8 +187,14 @@ class UserController extends Controller
 
 
         if(auth()->attempt($formFields)) {
-            $user = auth()->user();
+            $user = auth()->user();            
             $request->session()->regenerate();
+
+            if ($user->available === 0){
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+                return back()->with("message", 'Sorry, this user is banned indefinitely!');
+            }
 
             if ( $user->type === 1 ) {
                 return redirect(route('dashboard'));
