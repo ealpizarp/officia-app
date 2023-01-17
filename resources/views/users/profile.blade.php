@@ -18,14 +18,18 @@
 
                     <div class="text-center mt-28">
                         <h3 class="text-4xl font-semibold leading-normal mb-2 dark:text-gray-200 mb-2">
-                                {{$user->name}} {{$user->last_names}}
+                            {{ $user->name }} {{ $user->last_names }}
                         </h3>
                         <div class="text-sm leading-normal mt-0 mb-2 text-gray-500 dark:text-gray-200 font-bold uppercase">
                             <i class="fas fa-map-marker-alt mr-2 text-lg text-gray-500 dark:text-gray-200"></i>
                             {{ $user->address->name }}
                         </div>
-
+                        {{dd($rating)}}
                         <div class="flex justify-center items-center flex-col mt-10">
+                            <div class="text-left mb-2 text-gray-500 dark:text-gray-200 font-medium ">
+                                <i class="fa-solid fa-envelope mr-2 text-lg text-gray-500 dark:text-gray-200"></i>
+                                {{ $rating }}
+                            </div>
                             <div class="text-left mb-2 text-gray-500 dark:text-gray-200 font-medium ">
                                 <i class="fa-solid fa-envelope mr-2 text-lg text-gray-500 dark:text-gray-200"></i>
                                 {{ $user->email }}
