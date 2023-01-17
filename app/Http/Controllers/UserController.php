@@ -7,6 +7,7 @@ use App\Models\Province;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -208,12 +209,43 @@ class UserController extends Controller
         return redirect()->route('dashboard')->with(["message" => "User deleted succesfully!"]);
     }
 
+    public function getRating($user_id, $isAdmin)
+    {
+        if($isAdmin){
+
+            $rating = DB::table('service')
+                        ->join('reviews','reviews.service_id','=','service.id')
+                        ->join('user','user.id','=','service.user_id')
+                        ->selectRaw('sum(reviews.num_stars)/count(reviews.body) as rating')
+                        ->where('user.id', '=',$user_id)
+                        ->first();
+
+        }else{
+            $rating = DB::table('service')
+                        ->join('reviews','reviews.service_id','=','service.id')
+                        ->join('user','user.id','=','service.user_id')
+                        ->selectRaw('sum(reviews.num_stars)/count(reviews.body) as rating')
+                        ->where('user.id', '=',$user_id)
+                        ->where('user.available', '=', 1)
+                        ->first();
+        }
+
+        if (is_null($rating->rating)) {
+            $rating->rating = '0';
+        }
+
+        $rating= floatval($rating->rating);
+
+        return $rating;
+    }
+    
     public function show(User $user)
     {
         $userComplete = User::with(['address','service'])->where('id','=',$user->id)->first();
 
         return view('users.show', [
-            'user' => $userComplete
+            'user' => $userComplete,
+            'rating' => $this->getRating($userComplete->id, false),
         ]);
     }
 

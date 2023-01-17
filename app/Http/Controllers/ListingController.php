@@ -1,14 +1,12 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Address;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Province;
 use App\Models\Category;
 use App\Models\Reviews;
 use App\Models\Image;
-use App\Models\Subcategory;
 use Illuminate\Support\Facades\DB;
 
 class ListingController extends Controller
