@@ -8,9 +8,9 @@
         <div>
             <h3 class="text-xl text-zinc-600  dark:text-gray-200 hover:text-cyan-600 transition duration-300 font-bold dark:hover:text-cyan-500">
                 @auth
-                    @if (\Auth::user()->isAdmin())
+                    @if (Auth::user()->isAdmin())
                         <a href="/listings/admin/{{ $listing->id }}">{{ $listing->name }}</a>
-                    @elseif (\Auth::user()->isUser())
+                    @elseif (Auth::user()->isUser())
                         <a href="/listings/user/{{ $listing->id }}">{{ $listing->name }}</a>
                     @endif
                 @else
