@@ -234,7 +234,9 @@ class ListingController extends Controller
 
         $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
 
-        return view('listings.edit', ['listing' => $serviceComplete]);
+        return view('listings.edit', ['listing' => $serviceComplete, 
+        'provinces' => Province::all(), 
+        'categories' => Category::all()]);
     }
 
     // Delete Listing
