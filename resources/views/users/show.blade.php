@@ -27,7 +27,7 @@
 
                         <div class="flex justify-center items-center flex-col mt-10">
                             <div class="text-left mb-2 text-gray-500 dark:text-gray-200 font-medium ">
-                                <i class="fa-solid fa-envelope mr-2 text-lg text-gray-500 dark:text-gray-200"></i>
+                                <i class="fa-solid fa-star mr-2 text-lg text-gray-500 dark:text-gray-200"></i>Rating: 
                                 {{ number_format((float) $rating, 1) }}
                             </div>
                             <div class="text-left mb-2 text-gray-500 dark:text-gray-200 font-medium ">
