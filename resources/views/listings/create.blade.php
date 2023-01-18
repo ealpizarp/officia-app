@@ -27,7 +27,8 @@
 
                     <div class="mb-6">
                         <label for="name" class="inline-block text-lg mb-2 dark:text-gray-300">Service title</label>
-                        <input type="text" name="name" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        <input type="text" name="name"
+                            class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('name') }}" />
 
                         @error('name')
@@ -114,8 +115,10 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="locations_directions" class="inline-block text-lg mb-2 dark:text-gray-300">Business directions</label>
-                        <input name="locations_directions" type="text" class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        <label for="locations_directions" class="inline-block text-lg mb-2 dark:text-gray-300">Business
+                            directions</label>
+                        <input name="locations_directions" type="text"
+                            class="border border-gray-200 rounded p-2 w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             value="{{ old('locations_directions') }}" />
 
                         @error('locations_directions')
@@ -136,7 +139,8 @@
                     </div>
 
                     <div class="mb-6">
-                        <label for="reasons_to_choose" class="inline-block text-lg mb-2 dark:text-gray-300">Reasons to choose</label>
+                        <label for="reasons_to_choose" class="inline-block text-lg mb-2 dark:text-gray-300">Reasons to
+                            choose</label>
 
                         <textarea id="reasons_to_choose" name="reasons_to_choose" rows="4"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -200,7 +204,8 @@
                 </x-card>
 
                 <!-- component -->
-                <div class="flex mx-4 md:mx-0 xl:w-1/2 bg-white dark:bg-gray-800 h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
+                <div
+                    class="flex mx-4 md:mx-0 xl:w-1/2 bg-white dark:bg-gray-800 h-screen sm:px-8 md:px-16 mt-24 font-bold uppercase">
 
                     <main class="container mx-auto max-w-screen-lg h-full">
                         <!-- file upload modal -->
