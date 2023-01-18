@@ -18,7 +18,8 @@
                 extend: {
                     colors: {
                         laravel: "#ef3b2d",
-                        highlight_blue: "#E2ECF4"
+                        highlight_blue: "#E2ECF4",
+                        hero: "#026d8566"
                     },
                 },
             },
