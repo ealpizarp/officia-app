@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
+use function PHPUnit\Framework\isNull;
+
 class UserController extends Controller
 {
     // Show Register/Create Form
@@ -52,6 +54,44 @@ class UserController extends Controller
                     ['users' => $this->getUsers(false),]);
     }
 
+    public function storePhoto($request, $user){
+
+        if(is_null($user)){
+            $image = $request->file('profile_photo');
+
+            $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
+        
+            $destinationPath = storage_path('app/public/images/profiles');
+            
+            $img = Image::make($image->path());
+
+            $img->resize(512, 512, function ($constraint) {})->save($destinationPath.'/'.$input['imagename']);
+
+            $imagePath = 'images/profiles/'.$input['imagename'];
+
+        }
+        else{
+            $image = $request->file('profile_photo');
+
+            $input['imagename'] =  $user->profile_photo;
+            $destinationPath = storage_path('app/public');
+            
+            //delete the actual photo
+            $path = storage_path('app/public/') . $user->profile_photo;
+            unlink($path);
+
+            //save the new photo with the same name
+            $img = Image::make($image->path());
+            $img->resize(512, 512, function ($constraint) {})->save($destinationPath.'/'.$input['imagename']);
+
+            $imagePath = $user->profile_photo;
+        }
+
+        return $imagePath;
+
+
+    }
+
     public function store(Request $request) {
         $formFields = $request->validate([
             'legal_id' => 'required',
@@ -68,19 +108,7 @@ class UserController extends Controller
         $formFields['password'] = bcrypt($formFields['password']);
 
         if ($request->hasFile('profile_photo')) {
-
-            $image = $request->file('profile_photo');
-
-            $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
-        
-            $destinationPath = storage_path('app/public/images/profiles');
-            
-            $img = Image::make($image->path());            
-
-            $img->resize(512, 512, function ($constraint) {
-            })->save($destinationPath.'/'.$input['imagename']);
-
-            $formFields['profile_photo'] = 'images/profiles/'.$input['imagename'];
+            $formFields['profile_photo'] = $this->storePhoto($request, null);
         }
         
         if ($request->hasFile('verification_photo')) {
@@ -96,48 +124,38 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        $formFields = $request->validate([
-            'legal_id' => 'required',
-            'name' => 'required',
-            'last_names' => 'required',
-            'phone_number' => ['required', 'min:8', 'max:9'],
-            'email' => ['required','email'],
-            'address_id' => 'required',
-        ]);
 
-        /*
-        $actual_user = User::where('id','=',$request->id);
-        
-        if($actual_user->profile_photo != 'images/'.$request->profile_photo){
+        $formFields = $request->all();
 
-
-            $image = $request->file('profile_photo');
-            $input['imagename'] =  $request->legal_id.$request->_token.time().'.' .$image->extension();
-            $destinationPath = storage_path('app/public/images');
-            $img = Image::make($image->path());            
-
-            $img->resize(512, 512, function ($constraint) {})->save($destinationPath.'/'.$input['imagename']);
-            
-            $path = storage_path('app/public/') . $actual_user->profile_photo;
-            unlink($path);
-
-            $formFields['profile_photo'] = 'images/'.$input['imagename'];
-
-        }else{
-            $formFields['profile_photo'] = $actual_user->profile_photo;
+        //Password
+        if (is_null($formFields['password']) && is_null($formFields['password_confirmation']) ){
+            $formFields['password'] = $user->password;
         }
-        */
-
-        if ($request->hasFile('verification_photo')) {
-            $formFields['verification_photo'] = $request->file('image')->store('images', 'public');
+        elseif(is_null($formFields['password']) || is_null($formFields['password_confirmation']) ){
+            return back()->withErrors(['password' => 'Invalid Credentials'])->onlyInput('password');
         }
-
-        if($request->password) {
+        elseif($formFields['password'] != $formFields['password_confirmation']){
+            return back()->withErrors(['password' => 'The passwords must match'])->onlyInput('password');
+        }
+        else{
             $formFields['password'] = bcrypt($formFields['password']);
+        }
+        
+        //dd($request->hasFile('profile_photo'), !is_null($user->profile_photo));
+
+        //Profile photo
+        if($request->hasFile('profile_photo') && (!is_null($user->profile_photo))){
+            $formFields['profile_photo'] = $this->storePhoto($request, $user);
+            
+        }
+        elseif($request->hasFile('profile_photo') && is_null($user->profile_photo)){
+            $formFields['profile_photo'] = $this->storePhoto($request, null);
+        }
+        else{
+            $formFields['profile_photo'] = $user->profile_photo;
         }
 
         $user->update($formFields);
-
 
         return back()->with('message', 'User updated succesfully!');
     }
