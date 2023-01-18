@@ -1,7 +1,7 @@
 <nav class="flex flex-row justify-between items-center bg-highlight_blue h-16 w-full dark:bg-gray-600">
     {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
             class="logo" /></a> --}}
-    <a class="flex flex-row items-center font-medium text-2xl font-sans text-gray-700 md:hidden" href="/"><img class="w-16 p-2 md:hidden" src={{ asset('images/officia-logo-no-text.svg') }} alt="Oficia Logo"
+    <a class="flex flex-row items-center font-medium text-2xl font-sans text-gray-700 md:hidden dark:text-gray-300" href="/"><img class="w-16 mt-2 md:hidden dark:text-gray-500" src={{ asset('images/officia-logo-color.svg') }} alt="Oficia Logo"
             class="logo" />Officia</a>
     <button type="button" onclick="toggleNavbar()"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 dark:text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -16,19 +16,19 @@
     </button>
 
 
-    <div class="hidden relative align-start items-center dark:text-gray-200 lg:flex">
+    <div class="hidden relative align-start items-center lg:flex">
         <div>
 
             @auth
                 @if (\Auth::user()->isAdmin())
-                    <a href="/dashboard"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }}
+                    <a href="/dashboard"><img class="w-16 p-1 mt-1" src={{ asset('images/officia-logo-color.svg') }}
                             alt="Oficia Logo" class="logo" /></a>
                 @elseif (\Auth::user()->isUser())
-                    <a href="/user"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }}
+                    <a href="/user"><img class="w-16 p-1 mt-1" src={{ asset('images/officia-logo-color.svg') }}
                             alt="Oficia Logo" class="logo" /></a>
                 @endif
             @else
-                <a href="/"><img class="w-16 p-3" src={{ asset('images/officia-logo-no-text.svg') }} alt="Oficia Logo"
+                <a href="/"><img class="w-16 p-1 mt-1" src={{ asset('images/officia-logo-color.svg') }} alt="Oficia Logo"
                         class="logo" /></a>
             @endauth
 
