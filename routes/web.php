@@ -101,7 +101,7 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 Route::get('/showusers/admin', [UserController::class, 'admin'])->middleware(['auth', 'admin:non_editor'])->name('show_users_admin');;
 
-Route::get('/showusers/user', [UserController::class, 'user_index'])->middleware(['auth', 'user'])->name('show_users_user');;
+Route::get('/showusers/user', [UserController::class, 'user_index'])->name('show_users_user');;
 
 Route::get('/showusers/guest', [UserController::class, 'guest_index'])->name('show_users_guest');;
 

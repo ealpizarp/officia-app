@@ -1,10 +1,11 @@
 <nav class="flex flex-row justify-between items-center bg-highlight_blue h-16 w-full dark:bg-gray-600">
     {{-- <a href="/"><img class="w-24 p-3" src={{ asset('images/app-logo.png') }} alt=""
             class="logo" /></a> --}}
-    <a class="flex flex-row items-center font-medium text-2xl font-sans text-gray-700 md:hidden dark:text-gray-300" href="/"><img class="w-16 mt-2 md:hidden dark:text-gray-500" src={{ asset('images/officia-logo-color.svg') }} alt="Oficia Logo"
-            class="logo" />Officia</a>
+    <a class="flex flex-row items-center font-medium text-2xl font-sans text-gray-700 md:hidden dark:text-gray-300"
+        href="/"><img class="w-16 mt-2 md:hidden dark:text-gray-500"
+            src={{ asset('images/officia-logo-color.svg') }} alt="Oficia Logo" class="logo" />Officia</a>
     <button type="button" onclick="toggleNavbar()"
-        class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 dark:text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        class="inline-flex items-center p-2 mr-3 text-sm text-gray-500 dark:text-gray-200 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         aria-expanded="false">
         <span class="sr-only">Open main menu</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -28,8 +29,8 @@
                             alt="Oficia Logo" class="logo" /></a>
                 @endif
             @else
-                <a href="/"><img class="w-16 p-1 mt-1" src={{ asset('images/officia-logo-color.svg') }} alt="Oficia Logo"
-                        class="logo" /></a>
+                <a href="/"><img class="w-16 p-1 mt-1" src={{ asset('images/officia-logo-color.svg') }}
+                        alt="Oficia Logo" class="logo" /></a>
             @endauth
 
         </div>
@@ -173,6 +174,14 @@
                         class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Post
                         a service</a>
                 </li>
+                <li>
+                    <form action="/logout"
+                        class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        method="POST">
+                        @csrf
+                        <button class="w-full text-left">Logout</button>
+                        <form>
+                </li>
             @elseif (Auth::user()->isUser())
                 <li>
                     <a href="/showusers/user"
@@ -184,12 +193,25 @@
                         class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Post
                         a service</a>
                 </li>
+                <li>
+                    <form action="/logout"
+                        class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        method="POST">
+                        @csrf
+                        <button class="w-full text-left">Logout</button>
+                        <form>
+                </li>
             @endif
         @else
             <li>
                 <a href="/showusers/guest"
                     class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Buisness
                     Owners</a>
+            </li>
+            <li>
+                <a href="/listings/user/create"
+                    class="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-cyan-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Post
+                    a service</a>
             </li>
             <li>
                 <a href="/register"

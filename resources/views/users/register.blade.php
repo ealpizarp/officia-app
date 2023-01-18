@@ -2,12 +2,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 @section('content')
-    <x-card class="p-10 max-w-lg mx-auto mt-24">
+    <x-card class="p-3 md:p-10 mt-5 mx-4 max-w-lg md:mx-auto mt-0 md:mt-24 flex flex-col items-center">
         <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1 dark:text-gray-200">
+            <h2 class="md:block text-lg lg:text-2xl text-center font-bold uppercase mb-1 text-gray-700 dark:text-gray-200">
                 Register
             </h2>
-            <p class="mb-4 dark:text-gray-200">Create an account to publish your service</p>
+            <p class="mb-4 hidden md:block dark:text-gray-200">Create an account to publish your service</p>
         </header>
         <meta name="_token" content="{{ csrf_token() }}">
         </meta>
