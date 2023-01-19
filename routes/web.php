@@ -69,7 +69,7 @@ Route::post('/reviews', [ReviewsController::class, 'store'])->middleware(['auth'
 
 //Show Edit Form
 
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin:non_editor'])->name('edit_listing');;
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin:editor'])->name('edit_listing');;
 
 // Update listing
 
