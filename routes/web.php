@@ -111,7 +111,7 @@ Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['
 
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_user');;
 
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'admin:editor'])->name('show_user');;
+Route::get('/users/{user}', [UserController::class, 'show'])->name('show_user');;
 
 Route::put('/users/verify/{user}', [UserController::class, 'verify_account'])->middleware(['auth', 'admin:editor'])->name('verify_user');;
 

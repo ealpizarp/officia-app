@@ -1,7 +1,7 @@
 @props(['listing'])
 
 
-<div class="relative mx-10 w-3/4 lg:w-1/2 mt-20 min-w-0 break-words bg-gray-100 w-full mb-6 shadow-lg rounded-xl dark:bg-gray-600">
+<div class="relative mx-10 w-11/12 max-w-2xl break-words bg-gray-100 w-full mb-6 shadow-lg rounded-xl dark:bg-gray-600">
     <div class="px-6">
         <div class="flex flex-wrap justify-start">
             <div class="w-full flex justify-center">

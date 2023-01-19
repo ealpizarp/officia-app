@@ -2,7 +2,7 @@
 
 {{-- {{dd($starsAverage[1])}} --}}
 
-<div class="mx-auto bg-gray-100 shadow-lg rounded-lg mt-10 px-4 w-3/4 max-w-md  dark:bg-gray-600">
+<div class="mx-10 xl:mx-auto bg-gray-100 shadow-lg rounded-lg mt-10 px-4 w-3/4 max-w-md  dark:bg-gray-600">
     <div class="mb-1 tracking-wide px-4 py-4">
         <h2 class="text-gray-800 text-center font-semibold mt-1 mb-4 dark:text-gray-300">{{$numReviews}} Users reviews</h2>
         <div class="border-b dark:border-gray-300 -mx-8 px-8 pb-3">
