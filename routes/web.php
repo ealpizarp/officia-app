@@ -73,11 +73,11 @@ Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->midd
 
 // Update listing
 
-Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'admin:non_editor'])->name('update_listing');;
+Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'admin:editor'])->name('update_listing');;
 
 // Delete listing
 
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'admin:non_editor'])->name('delete_listing');;
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'admin:editor'])->name('delete_listing');;
 
 // Show Register/Create Form
 

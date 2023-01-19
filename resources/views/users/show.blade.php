@@ -44,9 +44,6 @@
                                         @if ($user->id == Auth::user()->id)
                                             <x-verification-modal></x-verification-modal>
                                         @endif
-                                        {{-- <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                                    Model for verification
-                                </p> --}}
                                     @endauth
                                 </div>
                             </div>
@@ -58,13 +55,19 @@
     </section>
 
     <div class="mt-10 py-10 border-t dark:border-gray-200 text-gray-700 dark:text-gray-200 text-center">
+        @if($user->id === Auth::user()->id)
+        <h2 class="font-bold text-2xl"> My services</h2>
+        @else
         <h2 class="font-bold text-2xl"> Listed services</h2>
-
+        @endif
         <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-4 text-justify">
 
             @unless(count($user->service) == 0)
                 @foreach ($user->service as $listing)
                     <x-listing-card :listing="$listing" />
+                    @if($listing->user->id === Auth::user()->id)
+                    <x-update-listing-card :listing=$listing></x-update-listing-card>
+                    @endif
                 @endforeach
             @else
                 <p class="block text-lg text-center font-bold text-gray-700">This user has no listings</p>
