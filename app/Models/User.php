@@ -38,7 +38,12 @@ class User extends Authenticatable
 
     public function report()
     {
-        return $this->hasMany(Report::class, 'service_id', 'id');
+        return $this->hasMany(Report::class, 'user_id', 'id');
+    }
+
+    public function notification()
+    {
+        return $this->hasMany(Report::class, 'user_id', 'id');
     }
 
     public function address()

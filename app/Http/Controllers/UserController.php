@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use App\Models\User;
 use App\Models\Province;
 use Intervention\Image\Facades\Image;
@@ -170,8 +171,13 @@ class UserController extends Controller
 
         $user->update($formFields);
 
+        $msgFields['category'] = 'Verification request';
+        $msgFields['description'] = 'User '.$user->legal_id.' has requested account verification.';
+        $msgFields['user_id']=$user->id;
 
-        return back()->with('message', 'User updated succesfully!');
+        Notification::create($msgFields);
+
+        return back()->with('message', 'Verification request sent succesfully!');
     }
 
 
