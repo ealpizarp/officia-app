@@ -21,14 +21,15 @@ class UserAuthenticated
         {
             /** @var User $user */
             $user = Auth::user();
+            $listing = $request->route('listing');
 
             // if user is not admin take him to his dashboard
             if ( $user->isAdmin() ) {
-                return redirect(route('dashboard'));
+                return $next($request);
             }
 
             // allow admin to proceed with request
-            else if ( $user->isUser() ) {
+            else if ( $user->isUser() && $user->id == $listing->user_id) {
                 return $next($request);
             }
         }

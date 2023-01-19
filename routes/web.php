@@ -48,7 +48,7 @@ Route::get('/dashboard', [ListingController::class, 'admin'])->middleware(['auth
 
 Route::get('/listings/admin/create', [ListingController::class, 'create'])->middleware(['auth', 'admin:non_editor'])->name('create_listing');;
 
-Route::get('/listings/user/create', [ListingController::class, 'create'])->middleware(['auth', 'user'])->name('create_listing');;
+Route::get('/listings/user/create', [ListingController::class, 'create'])->middleware(['auth', 'admin:editor'])->name('create_listing');;
 
 // Single Listing
 
@@ -69,15 +69,16 @@ Route::post('/reviews', [ReviewsController::class, 'store'])->middleware(['auth'
 
 //Show Edit Form
 
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'admin:editor'])->name('edit_listing');;
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware(['auth', 'user'])->name('edit_listing');;
 
 // Update listing
 
-Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'admin:editor'])->name('update_listing');;
+Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware(['auth', 'user'])->name('update_listing');;
 
 // Delete listing
 
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'admin:editor'])->name('delete_listing');;
+
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware(['auth', 'user'])->name('delete_listing');;
 
 // Show Register/Create Form
 

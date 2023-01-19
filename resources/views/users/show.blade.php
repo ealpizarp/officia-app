@@ -60,7 +60,7 @@
         @else
         <h2 class="font-bold text-2xl"> Listed services</h2>
         @endif
-        <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-4 text-justify">
+        <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-10 md:mx-14 text-justify xl:mx-56">
 
             @unless(count($user->service) == 0)
                 @foreach ($user->service as $listing)
