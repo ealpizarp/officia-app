@@ -67,9 +67,11 @@
             @unless(count($user->service) == 0)
                 @foreach ($user->service as $listing)
                     <x-listing-card :listing="$listing" />
+                    @auth
                     @if($listing->user->id === Auth::user()->id)
                     <x-update-listing-card :listing=$listing></x-update-listing-card>
                     @endif
+                    @endauth
                 @endforeach
             @else
                 <p class="block text-lg text-center font-bold text-gray-700">This user has no listings</p>
