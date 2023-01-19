@@ -332,7 +332,7 @@
     </template>
 
     <template id="image-template">
-        <li class="block p-1 w-1/2 sm:w-1/3 md:w-1/4 lg:w-1/6 xl:w-1/8 h-24">
+        <li class="block p-1 w-1/4 xl:w-1/3 3xl:w-1/8 h-24 md:h-32">
             <article tabindex="0"
                 class="group hasImage w-full h-full rounded-md focus:outline-none focus:shadow-outline bg-gray-100 cursor-pointer relative text-transparent hover:text-white shadow-sm">
                 <img alt="upload preview" class="img-preview w-full h-full sticky object-cover rounded-md bg-fixed" />

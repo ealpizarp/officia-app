@@ -55,11 +55,13 @@
     </section>
 
     <div class="mt-10 py-10 border-t dark:border-gray-200 text-gray-700 dark:text-gray-200 text-center">
+        @auth
         @if($user->id === Auth::user()->id)
         <h2 class="font-bold text-2xl"> My services</h2>
         @else
         <h2 class="font-bold text-2xl"> Listed services</h2>
         @endif
+        @endauth
         <div class="mt-5 grid grid-cols-1 gap-2 space-y-2 mx-10 md:mx-14 text-justify xl:mx-56">
 
             @unless(count($user->service) == 0)
