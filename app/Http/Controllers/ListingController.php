@@ -200,7 +200,7 @@ class ListingController extends Controller
             }
         }
 
-        return redirect()->route("/user")->with(["mensaje" => "Service published succesfully!"]);
+        return redirect('/')->with('message', 'Service published succesfully!');
     }
 
     // Update listing data
@@ -250,6 +250,6 @@ class ListingController extends Controller
         }
 
         $listing->delete();
-        return redirect('/dashboard')->with('message', 'Listing deleted succesfully!');
+        return redirect('/')->with('message', 'Listing deleted succesfully!');
     }
 }

@@ -217,14 +217,14 @@ class UserController extends Controller
             if ($user->available === 0){
                 $request->session()->invalidate();
                 $request->session()->regenerateToken();
-                return back()->with("message", 'Sorry, this user is banned indefinitely!');
+                return back()->with('message', 'Sorry, this user is banned indefinitely!');
             }
 
             if ( $user->type === 1 ) {
-                return redirect(route('dashboard'));
+                return redirect('/')->with('message', 'You are logged in!');
             }
             else if ( $user->type === 0 ) {
-                return redirect('/user')->with("message", 'You are logged in!');
+                return redirect('/')->with('message', 'You are logged in!');
             }  
         }
 
@@ -236,7 +236,7 @@ class UserController extends Controller
         $path = storage_path('app/public/') . $user->profile_photo;
         unlink($path);
         $user->delete();
-        return redirect()->route('dashboard')->with(["message" => "User deleted succesfully!"]);
+        return redirect('/')->with('message', 'User deleted succesfully!');
     }
 
     public function getRating($user_id, $isAdmin)
