@@ -232,7 +232,7 @@ class ListingController extends Controller
     public function edit(Service $listing)
     {
 
-        $serviceComplete = Service::with(['address','user','subcategory'])->where('id','=',$listing->id)->first();
+        $serviceComplete = Service::with(['address','user','subcategory','image'])->where('id','=',$listing->id)->first();
 
         return view('listings.edit', ['listing' => $serviceComplete, 
         'provinces' => Province::all(), 
